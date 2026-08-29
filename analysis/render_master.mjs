@@ -173,7 +173,18 @@ async function main() {
   const chunkFiles = [];
   for (let i = 0; i < chunks.length; i++) {
     const { chunkStart, chunkEnd } = chunks[i];
-    const chunkFile = path.join(CHUNK_DIR, `chunk_${String(i).padStart(4, "0")}_${chunkStart.toFixed(1)}-${chunkEnd.toFixed(1)}.mp4`);
+    // Filename MUST encode every setting that changes the actual pixels
+    // (resolution, quality tier, supersample) — a real bug caught here
+    // during the Part 15 comparison-reel render: two calls covering the
+    // SAME time range at 1080p and at 4K/1.5x-SS produced byte-identical
+    // "4K" output because the old filename (time range only) matched an
+    // existing chunk file from the 1080p run, and chunkIsComplete() only
+    // checks duration, not resolution — it happily "restarted" from a
+    // completely wrong cached file.
+    const chunkFile = path.join(
+      CHUNK_DIR,
+      `chunk_${String(i).padStart(4, "0")}_${chunkStart.toFixed(1)}-${chunkEnd.toFixed(1)}_${width}x${height}_${quality}_ss${ss}.mp4`
+    );
     chunkFiles.push(chunkFile);
     const expectedDur = chunkEnd - chunkStart;
 

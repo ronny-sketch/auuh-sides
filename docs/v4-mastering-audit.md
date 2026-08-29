@@ -271,6 +271,45 @@ higher-patience pass — this is a cost/quality call for Ronny, not one this
 pass makes unilaterally by picking a default and rendering 5+ days of
 unattended GPU time.
 
+## Performance/VRAM safety (Part 16) — a real, reproducible instability found and mitigated
+
+Three separate stress-test attempts at 3840×2160/MASTER quality (RGBA16F
+scene target), sustained single-browser-session rendering, all failed in
+the same narrow window:
+
+| Attempt | Pattern | Failure | Where |
+|---|---|---|---|
+| 1 | Periodic cropped screenshot (synthetic) | WebSocket closed mid-call | frame 0 (first checkpoint) |
+| 2 | Same, retried | CDP call hung indefinitely, zero CPU, 34+ min before manual kill | frame 1260/1800 (exact same frame both times) |
+| 3 | Full-frame screenshot every frame (the ACTUAL production capture pattern) | `Target closed` — the Chrome tab/renderer process itself died | frame ~1500-1650/1800 |
+
+All three failures land between roughly 42-65 real seconds (1260-1960
+frames at 30fps) of sustained rendering in a single browser session at
+this resolution/precision — consistent with a genuine resource-exhaustion
+ceiling (most likely Chrome's own out-of-memory kill of the renderer or
+GPU process after enough 4K HalfFloat allocations/screenshots accumulate),
+not a coincidence and not specific to one capture method. This was found
+by actually running the stress test, not assumed from "16-bit float at 4K
+sounds like it should be fine."
+
+**Mitigation, verified**: `render_master.mjs` already launches a fresh
+browser process per chunk (`renderChunk()`). Re-running the identical
+production pattern with `--chunk-seconds 20` (well under the observed
+42-65s failure window) completed two consecutive chunks cleanly with zero
+errors, correct 40.000000s final duration after concat. **Recommendation:
+20-second chunks for any real MASTER-quality render** — comfortably below
+the observed instability threshold with real margin, at the cost of more
+frequent (cheap) browser relaunches, which the chunking architecture
+already amortizes correctly (verified seamless at chunk boundaries, see
+Part 1's continuity test above).
+
+`protocolTimeout` was also changed from disabled to a bounded 90s in
+`render_master.mjs` (and 60s in the stress-test script) as a second,
+independent safety net — a future hang or crash now fails visibly within
+a bounded time instead of consuming wall-clock indefinitely, which is what
+made diagnosing attempt #2 above take over half an hour longer than it
+needed to.
+
 ## Summary: what Parts 1-8 of the V4 brief are actually responding to
 
 Every one of the brief's stated concerns (8-bit history, no AA, resolution-

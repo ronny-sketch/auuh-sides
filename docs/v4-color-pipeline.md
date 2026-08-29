@@ -106,6 +106,43 @@ the ProRes archival master (MOV container) takes the same
 which the `mov` muxer writes into the file's `colr` atom directly (no
 x264/x265-specific VUI step needed for that container).
 
+## Finding 3 [CRITICAL, caught before it reached the archival master]: ProRes/MOV silently crushes blacks and clips highlights unless the range conversion is done explicitly, not just tagged
+
+Applying the H.264 recipe's logic to ProRes (`-color_range pc ...` on
+`prores_ks`/`mov`) and round-tripping the test pattern through it produced
+a genuinely corrupted image: **1%, 2%, and 5% all crushed to code value 0;
+10% and 18% reduced to roughly half their intended value; 90% clipped up
+past its intended value.** This is not a rounding artifact — it is exactly
+the signature of a limited-range (16-235) expansion applied to data that
+was never actually converted to limited range in the first place.
+
+**Root cause, confirmed by working out the exact arithmetic**: `ffprobe`
+showed the muxer writes `color_range=tv` (limited) into the file
+regardless of the `-color_range pc` flag passed to it — the flag is
+accepted but not honored for this codec/container combination. Meanwhile
+the pixel VALUES were left as full-range (stored as literal 0-255-derived
+codes, unconverted). Any decoder — including `ffmpeg`'s own, and by
+universal real-world convention every NLE/colorist tool reading a ProRes
+file — correctly honors the file's OWN `tv` tag and expands assuming
+limited-range input, which is precisely the corruption measured. **This
+would have silently destroyed near-black detail throughout the piece in
+the one deliverable meant to be the permanent, highest-fidelity
+reference**, had it shipped without this test.
+
+**Fix, verified**: rather than fighting ProRes's universal limited-range
+convention, perform an ACTUAL, correct full→legal range conversion
+(`scale=in_range=pc:out_range=tv:in_color_matrix=bt709:
+out_color_matrix=bt709`) so the stored 10-bit codes are properly legalized,
+and tag the file `color_range=tv` to match what is now genuinely stored.
+Re-verified via the same test-pattern round-trip: max ±1 code value across
+all 9 steps (ordinary rounding noise, the same magnitude already seen in
+the H.264 path) — no crushing, no clipping. This is now the recipe used in
+`analysis/mux_deliverable.mjs`'s `archival` path. The H.264/HEVC delivery
+paths were NOT affected by this bug — their `-x264opts`/`-x265-params
+fullrange=on` combination was independently verified correct in Finding 2
+above, and use genuine full-range throughout, which is the normal, correct
+convention for web/streaming delivery (unlike ProRes).
+
 ## Decision
 
 **Rec.709, full-range (PC range), SDR** — for every deliverable, per the

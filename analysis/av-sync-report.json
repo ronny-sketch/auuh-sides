@@ -1,0 +1,49 @@
+{
+  "generatedAt": "2026-08-29T21:11:15.175Z",
+  "measuredAudioDurationSec": 2526.934785,
+  "timelineDurationConstant": 2526.934785,
+  "durationDriftMs": 0,
+  "fps": 15,
+  "totalMasterFrameCount": 37904,
+  "audioTailResidualMs": 1.4516666665258526,
+  "checkpoints": [
+    {
+      "label": "00:00 (start)",
+      "t": 0,
+      "frame": 0
+    },
+    {
+      "label": "~10:00",
+      "t": 600,
+      "frame": 9000
+    },
+    {
+      "label": "~20:00",
+      "t": 1200,
+      "frame": 18000
+    },
+    {
+      "label": "~30:00",
+      "t": 1800,
+      "frame": 27000
+    },
+    {
+      "label": "17:47 rupture",
+      "t": 1067.19,
+      "frame": 16008
+    },
+    {
+      "label": "41:22 climax",
+      "t": 2482,
+      "frame": 37230
+    },
+    {
+      "label": "final second",
+      "t": 2525.934785,
+      "frame": 37889
+    }
+  ],
+  "verifiedFile": "reviews/AUUH_v3_5_director_proxy.mp4",
+  "findings": [],
+  "result": "PASS"
+}
