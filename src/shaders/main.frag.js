@@ -15,6 +15,27 @@ uniform float uContrast;
 uniform float uColorMix;
 uniform float uRestraint;
 
+// BODY family, v2 (Phase 3): blend toward a second primitive pair so
+// topology itself changes across the piece, not just fold/turbulence
+// amount on one fixed shape — "the object is a body / the body is
+// architecture" per creative-bible's SIDES concept needs the underlying
+// form to actually change, not just its symmetry and texture.
+uniform float uFormBlend;
+
+// v2 Phase 4 (audio mapping): micro-scale modulation from AudioFeatureEngine.
+uniform float uGrainBoost; // high/hats -> micro texture intensity
+
+// Temporal feedback (Phase 6 / MEMORY family). uPrevFrame is last frame's
+// screen-space output; uMemoryWeight controls how strongly it bleeds into
+// this frame; uMemoryDrift is a small, slowly-evolving UV displacement so
+// the feedback loop drifts and smears rather than sitting as a static
+// double-exposure. This is a screen-space effect layered after the 3D
+// raymarch, not part of map() — deliberately: ghosting belongs to the
+// image the camera sees, not to the geometry itself.
+uniform sampler2D uPrevFrame;
+uniform float uMemoryWeight;
+uniform vec2 uMemoryDrift;
+
 varying vec2 vUv;
 
 // ---------- noise ----------
@@ -57,6 +78,20 @@ float fbm(vec3 p) {
 float sdRoundBox(vec3 p, vec3 b, float r) {
   vec3 q = abs(p) - b;
   return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0) - r;
+}
+
+// second BODY topology (v2, Phase 3): faceted, crystalline — the
+// counterpart to the rounded box's soft mass. Exact SDF (Inigo Quilez).
+float sdOctahedron(vec3 p, float s) {
+  p = abs(p);
+  float m = p.x + p.y + p.z - s;
+  vec3 q;
+  if (3.0 * p.x < m) q = p.xyz;
+  else if (3.0 * p.y < m) q = p.yzx;
+  else if (3.0 * p.z < m) q = p.zxy;
+  else return m * 0.57735027;
+  float k = clamp(0.5 * (q.z - q.y + s), 0.0, s);
+  return length(vec3(q.x, q.y - s + k, q.z - k));
 }
 
 float sdTorus(vec3 p, vec2 t) {
@@ -127,16 +162,45 @@ float map(vec3 p) {
   float warp = fbm(pf * 0.8 + uTime * 0.05) * uTurbulence * distMask;
   vec3 pw = pf + warp * 0.6;
 
-  float body = sdRoundBox(pw, vec3(1.0, 1.4, 1.0), 0.35);
-  float ring = sdTorus(pw - vec3(0.0, 0.0, 0.0), vec2(1.6, 0.35));
-  float d = opSmoothUnion(body, ring, 0.6);
+  // BODY topology blend (v2, Phase 3): primitive pair A (rounded box +
+  // thick torus, soft mass) crossfades into pair B (octahedron + thin wide
+  // ring, faceted architecture) by uFormBlend — the underlying identity
+  // changes shape, not just its symmetry/turbulence, per the SIDES
+  // narrative's "the body is architecture" progression.
+  float bodyA = sdRoundBox(pw, vec3(1.0, 1.4, 1.0), 0.35);
+  float ringA = sdTorus(pw, vec2(1.6, 0.35));
+  float dA = opSmoothUnion(bodyA, ringA, 0.6);
+
+  float bodyB = sdOctahedron(pw, 1.55);
+  float ringB = sdTorus(pw, vec2(1.9, 0.12));
+  float dB = opSmoothUnion(bodyB, ringB, 0.35);
+
+  float d = mix(dA, dB, uFormBlend);
 
   d += (fbm(pf * 2.3 - uTime * 0.03) - 0.5) * uTurbulence * 0.35 * distMask;
 
+  // v2 regression fix: VisualDirector now adds a small onset-driven
+  // rupture on top of each chapter's own fracture baseline (Phase 4 —
+  // "flux/onset -> discrete rupture events"), which pushes fracture
+  // slightly above 0 even in chapters whose v1 baseline was always
+  // exactly 0 (e.g. Emergence). v1 never exercised this range because
+  // fracture was hard-pinned to exactly 0 there (excluded by the
+  // uFracture>0.001 gate). Two earlier attempts at fixing this both
+  // rendered black or fully-shattered frames — see docs/creative-
+  // critique-v2.md for why (raising crackWidth saturates
+  // opSmoothSubtraction's blend factor to 1 from the wrong side, cutting
+  // everything; linearly blending the cracked and uncut DISTANCE FIELDS
+  // doesn't cleanly interpolate a cut — mixing two SDFs produces its own
+  // small-scale ripples rather than "less cracking"). The correct fix:
+  // bias "crack" strongly POSITIVE when fracture is low. A large positive
+  // d1 into opSmoothSubtraction(d1, d2, k) makes its blend factor h -> 0,
+  // which returns d2 completely unchanged — a mathematically clean "no
+  // cut," not an approximation of one.
   if (uFracture > 0.001 && distMask > 0.01) {
     float edge = voronoiEdge(pf * 2.4 + 0.001);
     float crackWidth = mix(0.4, 0.04, uFracture);
-    float crack = edge - crackWidth;
+    float gate = smoothstep(0.0, 0.5, uFracture);
+    float crack = edge - crackWidth + (1.0 - gate) * 10.0;
     d = opSmoothSubtraction(crack, d, 0.05);
   }
 
@@ -163,7 +227,10 @@ vec3 calcNormal(vec3 p) {
     hash3(p * 40.0 + 17.0) - 0.5,
     hash3(p * 40.0 + 31.0) - 0.5
   );
-  n = normalize(n + bump * 0.05);
+  // v2 Phase 4: high/hats energy boosts micro-texture intensity — the
+  // mapping table's "micro texture, surface detail" channel, kept
+  // deliberately separate from macro turbulence (critique finding #4).
+  n = normalize(n + bump * 0.05 * uGrainBoost);
   return n;
 }
 
@@ -239,7 +306,7 @@ void main() {
   // "analog decay, not digital glitch" material quality, so it needs to
   // actually survive the export pipeline, not just exist in the shader.
   float grain = hash3(vec3(vUv * uResolution, mod(uTime * 60.0, 1000.0))) - 0.5;
-  col += grain * 0.06;
+  col += grain * 0.06 * uGrainBoost;
 
   float scan = sin((vUv.y + uTime * 0.03) * uResolution.y * 0.9) * 0.035;
   col -= scan;
@@ -249,6 +316,19 @@ void main() {
   col *= mix(0.75, 1.0, vig);
 
   col = clamp(col, 0.0, 1.0);
+
+  // Temporal feedback: blend in a warped sample of last frame's output.
+  // A pure mix() (no warp) would read as motion blur; drifting the sample
+  // UV each frame is what makes the trail read as a displaced ghost
+  // silhouette rather than smoothing. Weight is near-zero by default so
+  // existing chapters are unaffected until the VisualDirector raises it
+  // for the MEMORY family.
+  if (uMemoryWeight > 0.001) {
+    vec2 driftedUv = vUv + uMemoryDrift;
+    vec3 prev = texture2D(uPrevFrame, clamp(driftedUv, 0.001, 0.999)).rgb;
+    col = mix(col, max(col, prev * 0.985), uMemoryWeight);
+  }
+
   gl_FragColor = vec4(col, 1.0);
 }
 `;

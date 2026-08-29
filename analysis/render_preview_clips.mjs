@@ -50,6 +50,7 @@ async function main() {
   const page = await browser.newPage();
   await page.setViewport({ width: WIDTH, height: HEIGHT, deviceScaleFactor: 1 });
   await page.goto(BASE_URL, { waitUntil: "networkidle0" });
+  await page.waitForFunction(() => window.__AUUH_READY__ === true, { timeout: 30000 });
   await new Promise((r) => setTimeout(r, 300));
 
   for (const clip of CLIPS) {

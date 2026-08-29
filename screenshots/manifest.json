@@ -3,174 +3,354 @@
     "label": "ch1_emergence_arrival",
     "t": 1,
     "file": "screenshots/ch1_emergence_arrival_t1.00.png",
-    "hud": "t=1.00  ch=0 Emergence  phase=arrival (0.03)\nfold=1.00 blend=0.08 turb=0.03 frac=0.00\ncamDist=11.99 contrast=0.50 colorMix=0.00 restraint=0.00"
+    "hud": "t=1.00  ch=0 Emergence  phase=arrival (0.03)  shot=EXTREME_WIDE\nfold=1.00 blend=0.01 turb=0.03 frac=0.00 form=0.00\ncamDist=11.27 contrast=0.48 colorMix=0.00 restraint=0.00 mem=0.02 grain=1.00"
   },
   {
     "label": "ch1_emergence_transform",
     "t": 60,
     "file": "screenshots/ch1_emergence_transform_t60.00.png",
-    "hud": "t=60.00  ch=0 Emergence  phase=transformation (0.30)\nfold=1.00 blend=0.33 turb=0.17 frac=0.00\ncamDist=8.79 contrast=0.80 colorMix=0.00 restraint=0.00"
+    "hud": "t=60.00  ch=0 Emergence  phase=transformation (0.30)  shot=EXTREME_WIDE\nfold=1.00 blend=0.26 turb=0.17 frac=0.21 form=0.00\ncamDist=8.49 contrast=0.79 colorMix=0.00 restraint=0.00 mem=0.02 grain=1.77"
   },
   {
     "label": "ch1_emergence_departure_dip",
     "t": 140,
     "file": "screenshots/ch1_emergence_departure_dip_t140.00.png",
-    "hud": "t=140.00  ch=0 Emergence  phase=departure (0.73)\nfold=1.00 blend=0.21 turb=0.09 frac=0.00\ncamDist=10.05 contrast=0.67 colorMix=0.00 restraint=0.00"
+    "hud": "t=140.00  ch=0 Emergence  phase=departure (0.73)  shot=EXTREME_WIDE\nfold=1.00 blend=0.14 turb=0.09 frac=0.50 form=0.00\ncamDist=9.90 contrast=0.65 colorMix=0.00 restraint=0.00 mem=0.02 grain=2.26"
   },
   {
     "label": "ch2_firstdrive_arrival",
     "t": 160,
     "file": "screenshots/ch2_firstdrive_arrival_t160.00.png",
-    "hud": "t=160.00  ch=1 First Drive  phase=arrival (0.11)\nfold=2.03 blend=0.41 turb=0.16 frac=0.00\ncamDist=8.91 contrast=0.85 colorMix=0.00 restraint=0.00"
+    "hud": "t=160.00  ch=1 First Drive  phase=arrival (0.11)  shot=SLOW_PUSH\nfold=2.03 blend=0.39 turb=0.16 frac=0.02 form=0.00\ncamDist=8.42 contrast=0.81 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.10"
   },
   {
     "label": "ch2_firstdrive_transform_peak",
     "t": 380,
     "file": "screenshots/ch2_firstdrive_transform_peak_t380.00.png",
-    "hud": "t=380.00  ch=1 First Drive  phase=transformation (0.80)\nfold=3.00 blend=0.80 turb=0.50 frac=0.00\ncamDist=4.45 contrast=1.07 colorMix=0.00 restraint=0.00"
+    "hud": "t=380.00  ch=1 First Drive  phase=transformation (0.80)  shot=PROFILE_SILHOUETTE\nfold=3.00 blend=0.78 turb=0.50 frac=0.50 form=0.04\ncamDist=4.19 contrast=1.03 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.11"
   },
   {
     "label": "ch2_firstdrive_departure",
     "t": 495,
     "file": "screenshots/ch2_firstdrive_departure_t495.00.png",
-    "hud": "t=495.00  ch=1 First Drive  phase=departure (0.89)\nfold=3.00 blend=0.75 turb=0.37 frac=0.00\ncamDist=5.17 contrast=1.00 colorMix=0.00 restraint=0.00"
+    "hud": "t=495.00  ch=1 First Drive  phase=departure (0.89)  shot=SLOW_PUSH\nfold=3.00 blend=0.75 turb=0.37 frac=0.05 form=0.05\ncamDist=4.96 contrast=1.05 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.00"
   },
   {
     "label": "ch3_contraction_arrival",
     "t": 520,
     "file": "screenshots/ch3_contraction_arrival_t520.00.png",
-    "hud": "t=520.00  ch=2 Contraction  phase=arrival (0.20)\nfold=3.00 blend=0.79 turb=0.31 frac=0.00\ncamDist=4.96 contrast=1.00 colorMix=0.00 restraint=0.00"
+    "hud": "t=520.00  ch=2 Contraction  phase=arrival (0.20)  shot=STATIC_HOLD\nfold=3.00 blend=0.80 turb=0.31 frac=0.32 form=0.05\ncamDist=4.66 contrast=1.00 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.05"
   },
   {
     "label": "ch3_contraction_R1_restraint_mid",
     "t": 780,
     "file": "screenshots/ch3_contraction_R1_restraint_mid_t780.00.png",
-    "hud": "t=780.00  ch=2 Contraction  phase=departure (0.61)\nfold=3.00 blend=0.87 turb=0.01 frac=0.00\ncamDist=4.13 contrast=0.95 colorMix=0.00 restraint=1.00"
+    "hud": "t=780.00  ch=2 Contraction  phase=departure (0.61)  shot=STATIC_HOLD\nfold=3.00 blend=0.87 turb=0.01 frac=0.00 form=0.05\ncamDist=4.13 contrast=0.91 colorMix=0.00 restraint=1.00 mem=0.43 grain=1.00"
   },
   {
     "label": "ch3_contraction_departure",
     "t": 805,
     "file": "screenshots/ch3_contraction_departure_t805.00.png",
-    "hud": "t=805.00  ch=2 Contraction  phase=departure (0.94)\nfold=3.00 blend=0.86 turb=0.02 frac=0.00\ncamDist=4.20 contrast=0.96 colorMix=0.00 restraint=1.00"
+    "hud": "t=805.00  ch=2 Contraction  phase=departure (0.94)  shot=LONG_HOLD\nfold=3.00 blend=0.86 turb=0.02 frac=0.00 form=0.05\ncamDist=4.20 contrast=0.91 colorMix=0.00 restraint=1.00 mem=0.43 grain=1.00"
   },
   {
     "label": "ch4_reignition_arrival",
     "t": 830,
     "file": "screenshots/ch4_reignition_arrival_t830.00.png",
-    "hud": "t=830.00  ch=3 Re-ignition  phase=arrival (0.31)\nfold=3.23 blend=0.84 turb=0.15 frac=0.00\ncamDist=4.00 contrast=0.96 colorMix=0.00 restraint=0.00"
+    "hud": "t=830.00  ch=3 Re-ignition  phase=arrival (0.31)  shot=UNEXPECTED_HORIZON\nfold=3.23 blend=0.81 turb=0.15 frac=0.50 form=0.06\ncamDist=3.76 contrast=0.93 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.06"
   },
   {
     "label": "ch4_reignition_transform",
     "t": 1000,
     "file": "screenshots/ch4_reignition_transform_t1000.00.png",
-    "hud": "t=1000.00  ch=3 Re-ignition  phase=transformation (0.98)\nfold=5.00 blend=0.78 turb=0.68 frac=0.00\ncamDist=3.20 contrast=1.18 colorMix=0.00 restraint=0.00"
+    "hud": "t=1000.00  ch=3 Re-ignition  phase=transformation (0.98)  shot=VIOLENT_INSERT\nfold=5.00 blend=0.76 turb=0.68 frac=0.32 form=0.15\ncamDist=3.36 contrast=1.19 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.20"
   },
   {
     "label": "ch4_flash_event_before",
     "t": 1067.1,
     "file": "screenshots/ch4_flash_event_before_t1067.10.png",
-    "hud": "t=1067.10  ch=3 Re-ignition  phase=departure (1.00)\nfold=5.00 blend=0.80 turb=0.55 frac=0.00\ncamDist=3.00 contrast=1.10 colorMix=0.00 restraint=0.00"
+    "hud": "t=1067.10  ch=3 Re-ignition  phase=departure (1.00)  shot=UNEXPECTED_HORIZON\nfold=5.00 blend=0.76 turb=0.55 frac=0.00 form=0.15\ncamDist=2.82 contrast=1.07 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.05"
   },
   {
     "label": "ch4_flash_event_peak",
     "t": 1067.19,
     "file": "screenshots/ch4_flash_event_peak_t1067.19.png",
-    "hud": "t=1067.19  ch=4 Second Drift  phase=arrival (0.00)\nfold=5.00 blend=0.70 turb=0.35 frac=0.00\ncamDist=6.00 contrast=1.00 colorMix=1.00 restraint=0.00"
+    "hud": "t=1067.19  ch=4 Second Drift  phase=arrival (0.00)  shot=NEGATIVE_SPACE\nfold=5.00 blend=0.66 turb=0.35 frac=0.00 form=0.15\ncamDist=5.64 contrast=0.97 colorMix=1.00 restraint=0.00 mem=0.10 grain=1.04"
   },
   {
     "label": "ch4_flash_event_after",
     "t": 1067.3,
     "file": "screenshots/ch4_flash_event_after_t1067.30.png",
-    "hud": "t=1067.30  ch=4 Second Drift  phase=arrival (0.00)\nfold=5.00 blend=0.70 turb=0.35 frac=0.00\ncamDist=6.00 contrast=1.00 colorMix=0.00 restraint=0.00"
+    "hud": "t=1067.30  ch=4 Second Drift  phase=arrival (0.00)  shot=NEGATIVE_SPACE\nfold=5.00 blend=0.69 turb=0.35 frac=0.00 form=0.15\ncamDist=5.64 contrast=0.97 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.03"
   },
   {
     "label": "ch5_seconddrift_arrival",
     "t": 1090,
     "file": "screenshots/ch5_seconddrift_arrival_t1090.00.png",
-    "hud": "t=1090.00  ch=4 Second Drift  phase=arrival (0.24)\nfold=5.00 blend=0.69 turb=0.33 frac=0.00\ncamDist=6.09 contrast=1.00 colorMix=0.00 restraint=0.00"
+    "hud": "t=1090.00  ch=4 Second Drift  phase=arrival (0.24)  shot=PROFILE_SILHOUETTE\nfold=5.00 blend=0.62 turb=0.33 frac=0.32 form=0.15\ncamDist=6.45 contrast=1.02 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.15"
   },
   {
     "label": "ch5_seconddrift_dip",
     "t": 1290,
     "file": "screenshots/ch5_seconddrift_dip_t1290.00.png",
-    "hud": "t=1290.00  ch=4 Second Drift  phase=transformation (0.66)\nfold=5.00 blend=0.70 turb=0.34 frac=0.00\ncamDist=6.16 contrast=1.01 colorMix=0.00 restraint=0.00"
+    "hud": "t=1290.00  ch=4 Second Drift  phase=transformation (0.66)  shot=PROFILE_SILHOUETTE\nfold=5.00 blend=0.72 turb=0.34 frac=0.32 form=0.19\ncamDist=5.83 contrast=0.96 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.01"
   },
   {
     "label": "ch5_seconddrift_departure",
     "t": 1440,
     "file": "screenshots/ch5_seconddrift_departure_t1440.00.png",
-    "hud": "t=1440.00  ch=4 Second Drift  phase=departure (0.88)\nfold=5.00 blend=0.68 turb=0.27 frac=0.00\ncamDist=6.29 contrast=1.00 colorMix=0.00 restraint=0.00"
+    "hud": "t=1440.00  ch=4 Second Drift  phase=departure (0.88)  shot=EXTREME_WIDE\nfold=5.00 blend=0.61 turb=0.27 frac=0.08 form=0.20\ncamDist=6.45 contrast=1.01 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.30"
   },
   {
     "label": "ch6_widening_arrival",
     "t": 1470,
     "file": "screenshots/ch6_widening_arrival_t1470.00.png",
-    "hud": "t=1470.00  ch=5 Widening  phase=arrival (0.10)\nfold=6.03 blend=0.75 turb=0.35 frac=0.05\ncamDist=6.46 contrast=1.05 colorMix=0.00 restraint=0.00"
+    "hud": "t=1470.00  ch=5 Widening  phase=arrival (0.10)  shot=SLOW_PUSH\nfold=6.03 blend=0.73 turb=0.35 frac=0.05 form=0.20\ncamDist=6.76 contrast=1.03 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.00"
   },
   {
     "label": "ch6_widening_macro_insert",
     "t": 1730,
     "file": "screenshots/ch6_widening_macro_insert_t1730.00.png",
-    "hud": "t=1730.00  ch=5 Widening  phase=transformation (0.88)\nfold=8.92 blend=0.95 turb=0.64 frac=0.20\ncamDist=2.79 contrast=1.29 colorMix=0.00 restraint=0.00"
+    "hud": "t=1730.00  ch=5 Widening  phase=transformation (0.88)  shot=SLOW_PUSH\nfold=8.92 blend=0.87 turb=0.64 frac=0.40 form=0.54\ncamDist=2.77 contrast=1.32 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.48"
   },
   {
     "label": "ch6_widening_departure_wide",
     "t": 1960,
     "file": "screenshots/ch6_widening_departure_wide_t1960.00.png",
-    "hud": "t=1960.00  ch=5 Widening  phase=departure (0.92)\nfold=7.04 blend=0.88 turb=0.41 frac=0.10\ncamDist=13.77 contrast=1.15 colorMix=0.00 restraint=0.00"
+    "hud": "t=1960.00  ch=5 Widening  phase=departure (0.92)  shot=NEGATIVE_SPACE\nfold=7.04 blend=0.89 turb=0.41 frac=0.31 form=0.40\ncamDist=14.10 contrast=1.18 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.38"
   },
   {
     "label": "ch7_fracture_arrival",
     "t": 2000,
     "file": "screenshots/ch7_fracture_arrival_t2000.00.png",
-    "hud": "t=2000.00  ch=6 Fracture  phase=arrival (0.21)\nfold=7.51 blend=0.76 turb=0.52 frac=0.42\ncamDist=6.93 contrast=1.16 colorMix=0.00 restraint=0.00"
+    "hud": "t=2000.00  ch=6 Fracture  phase=arrival (0.21)  shot=PROFILE_SILHOUETTE\nfold=7.51 blend=0.70 turb=0.52 frac=0.43 form=0.42\ncamDist=6.51 contrast=1.11 colorMix=0.00 restraint=0.00 mem=0.15 grain=1.04"
   },
   {
     "label": "ch7_fracture_R2_restraint",
     "t": 2200,
     "file": "screenshots/ch7_fracture_R2_restraint_t2200.00.png",
-    "hud": "t=2200.00  ch=6 Fracture  phase=transformation (0.68)\nfold=5.75 blend=0.84 turb=0.12 frac=0.17\ncamDist=5.80 contrast=1.36 colorMix=0.00 restraint=1.00"
+    "hud": "t=2200.00  ch=6 Fracture  phase=transformation (0.68)  shot=PROFILE_SILHOUETTE\nfold=5.75 blend=0.84 turb=0.12 frac=0.17 form=0.66\ncamDist=5.80 contrast=1.30 colorMix=0.00 restraint=1.00 mem=0.50 grain=1.00"
   },
   {
     "label": "ch7_fracture_R3_restraint",
     "t": 2300,
     "file": "screenshots/ch7_fracture_R3_restraint_t2300.00.png",
-    "hud": "t=2300.00  ch=6 Fracture  phase=departure (0.42)\nfold=5.61 blend=0.82 turb=0.11 frac=0.16\ncamDist=6.06 contrast=1.33 colorMix=0.00 restraint=1.00"
+    "hud": "t=2300.00  ch=6 Fracture  phase=departure (0.42)  shot=PROFILE_SILHOUETTE\nfold=5.61 blend=0.82 turb=0.11 frac=0.16 form=0.64\ncamDist=6.06 contrast=1.27 colorMix=0.00 restraint=1.00 mem=0.50 grain=1.00"
   },
   {
     "label": "ch7_fracture_departure",
     "t": 2345,
     "file": "screenshots/ch7_fracture_departure_t2345.00.png",
-    "hud": "t=2345.00  ch=6 Fracture  phase=departure (0.91)\nfold=1.54 blend=0.78 turb=0.56 frac=0.61\ncamDist=6.77 contrast=1.22 colorMix=0.00 restraint=0.00"
+    "hud": "t=2345.00  ch=6 Fracture  phase=departure (0.91)  shot=VIOLENT_INSERT\nfold=1.54 blend=0.75 turb=0.56 frac=1.00 form=0.55\ncamDist=6.61 contrast=1.28 colorMix=0.00 restraint=0.00 mem=0.15 grain=1.39"
   },
   {
     "label": "ch8_synthesis_arrival",
     "t": 2360,
     "file": "screenshots/ch8_synthesis_arrival_t2360.00.png",
-    "hud": "t=2360.00  ch=7 Synthesis  phase=arrival (0.19)\nfold=3.14 blend=0.78 turb=0.46 frac=0.49\ncamDist=7.81 contrast=1.21 colorMix=0.01 restraint=0.00"
+    "hud": "t=2360.00  ch=7 Synthesis  phase=arrival (0.19)  shot=MACRO\nfold=3.14 blend=0.71 turb=0.46 frac=0.54 form=0.56\ncamDist=7.50 contrast=1.26 colorMix=0.01 restraint=0.00 mem=0.20 grain=1.60"
   },
   {
     "label": "ch8_synthesis_bleed_mid",
     "t": 2420,
     "file": "screenshots/ch8_synthesis_bleed_mid_t2420.00.png",
-    "hud": "t=2420.00  ch=7 Synthesis  phase=transformation (0.53)\nfold=6.42 blend=0.86 turb=0.79 frac=0.24\ncamDist=4.46 contrast=1.33 colorMix=0.52 restraint=0.00"
+    "hud": "t=2420.00  ch=7 Synthesis  phase=transformation (0.53)  shot=UNEXPECTED_HORIZON\nfold=6.42 blend=0.79 turb=0.79 frac=0.74 form=0.73\ncamDist=4.52 contrast=1.38 colorMix=0.52 restraint=0.00 mem=0.20 grain=2.35"
   },
   {
     "label": "ch8_synthesis_climax_peak",
     "t": 2482,
     "file": "screenshots/ch8_synthesis_climax_peak_t2482.00.png",
-    "hud": "t=2482.00  ch=8 Departure  phase=arrival (0.00)\nfold=8.00 blend=0.90 turb=0.85 frac=0.15\ncamDist=3.00 contrast=1.30 colorMix=1.00 restraint=0.00"
+    "hud": "t=2482.00  ch=8 Departure  phase=arrival (0.00)  shot=SLOW_PUSH\nfold=8.00 blend=0.85 turb=0.85 frac=0.55 form=0.75\ncamDist=2.82 contrast=1.30 colorMix=1.00 restraint=0.00 mem=0.10 grain=1.25"
   },
   {
     "label": "ch9_departure_collapse",
     "t": 2495,
     "file": "screenshots/ch9_departure_collapse_t2495.00.png",
-    "hud": "t=2495.00  ch=8 Departure  phase=transformation (0.70)\nfold=1.66 blend=0.23 turb=0.13 frac=0.01\ncamDist=8.90 contrast=0.69 colorMix=0.73 restraint=0.00"
+    "hud": "t=2495.00  ch=8 Departure  phase=transformation (0.70)  shot=SLOW_PUSH\nfold=1.66 blend=0.16 turb=0.13 frac=0.33 form=0.13\ncamDist=9.43 contrast=0.71 colorMix=0.73 restraint=0.00 mem=0.10 grain=2.50"
   },
   {
     "label": "ch9_departure_silence",
     "t": 2523,
     "file": "screenshots/ch9_departure_silence_t2523.00.png",
-    "hud": "t=2523.00  ch=8 Departure  phase=departure (0.87)\nfold=1.00 blend=0.08 turb=0.02 frac=0.00\ncamDist=12.85 contrast=0.50 colorMix=0.00 restraint=0.00"
+    "hud": "t=2523.00  ch=8 Departure  phase=departure (0.87)  shot=EXTREME_WIDE\nfold=1.00 blend=0.01 turb=0.02 frac=0.00 form=0.00\ncamDist=12.08 contrast=0.48 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.00"
+  },
+  {
+    "label": "dense_t20",
+    "t": 20,
+    "file": "screenshots/dense_t20_t20.00.png",
+    "hud": "t=20.00  ch=0 Emergence  phase=arrival (0.53)  shot=UNEXPECTED_HORIZON\nfold=1.00 blend=0.13 turb=0.10 frac=0.40 form=0.00\ncamDist=9.73 contrast=0.65 colorMix=0.00 restraint=0.00 mem=0.02 grain=2.06"
+  },
+  {
+    "label": "dense_t105",
+    "t": 105,
+    "file": "screenshots/dense_t105_t105.00.png",
+    "hud": "t=105.00  ch=0 Emergence  phase=transformation (0.90)  shot=UNEXPECTED_HORIZON\nfold=1.00 blend=0.36 turb=0.22 frac=0.21 form=0.00\ncamDist=7.80 contrast=0.88 colorMix=0.00 restraint=0.00 mem=0.02 grain=1.82"
+  },
+  {
+    "label": "dense_t190",
+    "t": 190,
+    "file": "screenshots/dense_t190_t190.00.png",
+    "hud": "t=190.00  ch=1 First Drive  phase=arrival (0.45)  shot=SLOW_PUSH\nfold=2.42 blend=0.49 turb=0.21 frac=0.03 form=0.00\ncamDist=7.86 contrast=0.89 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.24"
+  },
+  {
+    "label": "dense_t275",
+    "t": 275,
+    "file": "screenshots/dense_t275_t275.00.png",
+    "hud": "t=275.00  ch=1 First Drive  phase=transformation (0.20)  shot=SLOW_PUSH\nfold=3.00 blend=0.63 turb=0.32 frac=0.16 form=0.01\ncamDist=6.16 contrast=0.97 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.28"
+  },
+  {
+    "label": "dense_t360",
+    "t": 360,
+    "file": "screenshots/dense_t360_t360.00.png",
+    "hud": "t=360.00  ch=1 First Drive  phase=transformation (0.68)  shot=SLOW_PUSH\nfold=3.00 blend=0.76 turb=0.47 frac=0.16 form=0.04\ncamDist=4.51 contrast=1.03 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.56"
+  },
+  {
+    "label": "dense_t445",
+    "t": 445,
+    "file": "screenshots/dense_t445_t445.00.png",
+    "hud": "t=445.00  ch=1 First Drive  phase=departure (0.32)  shot=SLOW_PUSH\nfold=3.00 blend=0.77 turb=0.48 frac=0.08 form=0.05\ncamDist=4.20 contrast=1.11 colorMix=0.00 restraint=0.00 mem=0.05 grain=1.27"
+  },
+  {
+    "label": "dense_t530",
+    "t": 530,
+    "file": "screenshots/dense_t530_t530.00.png",
+    "hud": "t=530.00  ch=2 Contraction  phase=arrival (0.33)  shot=LONG_HOLD\nfold=3.00 blend=0.84 turb=0.28 frac=0.50 form=0.05\ncamDist=4.61 contrast=1.00 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.32"
+  },
+  {
+    "label": "dense_t615",
+    "t": 615,
+    "file": "screenshots/dense_t615_t615.00.png",
+    "hud": "t=615.00  ch=2 Contraction  phase=transformation (0.22)  shot=STATIC_HOLD\nfold=3.00 blend=0.81 turb=0.17 frac=0.21 form=0.05\ncamDist=4.70 contrast=1.01 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.47"
+  },
+  {
+    "label": "dense_t700",
+    "t": 700,
+    "file": "screenshots/dense_t700_t700.00.png",
+    "hud": "t=700.00  ch=2 Contraction  phase=transformation (0.78)  shot=LONG_HOLD\nfold=3.00 blend=0.85 turb=0.08 frac=0.32 form=0.05\ncamDist=4.07 contrast=0.96 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.09"
+  },
+  {
+    "label": "dense_t785",
+    "t": 785,
+    "file": "screenshots/dense_t785_t785.00.png",
+    "hud": "t=785.00  ch=2 Contraction  phase=departure (0.67)  shot=LONG_HOLD\nfold=3.00 blend=0.87 turb=0.02 frac=0.00 form=0.05\ncamDist=4.15 contrast=0.91 colorMix=0.00 restraint=1.00 mem=0.43 grain=1.00"
+  },
+  {
+    "label": "dense_t870",
+    "t": 870,
+    "file": "screenshots/dense_t870_t870.00.png",
+    "hud": "t=870.00  ch=3 Re-ignition  phase=arrival (0.94)  shot=VIOLENT_INSERT\nfold=3.99 blend=0.80 turb=0.30 frac=0.00 form=0.10\ncamDist=3.96 contrast=1.00 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.89"
+  },
+  {
+    "label": "dense_t955",
+    "t": 955,
+    "file": "screenshots/dense_t955_t955.00.png",
+    "hud": "t=955.00  ch=3 Re-ignition  phase=transformation (0.63)  shot=SLOW_PUSH\nfold=4.69 blend=0.75 turb=0.56 frac=0.08 form=0.13\ncamDist=3.54 contrast=1.15 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.40"
+  },
+  {
+    "label": "dense_t1040",
+    "t": 1040,
+    "file": "screenshots/dense_t1040_t1040.00.png",
+    "hud": "t=1040.00  ch=3 Re-ignition  phase=departure (0.58)  shot=SLOW_PUSH\nfold=5.00 blend=0.77 turb=0.60 frac=0.40 form=0.15\ncamDist=2.89 contrast=1.14 colorMix=0.00 restraint=0.00 mem=0.08 grain=1.13"
+  },
+  {
+    "label": "dense_t1125",
+    "t": 1125,
+    "file": "screenshots/dense_t1125_t1125.00.png",
+    "hud": "t=1125.00  ch=4 Second Drift  phase=arrival (0.60)  shot=PROFILE_SILHOUETTE\nfold=5.00 blend=0.61 turb=0.28 frac=0.21 form=0.15\ncamDist=6.74 contrast=1.01 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.54"
+  },
+  {
+    "label": "dense_t1210",
+    "t": 1210,
+    "file": "screenshots/dense_t1210_t1210.00.png",
+    "hud": "t=1210.00  ch=4 Second Drift  phase=transformation (0.24)  shot=NEGATIVE_SPACE\nfold=5.00 blend=0.64 turb=0.26 frac=0.13 form=0.16\ncamDist=6.40 contrast=0.98 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.56"
+  },
+  {
+    "label": "dense_t1295",
+    "t": 1295,
+    "file": "screenshots/dense_t1295_t1295.00.png",
+    "hud": "t=1295.00  ch=4 Second Drift  phase=transformation (0.68)  shot=PROFILE_SILHOUETTE\nfold=5.00 blend=0.68 turb=0.35 frac=0.32 form=0.19\ncamDist=5.95 contrast=0.97 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.04"
+  },
+  {
+    "label": "dense_t1380",
+    "t": 1380,
+    "file": "screenshots/dense_t1380_t1380.00.png",
+    "hud": "t=1380.00  ch=4 Second Drift  phase=departure (0.25)  shot=NEGATIVE_SPACE\nfold=5.00 blend=0.69 turb=0.36 frac=0.26 form=0.20\ncamDist=6.39 contrast=1.00 colorMix=0.00 restraint=0.00 mem=0.10 grain=1.08"
+  },
+  {
+    "label": "dense_t1465",
+    "t": 1465,
+    "file": "screenshots/dense_t1465_t1465.00.png",
+    "hud": "t=1465.00  ch=5 Widening  phase=arrival (0.07)  shot=SLOW_PUSH\nfold=6.01 blend=0.70 turb=0.35 frac=0.37 form=0.20\ncamDist=6.53 contrast=1.02 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.01"
+  },
+  {
+    "label": "dense_t1550",
+    "t": 1550,
+    "file": "screenshots/dense_t1550_t1550.00.png",
+    "hud": "t=1550.00  ch=5 Widening  phase=arrival (0.53)  shot=EXTREME_WIDE\nfold=6.55 blend=0.75 turb=0.40 frac=0.39 form=0.28\ncamDist=5.61 contrast=1.12 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.96"
+  },
+  {
+    "label": "dense_t1635",
+    "t": 1635,
+    "file": "screenshots/dense_t1635_t1635.00.png",
+    "hud": "t=1635.00  ch=5 Widening  phase=arrival (0.99)  shot=NEGATIVE_SPACE\nfold=7.00 blend=0.87 turb=0.45 frac=0.08 form=0.35\ncamDist=4.70 contrast=1.12 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.04"
+  },
+  {
+    "label": "dense_t1720",
+    "t": 1720,
+    "file": "screenshots/dense_t1720_t1720.00.png",
+    "hud": "t=1720.00  ch=5 Widening  phase=transformation (0.79)  shot=SLOW_PUSH\nfold=8.77 blend=0.87 turb=0.63 frac=0.69 form=0.53\ncamDist=2.92 contrast=1.31 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.25"
+  },
+  {
+    "label": "dense_t1805",
+    "t": 1805,
+    "file": "screenshots/dense_t1805_t1805.00.png",
+    "hud": "t=1805.00  ch=5 Widening  phase=departure (0.26)  shot=NEGATIVE_SPACE\nfold=8.66 blend=0.87 turb=0.61 frac=0.29 form=0.52\ncamDist=4.92 contrast=1.31 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.12"
+  },
+  {
+    "label": "dense_t1890",
+    "t": 1890,
+    "file": "screenshots/dense_t1890_t1890.00.png",
+    "hud": "t=1890.00  ch=5 Widening  phase=departure (0.62)  shot=SLOW_PUSH\nfold=7.64 blend=0.85 turb=0.48 frac=0.19 form=0.45\ncamDist=10.30 contrast=1.22 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.06"
+  },
+  {
+    "label": "dense_t1975",
+    "t": 1975,
+    "file": "screenshots/dense_t1975_t1975.00.png",
+    "hud": "t=1975.00  ch=5 Widening  phase=departure (0.98)  shot=EXTREME_WIDE\nfold=7.00 blend=0.83 turb=0.40 frac=0.10 form=0.40\ncamDist=13.15 contrast=1.12 colorMix=0.00 restraint=0.00 mem=0.12 grain=1.06"
+  },
+  {
+    "label": "dense_t2060",
+    "t": 2060,
+    "file": "screenshots/dense_t2060_t2060.00.png",
+    "hud": "t=2060.00  ch=6 Fracture  phase=arrival (0.86)  shot=STATIC_HOLD\nfold=2.36 blend=0.79 turb=0.64 frac=0.59 form=0.54\ncamDist=6.50 contrast=1.22 colorMix=0.00 restraint=0.00 mem=0.15 grain=1.54"
+  },
+  {
+    "label": "dense_t2145",
+    "t": 2145,
+    "file": "screenshots/dense_t2145_t2145.00.png",
+    "hud": "t=2145.00  ch=6 Fracture  phase=transformation (0.38)  shot=STATIC_HOLD\nfold=8.74 blend=0.76 turb=0.72 frac=0.86 form=0.60\ncamDist=6.20 contrast=1.34 colorMix=0.00 restraint=0.00 mem=0.15 grain=1.15"
+  },
+  {
+    "label": "dense_t2230",
+    "t": 2230,
+    "file": "screenshots/dense_t2230_t2230.00.png",
+    "hud": "t=2230.00  ch=6 Fracture  phase=transformation (0.84)  shot=PROFILE_SILHOUETTE\nfold=4.63 blend=0.78 turb=0.84 frac=0.98 form=0.69\ncamDist=5.82 contrast=1.42 colorMix=0.00 restraint=0.00 mem=0.15 grain=2.22"
+  },
+  {
+    "label": "dense_t2315",
+    "t": 2315,
+    "file": "screenshots/dense_t2315_t2315.00.png",
+    "hud": "t=2315.00  ch=6 Fracture  phase=departure (0.58)  shot=STATIC_HOLD\nfold=5.37 blend=0.81 turb=0.10 frac=0.14 form=0.61\ncamDist=6.35 contrast=1.23 colorMix=0.00 restraint=1.00 mem=0.50 grain=1.00"
+  },
+  {
+    "label": "dense_t2400",
+    "t": 2400,
+    "file": "screenshots/dense_t2400_t2400.00.png",
+    "hud": "t=2400.00  ch=7 Synthesis  phase=transformation (0.22)  shot=MACRO\nfold=4.93 blend=0.77 turb=0.64 frac=0.83 form=0.67\ncamDist=5.55 contrast=1.33 colorMix=0.30 restraint=0.00 mem=0.20 grain=1.82"
+  },
+  {
+    "label": "dense_t2485",
+    "t": 2485,
+    "file": "screenshots/dense_t2485_t2485.00.png",
+    "hud": "t=2485.00  ch=8 Departure  phase=arrival (0.45)  shot=SLOW_PUSH\nfold=6.33 blend=0.68 turb=0.66 frac=0.51 form=0.60\ncamDist=4.07 contrast=1.19 colorMix=0.98 restraint=0.00 mem=0.10 grain=2.50"
   }
 ]

@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AUUH — Track/Phrase Annotation</title>
+<style>
+  body { margin: 0; background: #111; color: #eee; font: 13px ui-monospace, monospace; }
+  #top { padding: 10px 14px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #333; }
+  #top input[type=text] { width: 220px; }
+  button { background: #222; color: #eee; border: 1px solid #444; padding: 4px 10px; cursor: pointer; }
+  button:hover { background: #333; }
+  #timeLabel { font-size: 16px; min-width: 90px; }
+  #waveWrap { position: relative; margin: 10px 14px; }
+  canvas { display: block; background: #000; border: 1px solid #333; cursor: crosshair; }
+  #markers { margin: 0 14px 14px; }
+  .marker-row { display: flex; gap: 8px; align-items: center; padding: 3px 0; border-bottom: 1px solid #222; }
+  .marker-row input[type=text] { flex: 1; background: #1a1a1a; color: #eee; border: 1px solid #333; }
+  .marker-row .t { width: 80px; color: #8f8; }
+  .marker-row select { background: #1a1a1a; color: #eee; border: 1px solid #333; }
+  #hint { color: #888; padding: 0 14px; }
+</style>
+</head>
+<body>
+  <div id="top">
+    <button id="loadBtn">Load audio/AUUH.m4a</button>
+    <button id="playBtn">Play/Pause (Space)</button>
+    <span id="timeLabel">00:00.0</span>
+    <button id="addMarkerBtn">Add marker here (M)</button>
+    <select id="markerType">
+      <option>track-transition</option>
+      <option>blend</option>
+      <option>new-bassline</option>
+      <option>vocal-arrival</option>
+      <option>breakdown</option>
+      <option>return</option>
+      <option>drop</option>
+      <option>timbral-event</option>
+      <option>phrase-boundary</option>
+      <option>exceptional-event</option>
+    </select>
+    <button id="exportBtn">Export JSON</button>
+    <button id="importBtn">Import JSON</button>
+    <input type="file" id="importFile" style="display:none" accept="application/json">
+  </div>
+  <div id="hint">Click waveform to seek. Space = play/pause. M = add marker at current time. Click a marker's time to seek there.</div>
+  <div id="waveWrap">
+    <canvas id="wave" width="1800" height="220"></canvas>
+  </div>
+  <div id="markers"></div>
+
+  <audio id="audio" src="/AUUH.m4a" preload="metadata"></audio>
+
+<script>
+const audio = document.getElementById('audio');
+const canvas = document.getElementById('wave');
+const ctx = canvas.getContext('2d');
+const timeLabel = document.getElementById('timeLabel');
+const markersDiv = document.getElementById('markers');
+let markers = [];
+let waveformData = null; // RMS envelope for drawing, loaded from analysis/audio_analysis.json if available
+
+function fmt(t) {
+  const m = Math.floor(t / 60);
+  const s = (t % 60).toFixed(1).padStart(4, '0');
+  return `${String(m).padStart(2,'0')}:${s}`;
+}
+
+async function loadWaveform() {
+  try {
+    const res = await fetch('/audio_analysis.json');
+    const d = await res.json();
+    waveformData = d.rms_curve;
+  } catch (e) {
+    console.warn('no rms curve available for waveform overlay, drawing flat line', e);
+  }
+  drawWave();
+}
+
+function drawWave() {
+  ctx.fillStyle = '#000';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const dur = audio.duration || 2527;
+
+  if (waveformData) {
+    ctx.strokeStyle = '#4a9';
+    ctx.beginPath();
+    const times = waveformData.times, vals = waveformData.values;
+    const maxV = Math.max(...vals);
+    for (let i = 0; i < times.length; i++) {
+      const x = (times[i] / dur) * canvas.width;
+      const y = canvas.height - (vals[i] / maxV) * canvas.height * 0.9 - 5;
+      if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  // playhead
+  const px = ((audio.currentTime || 0) / dur) * canvas.width;
+  ctx.strokeStyle = '#f55';
+  ctx.beginPath();
+  ctx.moveTo(px, 0);
+  ctx.lineTo(px, canvas.height);
+  ctx.stroke();
+
+  // markers
+  for (const m of markers) {
+    const mx = (m.t / dur) * canvas.width;
+    ctx.strokeStyle = '#ff0';
+    ctx.beginPath();
+    ctx.moveTo(mx, 0);
+    ctx.lineTo(mx, canvas.height);
+    ctx.stroke();
+  }
+}
+
+document.getElementById('loadBtn').addEventListener('click', async () => {
+  await loadWaveform();
+});
+
+canvas.addEventListener('click', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const frac = (e.clientX - rect.left) / rect.width;
+  audio.currentTime = frac * (audio.duration || 2527);
+});
+
+document.getElementById('playBtn').addEventListener('click', () => {
+  if (audio.paused) audio.play(); else audio.pause();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+    e.preventDefault();
+    if (audio.paused) audio.play(); else audio.pause();
+  }
+  if (e.key === 'm' || e.key === 'M') {
+    if (e.target.tagName !== 'INPUT') addMarker();
+  }
+});
+
+function addMarker() {
+  const type = document.getElementById('markerType').value;
+  markers.push({ t: audio.currentTime, type, label: '', confidence: 'manual' });
+  markers.sort((a, b) => a.t - b.t);
+  renderMarkers();
+  drawWave();
+}
+document.getElementById('addMarkerBtn').addEventListener('click', addMarker);
+
+function renderMarkers() {
+  markersDiv.innerHTML = '';
+  markers.forEach((m, i) => {
+    const row = document.createElement('div');
+    row.className = 'marker-row';
+
+    const tBtn = document.createElement('span');
+    tBtn.className = 't';
+    tBtn.textContent = fmt(m.t);
+    tBtn.style.cursor = 'pointer';
+    tBtn.addEventListener('click', () => { audio.currentTime = m.t; });
+    row.appendChild(tBtn);
+
+    const typeSel = document.createElement('select');
+    ['track-transition','blend','new-bassline','vocal-arrival','breakdown','return','drop','timbral-event','phrase-boundary','exceptional-event']
+      .forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t; opt.textContent = t;
+        if (t === m.type) opt.selected = true;
+        typeSel.appendChild(opt);
+      });
+    typeSel.addEventListener('change', () => { m.type = typeSel.value; });
+    row.appendChild(typeSel);
+
+    const label = document.createElement('input');
+    label.type = 'text';
+    label.placeholder = 'note (e.g. track name if known)';
+    label.value = m.label || '';
+    label.addEventListener('input', () => { m.label = label.value; });
+    row.appendChild(label);
+
+    const del = document.createElement('button');
+    del.textContent = '✕';
+    del.addEventListener('click', () => { markers.splice(i, 1); renderMarkers(); drawWave(); });
+    row.appendChild(del);
+
+    markersDiv.appendChild(row);
+  });
+}
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const data = JSON.stringify({ markers, exportedAt: new Date().toISOString() }, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'track-map-annotations.json';
+  a.click();
+});
+
+document.getElementById('importBtn').addEventListener('click', () => {
+  document.getElementById('importFile').click();
+});
+document.getElementById('importFile').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const text = await file.text();
+  const data = JSON.parse(text);
+  markers = data.markers || [];
+  renderMarkers();
+  drawWave();
+});
+
+audio.addEventListener('timeupdate', () => {
+  timeLabel.textContent = fmt(audio.currentTime);
+  drawWave();
+});
+audio.addEventListener('loadedmetadata', () => {
+  loadWaveform();
+});
+
+drawWave();
+</script>
+</body>
+</html>

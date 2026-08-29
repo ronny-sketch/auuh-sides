@@ -43,6 +43,17 @@ const QA_TIMES = [
   { label: "ch9_departure_silence", t: 2523.0 },
 ];
 
+// v2 Phase 9: "create a new contact sheet with many more samples" — the
+// curated list above targets specific documented events; this dense grid
+// (every ~85s) catches chapter-internal variety (shot-type changes, form-
+// blend progression, audio-driven micro modulation) the curated list isn't
+// specifically aimed at.
+const DENSE_GRID_STEP = 85.0;
+const DURATION_APPROX = 2526.93;
+for (let t = 20; t < DURATION_APPROX; t += DENSE_GRID_STEP) {
+  QA_TIMES.push({ label: `dense_t${Math.round(t)}`, t });
+}
+
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   const browser = await puppeteer.launch({
@@ -53,6 +64,7 @@ async function main() {
   const page = await browser.newPage();
   await page.setViewport({ width: WIDTH, height: HEIGHT, deviceScaleFactor: 1 });
   await page.goto(BASE_URL, { waitUntil: "networkidle0" });
+  await page.waitForFunction(() => window.__AUUH_READY__ === true, { timeout: 30000 });
   // let the shader/GL context settle
   await new Promise((r) => setTimeout(r, 300));
 

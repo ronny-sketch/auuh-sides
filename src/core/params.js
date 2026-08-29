@@ -26,27 +26,36 @@ const lerp = (a, b, t) => a + (b - a) * t;
 const BASE = [
   // 0 Emergence — barely-there, a first pulse asserts, then dips back
   // toward near-silence (matches the real audio dip at 02:30).
-  { fold: [1, 1, 1, 1], foldBlend: [0.08, 0.3, 0.42, 0.16], turbulence: [0.03, 0.15, 0.22, 0.06], fracture: [0, 0, 0, 0], camDist: [12, 9, 8, 10.5], contrast: [0.5, 0.78, 0.88, 0.62] },
+  { fold: [1, 1, 1, 1], foldBlend: [0.08, 0.3, 0.42, 0.16], turbulence: [0.03, 0.15, 0.22, 0.06], fracture: [0, 0, 0, 0], camDist: [12, 9, 8, 10.5], contrast: [0.5, 0.78, 0.88, 0.62], formBlend: [0, 0, 0, 0] },
   // 1 First Drive — commits to 3-fold symmetry, pushes hard, never fully settles
-  { fold: [2, 3, 3, 3], foldBlend: [0.4, 0.65, 0.82, 0.75], turbulence: [0.15, 0.3, 0.52, 0.36], fracture: [0, 0, 0, 0], camDist: [9, 6.5, 4.2, 5.2], contrast: [0.85, 0.95, 1.08, 1.0] },
+  { fold: [2, 3, 3, 3], foldBlend: [0.4, 0.65, 0.82, 0.75], turbulence: [0.15, 0.3, 0.52, 0.36], fracture: [0, 0, 0, 0], camDist: [9, 6.5, 4.2, 5.2], contrast: [0.85, 0.95, 1.08, 1.0], formBlend: [0, 0, 0.05, 0.05] },
   // 2 Contraction — stabilizes, pushed toward stillness (not intensity) as its transformation
-  { fold: [3, 3, 3, 3], foldBlend: [0.78, 0.85, 0.9, 0.86], turbulence: [0.32, 0.18, 0.07, 0.11], fracture: [0, 0, 0, 0], camDist: [5, 4.6, 4, 4.2], contrast: [1.0, 1.0, 0.94, 0.96] },
+  { fold: [3, 3, 3, 3], foldBlend: [0.78, 0.85, 0.9, 0.86], turbulence: [0.32, 0.18, 0.07, 0.11], fracture: [0, 0, 0, 0], camDist: [5, 4.6, 4, 4.2], contrast: [1.0, 1.0, 0.94, 0.96], formBlend: [0.05, 0.05, 0.05, 0.05] },
   // 3 Re-ignition — climbs 3->5-fold, turbulence surges hard into the flash cut
-  { fold: [3, 4, 5, 5], foldBlend: [0.85, 0.8, 0.78, 0.8], turbulence: [0.1, 0.3, 0.68, 0.55], fracture: [0, 0, 0, 0], camDist: [4, 4, 3.2, 3], contrast: [0.95, 1.0, 1.18, 1.1] },
+  { fold: [3, 4, 5, 5], foldBlend: [0.85, 0.8, 0.78, 0.8], turbulence: [0.1, 0.3, 0.68, 0.55], fracture: [0, 0, 0, 0], camDist: [4, 4, 3.2, 3], contrast: [0.95, 1.0, 1.18, 1.1], formBlend: [0.05, 0.1, 0.15, 0.15] },
   // 4 Second Drift — hard cut in from the flash, oscillates without escalating
-  { fold: [5, 5, 5, 5], foldBlend: [0.7, 0.66, 0.72, 0.68], turbulence: [0.35, 0.24, 0.38, 0.26], fracture: [0, 0, 0, 0], camDist: [6, 6.6, 6, 6.3], contrast: [1.0, 0.98, 1.02, 1.0] },
-  // 5 Widening — the long authored chapter: settle, violent macro insert, wide recede
-  { fold: [6, 7, 9, 7], foldBlend: [0.75, 0.85, 0.95, 0.88], turbulence: [0.35, 0.45, 0.65, 0.4], fracture: [0.05, 0.08, 0.2, 0.1], camDist: [6.5, 5, 2.7, 14], contrast: [1.05, 1.15, 1.3, 1.15] },
-  // 6 Fracture — base arc; fast oscillation layered on top in getParams()
-  { fold: [4, 5, 6, 5], foldBlend: [0.75, 0.8, 0.85, 0.78], turbulence: [0.5, 0.65, 0.85, 0.55], fracture: [0.4, 0.6, 0.9, 0.6], camDist: [7, 6.4, 5.6, 6.8], contrast: [1.15, 1.25, 1.4, 1.22] },
-  // 7 Synthesis — motif callback: fold pushes from Ch1's 3 toward Ch5's 8-9
-  { fold: [3, 4.5, 8, 8], foldBlend: [0.78, 0.82, 0.9, 0.9], turbulence: [0.45, 0.6, 0.95, 0.9], fracture: [0.5, 0.35, 0.15, 0.1], camDist: [8, 6, 3.2, 3], contrast: [1.2, 1.26, 1.38, 1.35] },
+  { fold: [5, 5, 5, 5], foldBlend: [0.7, 0.66, 0.72, 0.68], turbulence: [0.35, 0.24, 0.38, 0.26], fracture: [0, 0, 0, 0], camDist: [6, 6.6, 6, 6.3], contrast: [1.0, 0.98, 1.02, 1.0], formBlend: [0.15, 0.15, 0.2, 0.2] },
+  // 5 Widening — the long authored chapter: settle, violent macro insert, wide recede.
+  // Also where BODY topology first asserts itself toward pair B ("the body
+  // is architecture") — the macro insert is the moment the faceted form
+  // becomes visually dominant, not just a turbulence spike.
+  { fold: [6, 7, 9, 7], foldBlend: [0.75, 0.85, 0.95, 0.88], turbulence: [0.35, 0.45, 0.65, 0.4], fracture: [0.05, 0.08, 0.2, 0.1], camDist: [6.5, 5, 2.7, 14], contrast: [1.05, 1.15, 1.3, 1.15], formBlend: [0.2, 0.35, 0.55, 0.4] },
+  // 6 Fracture — base arc; fast oscillation layered on top in getParams().
+  // Pair B's faceted geometry suits structural failure better than pair A's
+  // soft mass, so formBlend stays elevated through the whole chapter.
+  { fold: [4, 5, 6, 5], foldBlend: [0.75, 0.8, 0.85, 0.78], turbulence: [0.5, 0.65, 0.85, 0.55], fracture: [0.4, 0.6, 0.9, 0.6], camDist: [7, 6.4, 5.6, 6.8], contrast: [1.15, 1.25, 1.4, 1.22], formBlend: [0.4, 0.55, 0.7, 0.55] },
+  // 7 Synthesis — motif callback: fold pushes from Ch1's 3 toward Ch5's 8-9;
+  // formBlend reaches its peak here too — "the world is multiple copies"
+  // reads as the most architectural, least body-like the piece ever gets.
+  { fold: [3, 4.5, 8, 8], foldBlend: [0.78, 0.82, 0.9, 0.9], turbulence: [0.45, 0.6, 0.95, 0.9], fracture: [0.5, 0.35, 0.15, 0.1], camDist: [8, 6, 3.2, 3], contrast: [1.2, 1.26, 1.38, 1.35], formBlend: [0.55, 0.65, 0.8, 0.75] },
   // 8 Departure — arrives still carrying Synthesis's peak complexity (the
   // real audio climax at 2482.0s IS this chapter's arrival instant, so the
   // full-color frame should show the built-up form, not an already-
   // collapsed one); the collapse toward Ch0's mirror image is the
   // chapter's actual transformation/argument, settling by departure.
-  { fold: [8, 4, 1, 1], foldBlend: [0.9, 0.5, 0.15, 0.08], turbulence: [0.85, 0.4, 0.05, 0.02], fracture: [0.15, 0.05, 0, 0], camDist: [3, 5, 10, 13], contrast: [1.3, 1.0, 0.6, 0.5] },
+  // formBlend collapses back to exactly 0 — pure pair A, mirroring Ch0's
+  // topology exactly: "the memories belong to the same original body."
+  { fold: [8, 4, 1, 1], foldBlend: [0.9, 0.5, 0.15, 0.08], turbulence: [0.85, 0.4, 0.05, 0.02], fracture: [0.15, 0.05, 0, 0], camDist: [3, 5, 10, 13], contrast: [1.3, 1.0, 0.6, 0.5], formBlend: [0.75, 0.4, 0.05, 0] },
 ];
 
 function pick(keys, phase, phaseT) {
@@ -66,6 +75,7 @@ function chapterParams(idx, state) {
     fracture: pick(k.fracture, phase, phaseT),
     camDist: pick(k.camDist, phase, phaseT),
     contrast: pick(k.contrast, phase, phaseT),
+    formBlend: pick(k.formBlend, phase, phaseT),
   };
 }
 
@@ -87,6 +97,16 @@ export function getParams(t) {
     const osc = Math.sin(t * 5.2) * (1 - r); // silenced during R2/R3
     p.fold = Math.max(1, p.fold + osc * 3.5);
   }
+
+  // MEMORY family weight (v2, Phase 3/6): the piece accumulates visible
+  // "memory" of itself as it goes — early chapters show almost none,
+  // later ones carry more — and every restraint window boosts it sharply,
+  // per the design intent that a held shot should read as feedback
+  // settling (decaying trails of the motion that just stopped), not as
+  // geometry simply freezing. This is a first pass; full audio-driven
+  // weighting (MESO/MICRO) lands once AudioFeatureEngine is wired in.
+  const BASE_MEMORY = [0.02, 0.05, 0.08, 0.08, 0.1, 0.12, 0.15, 0.2, 0.1];
+  p.memoryWeight = Math.min(0.55, BASE_MEMORY[state.chapterIndex] + r * 0.35);
 
   return { ...p, ...state };
 }

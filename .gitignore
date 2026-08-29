@@ -1,3 +1,7 @@
 node_modules/
 dist/
 .DS_Store
+analysis/stems/
+audio/AUUH_mono_v2.wav
+audio/AUUH_mono22k.wav
+screenshots/_ordered/
