@@ -49,6 +49,40 @@
   </div>
   <div id="markers"></div>
 
+  <!-- Director critique — separate from the structural markers above.
+       Structural markers (track-transition/build/drop/etc.) feed
+       MusicalDirector.js and shape what the generative system does.
+       Critique tags are Ronny's judgment about whether a moment WORKS —
+       they never feed the generative system, only the human review
+       record (analysis/_review_candidates.json -> director-critique-log
+       .json), so keeping them in a separate list/export prevents a
+       critique tag ever being silently misread as a structural one. -->
+  <div id="top" style="border-top:2px solid #444">
+    <b style="color:#fc6">Director critique</b>
+    <button id="addCritiqueBtn">Add critique here (C)</button>
+    <select id="critiqueType">
+      <option>BUILD_START</option>
+      <option>PRE_DROP</option>
+      <option>DROP</option>
+      <option>BREAKDOWN</option>
+      <option>RETURN</option>
+      <option>TRACK_BLEND_START</option>
+      <option>TRACK_RESOLVE</option>
+      <option>WOW</option>
+      <option>BORING</option>
+      <option>NEEDS_BREATH</option>
+      <option>TOO_BUSY</option>
+      <option>TOO_VJ</option>
+      <option>MISSED_MUSICAL_MOMENT</option>
+    </select>
+    <button id="loadCandidatesBtn">Load prepopulated candidates</button>
+    <button id="exportCritiqueBtn">Export critique JSON</button>
+    <button id="importCritiqueBtn">Import critique JSON</button>
+    <input type="file" id="importCritiqueFile" style="display:none" accept="application/json">
+  </div>
+  <div id="hint">"Load prepopulated candidates" reads analysis/_review_candidates.json (analysis/build_review_candidates.mjs's output — automatic SECTION-tier-and-above detection) and adds one unconfirmed critique row per candidate, pre-filled with a suggested tag where the automatic analysis has one. Confirm or correct each one; nothing here is final until exported.</div>
+  <div id="critiqueMarkers"></div>
+
   <audio id="audio" src="/AUUH.m4a" preload="metadata"></audio>
 
 <script>
@@ -219,6 +253,118 @@ audio.addEventListener('loadedmetadata', () => {
 });
 
 drawWave();
+
+// --- Director critique (separate list/export — see the HTML comment above) ---
+const CRITIQUE_TAGS = ['BUILD_START','PRE_DROP','DROP','BREAKDOWN','RETURN','TRACK_BLEND_START','TRACK_RESOLVE','WOW','BORING','NEEDS_BREATH','TOO_BUSY','TOO_VJ','MISSED_MUSICAL_MOMENT'];
+const critiqueMarkersDiv = document.getElementById('critiqueMarkers');
+let critiqueMarkers = [];
+
+function addCritique(prefill) {
+  const type = prefill?.tag || document.getElementById('critiqueType').value;
+  critiqueMarkers.push({
+    t: prefill?.t ?? audio.currentTime,
+    tag: type,
+    note: prefill?.note || '',
+    source: prefill ? 'auto' : 'human',
+    sourceType: prefill?.sourceType || null,
+    confidence: prefill?.confidence || null,
+    confirmed: prefill ? false : true,
+  });
+  critiqueMarkers.sort((a, b) => a.t - b.t);
+  renderCritiqueMarkers();
+}
+document.getElementById('addCritiqueBtn').addEventListener('click', () => addCritique());
+document.addEventListener('keydown', (e) => {
+  if ((e.key === 'c' || e.key === 'C') && e.target.tagName !== 'INPUT') addCritique();
+});
+
+function renderCritiqueMarkers() {
+  critiqueMarkersDiv.innerHTML = '';
+  critiqueMarkers.forEach((m, i) => {
+    const row = document.createElement('div');
+    row.className = 'marker-row';
+    if (!m.confirmed) row.style.opacity = '0.55';
+
+    const tBtn = document.createElement('span');
+    tBtn.className = 't';
+    tBtn.textContent = fmt(m.t);
+    tBtn.style.cursor = 'pointer';
+    tBtn.addEventListener('click', () => { audio.currentTime = m.t; });
+    row.appendChild(tBtn);
+
+    const tagSel = document.createElement('select');
+    CRITIQUE_TAGS.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t; opt.textContent = t;
+      if (t === m.tag) opt.selected = true;
+      tagSel.appendChild(opt);
+    });
+    if (!m.tag) {
+      const opt = document.createElement('option');
+      opt.value = ''; opt.textContent = '(pick a tag)'; opt.selected = true;
+      tagSel.insertBefore(opt, tagSel.firstChild);
+    }
+    tagSel.addEventListener('change', () => { m.tag = tagSel.value; m.confirmed = true; renderCritiqueMarkers(); });
+    row.appendChild(tagSel);
+
+    const note = document.createElement('input');
+    note.type = 'text';
+    note.placeholder = m.sourceType ? `auto: ${m.sourceType} (${m.confidence})` : 'note';
+    note.value = m.note || '';
+    note.addEventListener('input', () => { m.note = note.value; });
+    row.appendChild(note);
+
+    if (!m.confirmed) {
+      const confirmBtn = document.createElement('button');
+      confirmBtn.textContent = 'confirm';
+      confirmBtn.addEventListener('click', () => { m.confirmed = true; renderCritiqueMarkers(); });
+      row.appendChild(confirmBtn);
+    }
+
+    const del = document.createElement('button');
+    del.textContent = '✕';
+    del.addEventListener('click', () => { critiqueMarkers.splice(i, 1); renderCritiqueMarkers(); });
+    row.appendChild(del);
+
+    critiqueMarkersDiv.appendChild(row);
+  });
+}
+
+document.getElementById('loadCandidatesBtn').addEventListener('click', async () => {
+  try {
+    const res = await fetch('/_review_candidates.json');
+    const data = await res.json();
+    const existing = new Set(critiqueMarkers.filter(m => m.source === 'auto').map(m => m.t));
+    for (const c of data.candidates) {
+      if (existing.has(c.t)) continue;
+      addCritique({ t: c.t, tag: c.suggestedTag || '', note: c.label || '', sourceType: c.sourceType, confidence: c.confidence });
+    }
+  } catch (e) {
+    alert('Could not load analysis/_review_candidates.json — run analysis/build_review_candidates.mjs first, and serve it at /_review_candidates.json.');
+  }
+});
+
+document.getElementById('exportCritiqueBtn').addEventListener('click', () => {
+  const data = JSON.stringify({ critique: critiqueMarkers, exportedAt: new Date().toISOString() }, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'director-critique-log.json';
+  a.click();
+});
+
+document.getElementById('importCritiqueBtn').addEventListener('click', () => {
+  document.getElementById('importCritiqueFile').click();
+});
+document.getElementById('importCritiqueFile').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const text = await file.text();
+  const data = JSON.parse(text);
+  critiqueMarkers = data.critique || [];
+  renderCritiqueMarkers();
+});
 </script>
 </body>
 </html>

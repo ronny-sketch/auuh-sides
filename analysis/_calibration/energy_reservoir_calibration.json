@@ -1,0 +1,1453 @@
+{
+  "generatedAt": "2026-08-29T20:29:20.436Z",
+  "stepSec": 0.1,
+  "totalReleases": 84,
+  "rankedReleases": [
+    {
+      "rank": 0,
+      "t": 1904.1,
+      "magnitude": 2.0349,
+      "factors": {
+        "buildDuration": 24.499999999977717,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.9834811905808988,
+        "bassReturnFactor": 1.2433924762323594,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.154307940680803,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.3,
+        "rawMagnitude": 1.5652992833238195
+      }
+    },
+    {
+      "rank": 1,
+      "t": 2480.6,
+      "magnitude": 1.8247,
+      "factors": {
+        "buildDuration": 23.899999999978263,
+        "buildDepthFactor": 0.9979166666662138,
+        "bassReturn": 0.000038314902390205704,
+        "bassReturnFactor": 0.8500153259609561,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1.5,
+        "journeyPositionFactor": 1.1997010991771213,
+        "transitionFactor": 1,
+        "rarityFactor": 1.2583001960322882,
+        "rawMagnitude": 1.4501367319154312
+      }
+    },
+    {
+      "rank": 2,
+      "t": 1421.1,
+      "magnitude": 1.5616,
+      "factors": {
+        "buildDuration": 18.699999999982992,
+        "buildDepthFactor": 0.889583333332979,
+        "bassReturn": 0.9022667802794683,
+        "bassReturnFactor": 1.2109067121117874,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.077925781235627,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.2310396426310248,
+        "rawMagnitude": 1.268550115159656
+      }
+    },
+    {
+      "rank": 3,
+      "t": 1067.9,
+      "magnitude": 1.5204,
+      "factors": {
+        "buildDuration": 26.4999999999759,
+        "buildDepthFactor": 1,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1.5,
+        "journeyPositionFactor": 1.0154512282874553,
+        "transitionFactor": 1,
+        "rarityFactor": 1.2361630858193728,
+        "rawMagnitude": 1.22996530026318
+      }
+    },
+    {
+      "rank": 4,
+      "t": 2107.4,
+      "magnitude": 1.468,
+      "factors": {
+        "buildDuration": 23.899999999978263,
+        "buildDepthFactor": 0.9979166666662138,
+        "bassReturn": 0.8269302212358259,
+        "bassReturnFactor": 1.1807720884943302,
+        "spectralChangeFactor": 0.9372927273950454,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1779379041116531,
+        "transitionFactor": 1,
+        "rarityFactor": 1.188858492675323,
+        "rawMagnitude": 1.234760755621424
+      }
+    },
+    {
+      "rank": 5,
+      "t": 1359.9,
+      "magnitude": 1.3958,
+      "factors": {
+        "buildDuration": 18.699999999982992,
+        "buildDepthFactor": 0.889583333332979,
+        "bassReturn": 0.6927169321748246,
+        "bassReturnFactor": 1.1270867728699299,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0671395047552825,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.1940460272931874,
+        "rawMagnitude": 1.1689249644174804
+      }
+    },
+    {
+      "rank": 6,
+      "t": 2363.9,
+      "magnitude": 1.3199,
+      "factors": {
+        "buildDuration": 23.999999999978172,
+        "buildDepthFactor": 0.9999999999995453,
+        "bassReturn": 0.40411464036937345,
+        "bassReturnFactor": 1.0116458561477493,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1964147351459327,
+        "transitionFactor": 1,
+        "rarityFactor": 1.1479496171174144,
+        "rawMagnitude": 1.1498306085917422
+      }
+    },
+    {
+      "rank": 7,
+      "t": 2312.1,
+      "magnitude": 1.2576,
+      "factors": {
+        "buildDuration": 29.39999999997326,
+        "buildDepthFactor": 1,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1938634635226897,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.1343555801975609,
+        "rawMagnitude": 1.1086514588137575
+      }
+    },
+    {
+      "rank": 8,
+      "t": 982.1,
+      "magnitude": 1.2525,
+      "factors": {
+        "buildDuration": 24.000000000005457,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.6959045455486683,
+        "bassReturnFactor": 1.1283618182194672,
+        "spectralChangeFactor": 0.945043569595026,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0007220155192171,
+        "transitionFactor": 1,
+        "rarityFactor": 1.1737231683191696,
+        "rawMagnitude": 1.0671210025139033
+      }
+    },
+    {
+      "rank": 9,
+      "t": 2249,
+      "magnitude": 1.1238,
+      "factors": {
+        "buildDuration": 22.499999999979536,
+        "buildDepthFactor": 0.9687499999995737,
+        "bassReturn": 0.20230511412759922,
+        "bassReturnFactor": 0.9309220456510396,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1899105554236669,
+        "transitionFactor": 1,
+        "rarityFactor": 1.1024100407986268,
+        "rawMagnitude": 1.0194430115396989
+      }
+    },
+    {
+      "rank": 10,
+      "t": 2432.8,
+      "magnitude": 1.1238,
+      "factors": {
+        "buildDuration": 19.799999999981992,
+        "buildDepthFactor": 0.9124999999996248,
+        "bassReturn": 0.3412627757133734,
+        "bassReturnFactor": 0.9865051102853494,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.198782040632203,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0962328487723092,
+        "rawMagnitude": 1.025170370601534
+      }
+    },
+    {
+      "rank": 11,
+      "t": 644,
+      "magnitude": 1.0998,
+      "factors": {
+        "buildDuration": 27.300000000006207,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.5734800168393962,
+        "bassReturnFactor": 1.0793920067357585,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9485238350367832,
+        "transitionFactor": 1,
+        "rarityFactor": 1.13070357592893,
+        "rawMagnitude": 0.9726375934501984
+      }
+    },
+    {
+      "rank": 12,
+      "t": 2031.2,
+      "magnitude": 1.0956,
+      "factors": {
+        "buildDuration": 23.499999999978627,
+        "buildDepthFactor": 0.9895833333328881,
+        "bassReturn": 0.14638060178752116,
+        "bassReturnFactor": 0.9085522407150084,
+        "spectralChangeFactor": 0.9478883589963573,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1698921659071433,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0988743901964884,
+        "rawMagnitude": 0.9970232789789695
+      }
+    },
+    {
+      "rank": 13,
+      "t": 893.3,
+      "magnitude": 1.0353,
+      "factors": {
+        "buildDuration": 23.300000000005298,
+        "buildDepthFactor": 0.985416666666777,
+        "bassReturn": 0.44187973780841844,
+        "bassReturnFactor": 1.0267518951233674,
+        "spectralChangeFactor": 0.9267187534245814,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9859661801264308,
+        "transitionFactor": 1,
+        "rarityFactor": 1.119846935190797,
+        "rawMagnitude": 0.9244754580785801
+      }
+    },
+    {
+      "rank": 14,
+      "t": 2183.6,
+      "magnitude": 1.0283,
+      "factors": {
+        "buildDuration": 24.19999999997799,
+        "buildDepthFactor": 1,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.184890345434774,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0746799232015938,
+        "rawMagnitude": 0.9567989539385799
+      }
+    },
+    {
+      "rank": 15,
+      "t": 2282.6,
+      "magnitude": 1.0148,
+      "factors": {
+        "buildDuration": 23.1999999999789,
+        "buildDepthFactor": 0.9833333333328937,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.192127970110755,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0720068250687012,
+        "rawMagnitude": 0.9465992802662708
+      }
+    },
+    {
+      "rank": 16,
+      "t": 344,
+      "magnitude": 1.0053,
+      "factors": {
+        "buildDuration": 18.800000000004275,
+        "buildDepthFactor": 0.8916666666667556,
+        "bassReturn": 0.4195603168967803,
+        "bassReturnFactor": 1.017824126758712,
+        "spectralChangeFactor": 0.9499999999960309,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9151653343658762,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.1079424413442214,
+        "rawMagnitude": 0.9073947864454697
+      }
+    },
+    {
+      "rank": 17,
+      "t": 1793.4,
+      "magnitude": 1.005,
+      "factors": {
+        "buildDuration": 14.599999999986721,
+        "buildDepthFactor": 0.80416666666639,
+        "bassReturn": 0.5503830515455567,
+        "bassReturnFactor": 1.0701532206182227,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1388372259019925,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0794628395810102,
+        "rawMagnitude": 0.9310591879144988
+      }
+    },
+    {
+      "rank": 18,
+      "t": 1852.7,
+      "magnitude": 0.9996,
+      "factors": {
+        "buildDuration": 14.299999999986994,
+        "buildDepthFactor": 0.7979166666663957,
+        "bassReturn": 0.5464112579535292,
+        "bassReturnFactor": 1.0685645031814117,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1473240669083145,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0755791301831827,
+        "rawMagnitude": 0.9293257882835798
+      }
+    },
+    {
+      "rank": 19,
+      "t": 1879.5,
+      "magnitude": 0.9983,
+      "factors": {
+        "buildDuration": 26.699999999975716,
+        "buildDepthFactor": 1,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.9499999972090953,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1510107170586037,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0741056146192147,
+        "rawMagnitude": 0.9294411512943155
+      }
+    },
+    {
+      "rank": 20,
+      "t": 703.6,
+      "magnitude": 0.9888,
+      "factors": {
+        "buildDuration": 19.30000000000439,
+        "buildDepthFactor": 0.9020833333334248,
+        "bassReturn": 0.6096452772955516,
+        "bassReturnFactor": 1.0938581109182206,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9568237130356894,
+        "transitionFactor": 1,
+        "rarityFactor": 1.1024360343412893,
+        "rawMagnitude": 0.8969395732154483
+      }
+    },
+    {
+      "rank": 21,
+      "t": 1824.1,
+      "magnitude": 0.9888,
+      "factors": {
+        "buildDuration": 15.399999999985994,
+        "buildDepthFactor": 0.8208333333330415,
+        "bassReturn": 0.45754745437030964,
+        "bassReturnFactor": 1.033018981748124,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1432857634896405,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0736978776058352,
+        "rawMagnitude": 0.9209619491476414
+      }
+    },
+    {
+      "rank": 22,
+      "t": 2083.4,
+      "magnitude": 0.9714,
+      "factors": {
+        "buildDuration": 19.299999999982447,
+        "buildDepthFactor": 0.9020833333329676,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1755170905735093,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.062896420411561,
+        "rawMagnitude": 0.9139065848987085
+      }
+    },
+    {
+      "rank": 23,
+      "t": 1512,
+      "magnitude": 0.9598,
+      "factors": {
+        "buildDuration": 19.199999999982538,
+        "buildDepthFactor": 0.8999999999996362,
+        "bassReturn": 0.27175596027715465,
+        "bassReturnFactor": 0.9587023841108618,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0936881799909726,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0706648798660825,
+        "rawMagnitude": 0.8964858531143262
+      }
+    },
+    {
+      "rank": 24,
+      "t": 144,
+      "magnitude": 0.949,
+      "factors": {
+        "buildDuration": 23.99999999999865,
+        "buildDepthFactor": 0.9999999999999718,
+        "bassReturn": 0.021010907367463534,
+        "bassReturnFactor": 0.8584043629469854,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.902811633442445,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.1208554353141758,
+        "rawMagnitude": 0.846662858734897
+      }
+    },
+    {
+      "rank": 25,
+      "t": 2064,
+      "magnitude": 0.9483,
+      "factors": {
+        "buildDuration": 16.399999999985084,
+        "buildDepthFactor": 0.8416666666663559,
+        "bassReturn": 0.39429122279083983,
+        "bassReturnFactor": 1.007716489116336,
+        "spectralChangeFactor": 0.9090399540521605,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1734831099912082,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0571594118157321,
+        "rawMagnitude": 0.8970171183268039
+      }
+    },
+    {
+      "rank": 26,
+      "t": 599.1,
+      "magnitude": 0.9367,
+      "factors": {
+        "buildDuration": 17.50000000000398,
+        "buildDepthFactor": 0.8645833333334163,
+        "bassReturn": 0.6561734757255554,
+        "bassReturnFactor": 1.112469390290222,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9425927534787475,
+        "transitionFactor": 1,
+        "rarityFactor": 1.08757597064282,
+        "rawMagnitude": 0.8612765670494686
+      }
+    },
+    {
+      "rank": 27,
+      "t": 2138,
+      "magnitude": 0.9345,
+      "factors": {
+        "buildDuration": 15.299999999986085,
+        "buildDepthFactor": 0.8187499999997101,
+        "bassReturn": 0.29855179401716897,
+        "bassReturnFactor": 0.9694207176068675,
+        "spectralChangeFactor": 0.9499999974730434,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1808667373016994,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0494682480605064,
+        "rawMagnitude": 0.8904060526950361
+      }
+    },
+    {
+      "rank": 28,
+      "t": 1535,
+      "magnitude": 0.9344,
+      "factors": {
+        "buildDuration": 11.49999999998954,
+        "buildDepthFactor": 0.7395833333331154,
+        "bassReturn": 0.9747646049784422,
+        "bassReturnFactor": 1.2399058419913769,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.09761044855045,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0620414921697416,
+        "rawMagnitude": 0.8798386945171676
+      }
+    },
+    {
+      "rank": 29,
+      "t": 216.8,
+      "magnitude": 0.9312,
+      "factors": {
+        "buildDuration": 46.09999999999738,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.37584921281246414,
+        "bassReturnFactor": 1.0003396851249857,
+        "spectralChangeFactor": 0.9499999999707002,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9062458839224913,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0812419357884246,
+        "rawMagnitude": 0.8612260360338354
+      }
+    },
+    {
+      "rank": 30,
+      "t": 2393.1,
+      "magnitude": 0.9248,
+      "factors": {
+        "buildDuration": 14.599999999986721,
+        "buildDepthFactor": 0.80416666666639,
+        "bassReturn": 0.2972839059595783,
+        "bassReturnFactor": 0.9689135623838313,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1975645414517784,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0432257961388145,
+        "rawMagnitude": 0.8864487585409911
+      }
+    },
+    {
+      "rank": 31,
+      "t": 1663.8,
+      "magnitude": 0.9201,
+      "factors": {
+        "buildDuration": 19.99999999998181,
+        "buildDepthFactor": 0.9166666666662877,
+        "bassReturn": 0.11233515992088566,
+        "bassReturnFactor": 0.8949340639683543,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1189059887955175,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0552074225755095,
+        "rawMagnitude": 0.8720064187663986
+      }
+    },
+    {
+      "rank": 32,
+      "t": 1739.3,
+      "magnitude": 0.9127,
+      "factors": {
+        "buildDuration": 17.599999999983993,
+        "buildDepthFactor": 0.8666666666663332,
+        "bassReturn": 0.19961681814746401,
+        "bassReturnFactor": 0.9298467272589857,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1307307291536997,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0543752928770946,
+        "rawMagnitude": 0.8656578272494646
+      }
+    },
+    {
+      "rank": 33,
+      "t": 1623.8,
+      "magnitude": 0.9027,
+      "factors": {
+        "buildDuration": 20.599999999981264,
+        "buildDepthFactor": 0.9291666666662763,
+        "bassReturn": 0.06013002991552935,
+        "bassReturnFactor": 0.8740520119662117,
+        "spectralChangeFactor": 0.9499999983287792,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.112428801252646,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0517923024786804,
+        "rawMagnitude": 0.8582755229434039
+      }
+    },
+    {
+      "rank": 34,
+      "t": 928.2,
+      "magnitude": 0.9006,
+      "factors": {
+        "buildDuration": 17.50000000000398,
+        "buildDepthFactor": 0.8645833333334163,
+        "bassReturn": 0.4460985529206588,
+        "bassReturnFactor": 1.0284394211682635,
+        "spectralChangeFactor": 0.9499999998073783,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9916964631901835,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0750861589378342,
+        "rawMagnitude": 0.8376988980507443
+      }
+    },
+    {
+      "rank": 35,
+      "t": 1284,
+      "magnitude": 0.8963,
+      "factors": {
+        "buildDuration": 20.599999999981264,
+        "buildDepthFactor": 0.9291666666662763,
+        "bassReturn": 0.15152092279950813,
+        "bassReturnFactor": 0.9106083691198033,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0536561529193578,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0582657943344158,
+        "rawMagnitude": 0.8469304971671873
+      }
+    },
+    {
+      "rank": 36,
+      "t": 1640.5,
+      "magnitude": 0.8927,
+      "factors": {
+        "buildDuration": 16.599999999984902,
+        "buildDepthFactor": 0.8458333333330188,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.9238409326385351,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1151494885162274,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.0479998812671973,
+        "rawMagnitude": 0.8517886570205317
+      }
+    },
+    {
+      "rank": 37,
+      "t": 1260.7,
+      "magnitude": 0.8869,
+      "factors": {
+        "buildDuration": 20.199999999981628,
+        "buildDepthFactor": 0.9208333333329506,
+        "bassReturn": 0.16027502902839091,
+        "bassReturnFactor": 0.9141100116113563,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0495071797495774,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0567360479941839,
+        "rawMagnitude": 0.8392445250207975
+      }
+    },
+    {
+      "rank": 38,
+      "t": 1092.5,
+      "magnitude": 0.8859,
+      "factors": {
+        "buildDuration": 24.499999999977717,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.0574154406427703,
+        "bassReturnFactor": 0.8729661762571082,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.019739720172091,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0568959348293048,
+        "rawMagnitude": 0.8382546001542013
+      }
+    },
+    {
+      "rank": 39,
+      "t": 1138.1,
+      "magnitude": 0.8436,
+      "factors": {
+        "buildDuration": 22.799999999979264,
+        "buildDepthFactor": 0.974999999999568,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0277476728571557,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0425969774467339,
+        "rawMagnitude": 0.8091585896859907
+      }
+    },
+    {
+      "rank": 40,
+      "t": 1322.4,
+      "magnitude": 0.8154,
+      "factors": {
+        "buildDuration": 19.199999999982538,
+        "buildDepthFactor": 0.8999999999996362,
+        "bassReturn": 0.04903835992560581,
+        "bassReturnFactor": 0.8696153439702423,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0604871883832068,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0341606937209649,
+        "rawMagnitude": 0.7884946210918037
+      }
+    },
+    {
+      "rank": 41,
+      "t": 1764.2,
+      "magnitude": 0.8105,
+      "factors": {
+        "buildDuration": 12.499999999988631,
+        "buildDepthFactor": 0.7604166666664298,
+        "bassReturn": 0.29123234555757116,
+        "bassReturnFactor": 0.9664929382230285,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1345025459681644,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0232522123556624,
+        "rawMagnitude": 0.7920988675080985
+      }
+    },
+    {
+      "rank": 42,
+      "t": 1560.4,
+      "magnitude": 0.7853,
+      "factors": {
+        "buildDuration": 12.69999999998845,
+        "buildDepthFactor": 0.7645833333330927,
+        "bassReturn": 0.2880126898572213,
+        "bassReturnFactor": 0.9652050759428885,
+        "spectralChangeFactor": 0.9499999984877414,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1019046491546989,
+        "transitionFactor": 1,
+        "rarityFactor": 1.016573641402645,
+        "rawMagnitude": 0.7725241130459419
+      }
+    },
+    {
+      "rank": 43,
+      "t": 1197.4,
+      "magnitude": 0.78,
+      "factors": {
+        "buildDuration": 18.299999999983356,
+        "buildDepthFactor": 0.8812499999996533,
+        "bassReturn": 0.06846546567878073,
+        "bassReturnFactor": 0.8773861862715122,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.038245351805392,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0227245427139673,
+        "rawMagnitude": 0.7626293641532146
+      }
+    },
+    {
+      "rank": 44,
+      "t": 2504,
+      "magnitude": 0.7794,
+      "factors": {
+        "buildDuration": 11.699999999989359,
+        "buildDepthFactor": 0.7437499999997783,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.199926310094832,
+        "transitionFactor": 1.15,
+        "rarityFactor": 0.9976903080642938,
+        "rawMagnitude": 0.7812460172737061
+      }
+    },
+    {
+      "rank": 45,
+      "t": 1956.6,
+      "magnitude": 0.7592,
+      "factors": {
+        "buildDuration": 11.49999999998954,
+        "buildDepthFactor": 0.7395833333331154,
+        "bassReturn": 0.0004126781437651094,
+        "bassReturnFactor": 0.8501650712575061,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1610512225325322,
+        "transitionFactor": 1.15,
+        "rarityFactor": 0.9994706971484071,
+        "rawMagnitude": 0.7595997232495373
+      }
+    },
+    {
+      "rank": 46,
+      "t": 1933.6,
+      "magnitude": 0.7545,
+      "factors": {
+        "buildDuration": 14.79999999998654,
+        "buildDepthFactor": 0.8083333333330529,
+        "bassReturn": 0.0001603968847925733,
+        "bassReturnFactor": 0.850064158753917,
+        "spectralChangeFactor": 0.9499999972738471,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.158147581409992,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9980267790632936,
+        "rawMagnitude": 0.7560137638036638
+      }
+    },
+    {
+      "rank": 47,
+      "t": 170.6,
+      "magnitude": 0.7534,
+      "factors": {
+        "buildDuration": 26.499999999998494,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.024327914230226056,
+        "bassReturnFactor": 0.8597311656920904,
+        "spectralChangeFactor": 0.9409660995025623,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9039175273716247,
+        "transitionFactor": 1,
+        "rarityFactor": 1.030227962905301,
+        "rawMagnitude": 0.7312492864360848
+      }
+    },
+    {
+      "rank": 48,
+      "t": 1458.4,
+      "magnitude": 0.7449,
+      "factors": {
+        "buildDuration": 16.599999999984902,
+        "buildDepthFactor": 0.8458333333330188,
+        "bassReturn": 0.0002868236044623682,
+        "bassReturnFactor": 0.8501147294417849,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0844384279328532,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0056046607190103,
+        "rawMagnitude": 0.7407827167674735
+      }
+    },
+    {
+      "rank": 49,
+      "t": 384,
+      "magnitude": 0.7334,
+      "factors": {
+        "buildDuration": 24.000000000005457,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.001463680061631941,
+        "bassReturnFactor": 0.8505854720246527,
+        "spectralChangeFactor": 0.9257087528590516,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9186778773561649,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0139109662137566,
+        "rawMagnitude": 0.723361831199637
+      }
+    },
+    {
+      "rank": 50,
+      "t": 483.7,
+      "magnitude": 0.7211,
+      "factors": {
+        "buildDuration": 20.900000000004752,
+        "buildDepthFactor": 0.9354166666667656,
+        "bassReturn": 0.014344671735597569,
+        "bassReturnFactor": 0.855737868694239,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9287684461370269,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0210389466593022,
+        "rawMagnitude": 0.7062800065016159
+      }
+    },
+    {
+      "rank": 51,
+      "t": 564,
+      "magnitude": 0.7209,
+      "factors": {
+        "buildDuration": 20.80000000000473,
+        "buildDepthFactor": 0.9333333333334319,
+        "bassReturn": 0.0003450983857238134,
+        "bassReturnFactor": 0.8501380393542896,
+        "spectralChangeFactor": 0.9499999999599619,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9381632945244158,
+        "transitionFactor": 1,
+        "rarityFactor": 1.019444286693084,
+        "rawMagnitude": 0.7071772293406214
+      }
+    },
+    {
+      "rank": 52,
+      "t": 1018.1,
+      "magnitude": 0.7208,
+      "factors": {
+        "buildDuration": 18.000000000004093,
+        "buildDepthFactor": 0.8750000000000853,
+        "bassReturn": 0.005471362075520745,
+        "bassReturnFactor": 0.8521885448302082,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0068539521732318,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0106287622686332,
+        "rawMagnitude": 0.7132369423735302
+      }
+    },
+    {
+      "rank": 53,
+      "t": 824,
+      "magnitude": 0.7105,
+      "factors": {
+        "buildDuration": 31.900000000007253,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.0007524787214462317,
+        "bassReturnFactor": 0.8503009914885785,
+        "spectralChangeFactor": 0.9374738334105965,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9748951342508466,
+        "transitionFactor": 1.15,
+        "rarityFactor": 1.0141824176401635,
+        "rawMagnitude": 0.7005958436128418
+      }
+    },
+    {
+      "rank": 54,
+      "t": 418.6,
+      "magnitude": 0.7092,
+      "factors": {
+        "buildDuration": 17.300000000003934,
+        "buildDepthFactor": 0.8604166666667485,
+        "bassReturn": 0.192078229012892,
+        "bassReturnFactor": 0.9268312916051568,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9219699811212108,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0153137338902154,
+        "rawMagnitude": 0.698473427212691
+      }
+    },
+    {
+      "rank": 55,
+      "t": 744,
+      "magnitude": 0.7053,
+      "factors": {
+        "buildDuration": 20.200000000004593,
+        "buildDepthFactor": 0.9208333333334291,
+        "bassReturn": 0.004786688834513202,
+        "bassReturnFactor": 0.8519146755338053,
+        "spectralChangeFactor": 0.9256991087316259,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9627050122688606,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0088766959175581,
+        "rawMagnitude": 0.699101461770293
+      }
+    },
+    {
+      "rank": 56,
+      "t": 30.1,
+      "magnitude": 0.7033,
+      "factors": {
+        "buildDuration": 24.000000000000163,
+        "buildDepthFactor": 1,
+        "bassReturn": 0.00009202657383927115,
+        "bassReturnFactor": 0.8500368106295357,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.900126684909734,
+        "transitionFactor": 1,
+        "rarityFactor": 1,
+        "rawMagnitude": 0.7033013625140594
+      }
+    },
+    {
+      "rank": 57,
+      "t": 522.4,
+      "magnitude": 0.6851,
+      "factors": {
+        "buildDuration": 19.30000000000433,
+        "buildDepthFactor": 0.9020833333334235,
+        "bassReturn": 0.0004994218323978101,
+        "bassReturnFactor": 0.8501997687329591,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9331633063442109,
+        "transitionFactor": 1,
+        "rarityFactor": 1.0076124969071896,
+        "rawMagnitude": 0.6799060410975496
+      }
+    },
+    {
+      "rank": 58,
+      "t": 1583.9,
+      "magnitude": 0.6692,
+      "factors": {
+        "buildDuration": 11.799999999989268,
+        "buildDepthFactor": 0.7458333333331097,
+        "bassReturn": 0.05468757424518775,
+        "bassReturnFactor": 0.8718750296980751,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1058396462897466,
+        "transitionFactor": 1,
+        "rarityFactor": 0.97964322728804,
+        "rawMagnitude": 0.6831432639800177
+      }
+    },
+    {
+      "rank": 59,
+      "t": 792,
+      "magnitude": 0.6624,
+      "factors": {
+        "buildDuration": 21.700000000004934,
+        "buildDepthFactor": 0.9520833333334362,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.9009506761371588,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9699373861219897,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9976598179941027,
+        "rawMagnitude": 0.6639592453151179
+      }
+    },
+    {
+      "rank": 60,
+      "t": 280.3,
+      "magnitude": 0.6578,
+      "factors": {
+        "buildDuration": 18.200000000004138,
+        "buildDepthFactor": 0.8791666666667528,
+        "bassReturn": 0.1816113442187217,
+        "bassReturnFactor": 0.9226445376874887,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9102549867417997,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9912287157754438,
+        "rawMagnitude": 0.6636336835769302
+      }
+    },
+    {
+      "rank": 61,
+      "t": 1041.3,
+      "magnitude": 0.6316,
+      "factors": {
+        "buildDuration": 11.59999999998945,
+        "buildDepthFactor": 0.7416666666664469,
+        "bassReturn": 0.025372156948025106,
+        "bassReturnFactor": 0.86014886277921,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0108438922611451,
+        "transitionFactor": 1.15,
+        "rarityFactor": 0.9802966477673211,
+        "rawMagnitude": 0.6443267013628035
+      }
+    },
+    {
+      "rank": 62,
+      "t": 1441.7,
+      "magnitude": 0.6292,
+      "factors": {
+        "buildDuration": 11.799999999989268,
+        "buildDepthFactor": 0.7458333333331097,
+        "bassReturn": 0.13631141579396172,
+        "bassReturnFactor": 0.9045245663175847,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0815293682618172,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9676436192354597,
+        "rawMagnitude": 0.6502902354090296
+      }
+    },
+    {
+      "rank": 63,
+      "t": 1473.6,
+      "magnitude": 0.6118,
+      "factors": {
+        "buildDuration": 15.099999999986267,
+        "buildDepthFactor": 0.8145833333330472,
+        "bassReturn": 0.15573877123293825,
+        "bassReturnFactor": 0.9122955084931753,
+        "spectralChangeFactor": 0.895898562900995,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0870756777730257,
+        "transitionFactor": 1,
+        "rarityFactor": 0.962202003368985,
+        "rawMagnitude": 0.6358277357703607
+      }
+    },
+    {
+      "rank": 64,
+      "t": 1160.9,
+      "magnitude": 0.598,
+      "factors": {
+        "buildDuration": 11.399999999989632,
+        "buildDepthFactor": 0.737499999999784,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.031774781909223,
+        "transitionFactor": 1.15,
+        "rarityFactor": 0.9620958934051209,
+        "rawMagnitude": 0.621539370475273
+      }
+    },
+    {
+      "rank": 65,
+      "t": 1684,
+      "magnitude": 0.5873,
+      "factors": {
+        "buildDuration": 10.099999999990814,
+        "buildDepthFactor": 0.7104166666664753,
+        "bassReturn": 0.07636386211447851,
+        "bassReturnFactor": 0.8805455448457914,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1221235564054186,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9507867609719194,
+        "rawMagnitude": 0.6177218137488765
+      }
+    },
+    {
+      "rank": 66,
+      "t": 94.9,
+      "magnitude": 0.5611,
+      "factors": {
+        "buildDuration": 16.499999999999062,
+        "buildDepthFactor": 0.8437499999999805,
+        "bassReturn": 0.17668206989680182,
+        "bassReturnFactor": 0.9206728279587207,
+        "spectralChangeFactor": 0.9499999999992899,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9012375849982808,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9782093470361739,
+        "rawMagnitude": 0.5735796564135796
+      }
+    },
+    {
+      "rank": 67,
+      "t": 2198.6,
+      "magnitude": 0.5445,
+      "factors": {
+        "buildDuration": 14.899999999986449,
+        "buildDepthFactor": 0.8104166666663843,
+        "bassReturn": 0.0007672398115630753,
+        "bassReturnFactor": 0.8503068959246252,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1861216301054833,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9288052957634565,
+        "rawMagnitude": 0.5862526773378275
+      }
+    },
+    {
+      "rank": 68,
+      "t": 441.9,
+      "magnitude": 0.5413,
+      "factors": {
+        "buildDuration": 11.70000000000266,
+        "buildDepthFactor": 0.7437500000000554,
+        "bassReturn": 0.0815218311640648,
+        "bassReturnFactor": 0.8826087324656259,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9243146340608739,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9548898925851617,
+        "rawMagnitude": 0.5668414183453891
+      }
+    },
+    {
+      "rank": 69,
+      "t": 306.3,
+      "magnitude": 0.5262,
+      "factors": {
+        "buildDuration": 13.000000000002956,
+        "buildDepthFactor": 0.770833333333395,
+        "bassReturn": 0.20899165235488237,
+        "bassReturnFactor": 0.9335966609419529,
+        "spectralChangeFactor": 0.9499999999999265,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.912154973757226,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9451910921319306,
+        "rawMagnitude": 0.5566840648475194
+      }
+    },
+    {
+      "rank": 70,
+      "t": 1383.7,
+      "magnitude": 0.5126,
+      "factors": {
+        "buildDuration": 11.899999999989177,
+        "buildDepthFactor": 0.7479166666664412,
+        "bassReturn": 0.040612263652199915,
+        "bassReturnFactor": 0.86624490546088,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.07134655679548,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9295923472250713,
+        "rawMagnitude": 0.5513924096210139
+      }
+    },
+    {
+      "rank": 71,
+      "t": 243.9,
+      "magnitude": 0.4964,
+      "factors": {
+        "buildDuration": 13.599999999999227,
+        "buildDepthFactor": 0.7833333333333172,
+        "bassReturn": 0.17723055184003295,
+        "bassReturnFactor": 0.9208922207360132,
+        "spectralChangeFactor": 0.9338114261252165,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9078450005866565,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9268653107266948,
+        "rawMagnitude": 0.5356199259589794
+      }
+    },
+    {
+      "rank": 72,
+      "t": 1220.4,
+      "magnitude": 0.4956,
+      "factors": {
+        "buildDuration": 11.49999999998954,
+        "buildDepthFactor": 0.7395833333331154,
+        "bassReturn": 0.04173120111720519,
+        "bassReturnFactor": 0.8666924804468821,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.042333470284306,
+        "transitionFactor": 1,
+        "rarityFactor": 0.926002129841328,
+        "rawMagnitude": 0.5351582985067177
+      }
+    },
+    {
+      "rank": 73,
+      "t": 62,
+      "magnitude": 0.4951,
+      "factors": {
+        "buildDuration": 15.900000000000226,
+        "buildDepthFactor": 0.8312500000000047,
+        "bassReturn": 0.20306316390383206,
+        "bassReturnFactor": 0.9312252655615328,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9005329362735429,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9276586583298501,
+        "rawMagnitude": 0.5337088153050209
+      }
+    },
+    {
+      "rank": 74,
+      "t": 1297.5,
+      "magnitude": 0.4756,
+      "factors": {
+        "buildDuration": 13.399999999987813,
+        "buildDepthFactor": 0.7791666666664128,
+        "bassReturn": 0.12324929989799463,
+        "bassReturnFactor": 0.8992997199591979,
+        "spectralChangeFactor": 0.9301882204609488,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.0560591075220864,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9180655275051859,
+        "rawMagnitude": 0.5180039231924088
+      }
+    },
+    {
+      "rank": 75,
+      "t": 1704.1,
+      "magnitude": 0.4651,
+      "factors": {
+        "buildDuration": 10.099999999990814,
+        "buildDepthFactor": 0.7104166666664753,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.9430996341707656,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.12528719781108,
+        "transitionFactor": 1,
+        "rarityFactor": 0.9084475690088791,
+        "rawMagnitude": 0.5119306056289332
+      }
+    },
+    {
+      "rank": 76,
+      "t": 654,
+      "magnitude": 0.4343,
+      "factors": {
+        "buildDuration": 9.900000000002251,
+        "buildDepthFactor": 0.7062500000000469,
+        "bassReturn": 0.004558676853392212,
+        "bassReturnFactor": 0.8518234707413569,
+        "spectralChangeFactor": 0.949999999998317,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9498834396748637,
+        "transitionFactor": 1.15,
+        "rarityFactor": 0.9072305307394932,
+        "rawMagnitude": 0.47870991283433456
+      }
+    },
+    {
+      "rank": 77,
+      "t": 1976.6,
+      "magnitude": 0.3936,
+      "factors": {
+        "buildDuration": 9.099999999991724,
+        "buildDepthFactor": 0.6895833333331609,
+        "bassReturn": 0.00003937633637208852,
+        "bassReturnFactor": 0.8500157505345488,
+        "spectralChangeFactor": 0.892051725116534,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1635097263144618,
+        "transitionFactor": 1,
+        "rarityFactor": 0.8769413197796352,
+        "rawMagnitude": 0.44879511033911584
+      }
+    },
+    {
+      "rank": 78,
+      "t": 770.2,
+      "magnitude": 0.375,
+      "factors": {
+        "buildDuration": 13.100000000002979,
+        "buildDepthFactor": 0.7729166666667286,
+        "bassReturn": 0,
+        "bassReturnFactor": 0.85,
+        "spectralChangeFactor": 0.9353397129647543,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9666211605445776,
+        "transitionFactor": 1,
+        "rarityFactor": 0.8866386556402076,
+        "rawMagnitude": 0.422975308551058
+      }
+    },
+    {
+      "rank": 79,
+      "t": 846.8,
+      "magnitude": 0.3631,
+      "factors": {
+        "buildDuration": 11.400000000002592,
+        "buildDepthFactor": 0.737500000000054,
+        "bassReturn": 0.00020110544940780487,
+        "bassReturnFactor": 0.8500804421797631,
+        "spectralChangeFactor": 0.9361380575527112,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9784892109495109,
+        "transitionFactor": 1,
+        "rarityFactor": 0.8838946238970449,
+        "rawMagnitude": 0.41081250491902593
+      }
+    },
+    {
+      "rank": 80,
+      "t": 664.9,
+      "magnitude": 0.3455,
+      "factors": {
+        "buildDuration": 10.400000000002365,
+        "buildDepthFactor": 0.716666666666716,
+        "bassReturn": 0.000010724940649439186,
+        "bassReturnFactor": 0.8500042899762598,
+        "spectralChangeFactor": 0.9197752057677089,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9513808897597957,
+        "transitionFactor": 1.15,
+        "rarityFactor": 0.8738421819817106,
+        "rawMagnitude": 0.39537255117189335
+      }
+    },
+    {
+      "rank": 81,
+      "t": 394.9,
+      "magnitude": 0.2862,
+      "factors": {
+        "buildDuration": 10.800000000002456,
+        "buildDepthFactor": 0.7250000000000512,
+        "bassReturn": 0.0007032833454458958,
+        "bassReturnFactor": 0.8502813133381784,
+        "spectralChangeFactor": 0.95,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 0.9196900776904458,
+        "transitionFactor": 1,
+        "rarityFactor": 0.846144660091234,
+        "rawMagnitude": 0.3381885886174961
+      }
+    },
+    {
+      "rank": 82,
+      "t": 1984.3,
+      "magnitude": 0.2666,
+      "factors": {
+        "buildDuration": 7.599999999993088,
+        "buildDepthFactor": 0.6583333333331893,
+        "bassReturn": 0.0044741185727670656,
+        "bassReturnFactor": 0.8517896474291068,
+        "spectralChangeFactor": 0.8749993109243122,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1644393798034463,
+        "transitionFactor": 1,
+        "rarityFactor": 0.8277474140552554,
+        "rawMagnitude": 0.3220356179675451
+      }
+    },
+    {
+      "rank": 83,
+      "t": 2204.1,
+      "magnitude": 0.2382,
+      "factors": {
+        "buildDuration": 5.399999999995089,
+        "buildDepthFactor": 0.6124999999998977,
+        "bassReturn": 0.00408617501171666,
+        "bassReturnFactor": 0.8516344700046866,
+        "spectralChangeFactor": 0.9499999957372471,
+        "exceptionalFactor": 1,
+        "journeyPositionFactor": 1.1865613790089433,
+        "transitionFactor": 1,
+        "rarityFactor": 0.8144797812992549,
+        "rawMagnitude": 0.2923958341470245
+      }
+    }
+  ],
+  "ruptureEventCheck": {
+    "found": true,
+    "t": 1067.9,
+    "magnitude": 1.5204,
+    "rankOutOf": 84,
+    "factors": {
+      "buildDuration": 26.4999999999759,
+      "buildDepthFactor": 1,
+      "bassReturn": 0,
+      "bassReturnFactor": 0.85,
+      "spectralChangeFactor": 0.95,
+      "exceptionalFactor": 1.5,
+      "journeyPositionFactor": 1.0154512282874553,
+      "transitionFactor": 1,
+      "rarityFactor": 1.2361630858193728,
+      "rawMagnitude": 1.22996530026318
+    }
+  }
+}

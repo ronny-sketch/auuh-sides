@@ -32,6 +32,19 @@ uniform float uRestraint;
 // form to actually change, not just its symmetry and texture.
 uniform float uFormBlend;
 
+// Journey v38 (docs/journey-v38-plan.md): the organism's ASSEMBLY —
+// 1.0 = fully assembled (bypasses the warp below entirely, byte-identical
+// to every pre-journey render), lower values scatter the same primitives
+// this piece already uses into separated fragments rather than showing
+// the completed body from frame one. Wired from
+// JourneyExpressionDirector's assemblyExpression via src/core/
+// FrameDirector.js. UNVERIFIED ON REAL HARDWARE as of this commit — no
+// GPU was available this session; the next render must screenshot a few
+// early-film frames FIRST to confirm this reads as intended before
+// trusting a long render on it (see docs/journey-v38-plan.md's shader
+// section).
+uniform float uAssembly;
+
 // v2 Phase 4 (audio mapping): micro-scale modulation from AudioFeatureEngine.
 uniform float uGrainBoost; // high/hats -> micro texture intensity
 
@@ -209,12 +222,39 @@ float opSmoothSubtraction(float d1, float d2, float k) {
   return mix(d2, -d1, h) + k * h * (1.0 - h);
 }
 
+// Journey v38 assembly warp: partitions space into fixed-size cells, each
+// with its own stable (per-cell, not per-frame) hashed outward direction,
+// and displaces the SAMPLE POINT before it reaches the body's own SDF —
+// the same "domain warp before primitives" technique mapSolidBody already
+// uses for fold/turbulence below, so this composes with the existing
+// pipeline rather than adding a second, competing system. A cell's
+// fragment is stable across time (same hash every frame) so a piece that
+// has "joined" earlier in the film keeps behaving like the same piece —
+// per the brief's "the body should visibly contain things acquired
+// earlier," not randomized noise. coreWeight keeps material near the
+// origin anchored even at uAssembly=0 ("a tiny seed... not the complete
+// object" — the seed is exactly this anchored core), while material
+// farther out (the eventual shell/ring/architecture) scatters first.
+// EXACT BYPASS at uAssembly>=0.999 — every existing render (and every
+// call site that never sets uAssembly, which defaults to 1.0 in every
+// uniforms declaration) gets precisely the pre-journey shape, unchanged.
+vec3 assemblyWarp(vec3 p) {
+  if (uAssembly > 0.999) return p;
+  vec3 cell = floor(p * 0.9);
+  vec3 seed = vec3(hash3(cell), hash3(cell + vec3(13.1, 7.7, 29.3)), hash3(cell + vec3(41.0, 3.0, 17.0)));
+  vec3 dir = normalize(seed - 0.5 + 0.0001);
+  float coreWeight = smoothstep(0.0, 2.0, length(p));
+  float spread = (1.0 - uAssembly) * 2.6;
+  return p - dir * spread * coreWeight;
+}
+
 // Identity field shared by every family (v3, docs/v3-creative-direction.md
 // §6): fold + turbulent domain-warp + BODY topology blend. This is exactly
 // the pre-fracture-cut body from v2's map(), extracted so CHAMBER's thin
 // shell (abs(d) - wallThickness) and the exterior SHELL cut can both read
 // the identical underlying shape rather than two similar-but-drifted copies.
 float mapSolidBody(vec3 p) {
+  p = assemblyWarp(p);
   // Noise-based warp/fracture must never influence points far from the
   // body: sin()-based hashing loses precision at large coordinates (rays
   // that miss travel out to t=40), which otherwise produces false

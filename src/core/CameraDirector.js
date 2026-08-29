@@ -236,6 +236,13 @@ export class CameraDirector {
   constructor() {
     this.shotSegments = null;
     this.azimuthTable = null;
+    // Journey stillness hold state (see update()'s journey param) —
+    // stateful like FeedbackPipeline/EnergyReservoir, correct only under
+    // sequential increasing-t calls, which is how update() is always
+    // invoked in this codebase already.
+    this._smoothCamPos = null;
+    this._smoothTarget = null;
+    this._smoothLastT = null;
   }
 
   // Must be called once (after beat_grid.json loads) before update().
@@ -339,7 +346,15 @@ export class CameraDirector {
     return { camPos, target, dist };
   }
 
-  update(p) {
+  /**
+   * @param {object} p VisualDirector.sample() output (t, restraint, kick, ...)
+   * @param {{cameraStillness?:number}|null} [journey] optional — JourneyExpressionDirector output.
+   *   Undefined/null (every call site before the journey branch existed, and
+   *   any future caller that doesn't pass it) reproduces the exact original
+   *   behavior — see the stillness block below, gated entirely behind
+   *   `journey && journey.cameraStillness > 0`.
+   */
+  update(p, journey = null) {
     if (!this.shotSegments) {
       throw new Error("CameraDirector.init(barTimes) must be called before update()");
     }
@@ -392,6 +407,37 @@ export class CameraDirector {
       const scale = 1 - p.kick * 0.035;
       camPos = [camPos[0] * scale, camPos[1] * scale, camPos[2] * scale];
       dist *= scale;
+    }
+
+    // Journey stillness hold (Part 9): during a real gather/compression,
+    // the camera should feel like it's holding rather than instantly
+    // following the shot grammar's own cut/motion — implemented as a
+    // continuous low-pass follow rate on top of whatever the existing
+    // shot-segment system already computed, not a change to that system
+    // itself. journey==null (every pre-journey call site, and any future
+    // caller that doesn't pass it) skips this block entirely and returns
+    // byte-identical output to before.
+    if (journey && journey.cameraStillness > 0) {
+      const dt = this._smoothLastT == null ? 0 : Math.max(0, p.t - this._smoothLastT);
+      this._smoothLastT = p.t;
+      if (this._smoothCamPos == null) {
+        this._smoothCamPos = camPos.slice();
+        this._smoothTarget = target.slice();
+      } else {
+        const followRate = Math.min(1, Math.max(0, dt * (0.3 + 2.0 * (1 - journey.cameraStillness))));
+        this._smoothCamPos = lerp3(this._smoothCamPos, camPos, followRate);
+        this._smoothTarget = lerp3(this._smoothTarget, target, followRate);
+      }
+      camPos = this._smoothCamPos;
+      target = this._smoothTarget;
+      dist = Math.hypot(camPos[0], camPos[1], camPos[2]);
+    } else {
+      // Reset so the NEXT stillness period starts holding from wherever
+      // the shot grammar actually is at that moment, not a stale position
+      // from long ago — avoids a jump-cut back to an old hold point.
+      this._smoothCamPos = null;
+      this._smoothTarget = null;
+      this._smoothLastT = p.t;
     }
 
     return {

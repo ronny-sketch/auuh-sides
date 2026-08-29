@@ -116,7 +116,12 @@ export class LightDirector {
     return segs[Math.min(lo, segs.length - 1)];
   }
 
-  sample(t, sceneState) {
+  /**
+   * @param {number} t
+   * @param {string} sceneState
+   * @param {{lightNarrowing?:number}|null} [journey] optional — JourneyExpressionDirector output. Omitted (every pre-journey call site) reproduces the exact original recipe unmodified.
+   */
+  sample(t, sceneState, journey = null) {
     const seg = this._segmentAt(t);
     let mode = seg.mode;
 
@@ -134,7 +139,22 @@ export class LightDirector {
     if (sceneState === "RECOGNITION") mode = LIGHT_MODE.SILHOUETTE;
 
     const recipe = LIGHT_RECIPES[mode];
-    return { mode, dir: recipe.dir, intensity: recipe.intensity, ambient: recipe.ambient, rim: recipe.rim };
+    let { intensity, ambient, rim } = recipe;
+
+    // Journey narrowing (Part 10): "narrow/reduce ambient/tighten
+    // direction" during a real gather — implemented as a continuous
+    // reduction of ambient floor and rim spread on top of whichever
+    // authored mode is already active, never by switching to a different
+    // mode (the held-state authoring above stays in full control of
+    // WHICH light state; this only tightens it). journey==null skips this
+    // entirely — identical recipe to before.
+    if (journey && journey.lightNarrowing > 0) {
+      const n = Math.min(1, Math.max(0, journey.lightNarrowing));
+      ambient *= 1 - n * 0.7;
+      rim *= 1 - n * 0.4;
+    }
+
+    return { mode, dir: recipe.dir, intensity, ambient, rim };
   }
 }
 
