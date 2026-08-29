@@ -71,3 +71,12 @@ export class MaterialDirector {
     return { material, mode: MATERIAL_MODE[material], ...recipe };
   }
 }
+
+// V3.5 item 3: director cues specify material by name (e.g. "OBSIDIAN") —
+// this is the lookup DirectorCueSheet overrides use in main.js. Returns
+// the same shape as MaterialDirector.sample().
+export function getMaterialRecipe(name) {
+  const recipe = MATERIAL_RECIPES[name];
+  if (!recipe) return null;
+  return { material: name, mode: MATERIAL_MODE[name], ...recipe };
+}

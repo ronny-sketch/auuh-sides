@@ -14,6 +14,22 @@ import { getTimelineState, getRestraintFactor } from "./timeline.js";
 // deterministic function of (chapter, phase, restraint, MesoState), all of
 // which are themselves pure functions of t. Same discipline as
 // CameraDirector's shot-segment table.
+//
+// V3.5 honesty fix (item 1D of the director's-cut brief): primaryFamily/
+// secondaryFamily === CHAMBER means "the CHAMBER aesthetic (MEMBRANE
+// material, softer atmosphere, the reading that this passage is ABOUT
+// interiority)" is active — it does NOT mean the camera is literally
+// inside the shell. That is a SEPARATE fact, `chamberInteriorActive`,
+// computed in main.js from CameraDirector's own shot type: by construction
+// (every SHOT_TYPES entry except PASS_THROUGH clamps its distance well
+// outside the body's solid radius via occupancy limits or safeMinDist),
+// PASS_THROUGH is the ONLY shot capable of crossing the wall threshold —
+// so `shotType === "PASS_THROUGH"` is a sound, non-approximate proxy for
+// "the shader is actually doing interior traversal right now." Telemetry
+// and docs must report CHAMBER_PRESENCE (this file's family label) and
+// CHAMBER_INTERIOR (main.js's chamberInteriorActive) as the two distinct
+// claims they are — never conflate "the aesthetic is CHAMBER" with "the
+// viewer is inside."
 
 export const FAMILY = Object.freeze({
   SHELL: "SHELL",
@@ -82,6 +98,17 @@ const CHAPTER_PLAN = [
 // contrast," not as a softer version of the dominant ECHO state.
 const RESTRAINT_INVERTS_TOWARD_PRIMARY = new Set([6]);
 
+// V3.5 item 1A: hard editorial decisions (forcing a family, not just
+// nudging a blend) are only permitted when MusicalDirector reports one of
+// these confidence grades for the active exceptionalEvent. A
+// strong_candidate (e.g. final_fade_1744 — the single highest-scored
+// algorithmic detection, but not independently corroborated or confirmed
+// by ear) may NOT trigger a hard override by default; it stays a
+// documented, inert candidate until Ronny confirms it (analysis/
+// annotate.html -> EXCEPTIONAL_SOUND) or an explicit director cue
+// activates it.
+const HARD_OVERRIDE_GRADES = new Set(["human_confirmed", "structurally_verified"]);
+
 export class SceneDirector {
   constructor(musicalDirector) {
     this.musical = musicalDirector;
@@ -130,7 +157,9 @@ export class SceneDirector {
     // in the piece CHAMBER is even possible, so it must not fade in
     // gradually like an ordinary secondary blend; it has to arrive as an
     // intrusion the same way the color flash already does.
-    if (meso && meso.exceptionalEvent === "rupture_1747") {
+    const hardEventAllowed = meso && HARD_OVERRIDE_GRADES.has(meso.exceptionalEventConfidence);
+
+    if (hardEventAllowed && meso.exceptionalEvent === "rupture_1747") {
       primaryFamily = FAMILY.SHELL;
       secondaryFamily = FAMILY.CHAMBER;
       blend = 1; // full CHAMBER at the rupture's peak instant; ramp handled by caller via transitionProgress
@@ -142,10 +171,16 @@ export class SceneDirector {
     // highest-scored transition in the whole track-map dataset (0.682,
     // every signal fired at once) — the mix's final track fading out,
     // 23s after the 41:22 climax, already inside Departure's authored
-    // collapse. A brief VOID pulse right here reads as the identity
-    // briefly vanishing entirely mid-collapse, distinct from the slower,
-    // gentler VOID the chapter settles into afterward.
-    if (meso && meso.exceptionalEvent === "final_fade_1744") {
+    // collapse. A brief VOID pulse right here would read as the identity
+    // briefly vanishing entirely mid-collapse. V3.5: this event is tagged
+    // strong_candidate (MusicalDirector.js), not human_confirmed or
+    // structurally_verified — per item 1A, it therefore does NOT fire by
+    // default anymore (`hardEventAllowed` gates it out). Left in place,
+    // inert, as a documented candidate: promote it by confirming it in
+    // analysis/annotate.html (re-tag EXCEPTIONAL_SOUND there), or activate
+    // it explicitly via a director cue — do not re-enable it by loosening
+    // this gate.
+    if (hardEventAllowed && meso.exceptionalEvent === "final_fade_1744") {
       primaryFamily = FAMILY.VOID;
       secondaryFamily = FAMILY.SHELL;
       blend = 0.2;

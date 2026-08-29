@@ -13,6 +13,10 @@ export class AudioEngine {
     await this.el.play();
   }
 
+  pause() {
+    this.el.pause();
+  }
+
   get currentTime() {
     return this.el.currentTime;
   }

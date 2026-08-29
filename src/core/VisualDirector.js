@@ -25,7 +25,14 @@ export class VisualDirector {
     this.features = featureEngine;
   }
 
-  sample(t) {
+  // microResponseMultiplier (V3.5 item 3, director-cue-sheet's
+  // "microResponse" field): scales every MICRO-audio contribution below,
+  // on top of the existing restraint gate — a director cue can dial MICRO
+  // reactivity down (e.g. 0.4, per the brief's own worked example: "hold
+  // established bassline; let eye settle") or up, without touching the
+  // MACRO/MESO state this function otherwise reads unmodified. Defaults to
+  // 1 (no change) so every existing caller is unaffected.
+  sample(t, microResponseMultiplier = 1) {
     const p = getParams(t);
 
     if (!this.features || !this.features.data) {
@@ -38,7 +45,7 @@ export class VisualDirector {
     }
 
     const f = this.features.sample(t);
-    const hold = 1 - p.restraint;
+    const hold = (1 - p.restraint) * microResponseMultiplier;
 
     // bass -> slow structural breathing (locomotion), a few percent of camDist
     const breathe = (f.bass - 0.5) * 0.12 * hold;

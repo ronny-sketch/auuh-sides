@@ -79,6 +79,26 @@ const SHOT_TYPES = {
   // every direction the body's geometry actually reaches) with enough room
   // to see the interior ring architecture rather than pressed against it.
   PASS_THROUGH: { minDur: 9, maxDur: 9, distRange: [7.0, 0.55], angSpeedMult: 0.1, elevOverride: null, offsetMult: 0.2, allowMotion: false, pushOverTime: true, explicitDist: true, transitionType: "PASS_THROUGH" },
+
+  // V3.5 item 4: the authored-motion vocabulary a director cue speaks.
+  // Several are aliases of shot types above (kept as separate names because
+  // "STATIC"/"PROFILE_LOCK" read better in a cue file than the generative
+  // system's own internal names) — NONE of these are added to
+  // CHAPTER_SHOT_SEQUENCES, so the generative fallback cycle is completely
+  // unchanged; they are reachable ONLY via an explicit director cue
+  // (DirectorCueSheet -> CameraDirector.resolveCueCamera).
+  STATIC: { occupancy: [0.82, 0.82], angSpeedMult: 0.0, elevOverride: null, offsetMult: 1.0, allowMotion: false },
+  SLOW_PULL: { occupancy: [1.35, 0.5], angSpeedMult: 0.15, elevOverride: null, offsetMult: 0.7, allowMotion: true, pushOverTime: true },
+  LATERAL_DRIFT: { occupancy: [0.7, 0.7], angSpeedMult: 0.5, elevOverride: null, offsetMult: 1.2, allowMotion: true },
+  // ORBIT_PARTIAL: a bounded back-and-forth arc, not a continuous orbit —
+  // ARC_AMPLITUDE/ARC_SPEED read by _paramsForSegment's `partialArc`
+  // branch below, which oscillates azimuth around whatever the global
+  // azimuth table's value was AT THE CUE'S OWN START (so it still picks up
+  // continuously from whatever shot preceded it, then holds to a bounded
+  // sweep instead of continuing to accumulate).
+  ORBIT_PARTIAL: { occupancy: [0.9, 0.9], angSpeedMult: 0, elevOverride: null, offsetMult: 1.0, allowMotion: true, partialArc: true, arcAmplitude: 0.6, arcSpeed: 0.25 },
+  PROFILE_LOCK: { occupancy: [1.0, 1.0], angSpeedMult: 0.0, elevOverride: null, offsetMult: 0.3, allowMotion: false, azimuthLockOffset: Math.PI / 2 },
+  MACRO_CRAWL: { occupancy: [2.3, 2.3], angSpeedMult: 0.12, elevOverride: null, offsetMult: 0.5, allowMotion: true, safeMinDist: 2.8 },
 };
 
 // Authored per-chapter shot sequences (cycled if the chapter runs longer
@@ -280,8 +300,17 @@ export class CameraDirector {
       if (type.safeMinDist) dist = Math.max(dist, type.safeMinDist);
     }
 
-    const az0 = this._azimuthAt(t);
-    const az = type.azimuthLockOffset != null ? az0 + type.azimuthLockOffset : az0;
+    let az;
+    if (type.partialArc) {
+      // ORBIT_PARTIAL: bounded oscillation around the azimuth value the
+      // global table already had at the segment's own start — continuous
+      // with whatever came before, but never accumulates into a full orbit.
+      const azCenter = this._azimuthAt(seg.start);
+      az = azCenter + Math.sin((t - seg.start) * (type.arcSpeed || 0.25)) * (type.arcAmplitude || 0.5);
+    } else {
+      const az0 = this._azimuthAt(t);
+      az = type.azimuthLockOffset != null ? az0 + type.azimuthLockOffset : az0;
+    }
 
     const elevOsc = type.allowMotion ? Math.sin(t * 0.05) * 0.08 : 0;
     const elev = type.elevOverride != null ? type.elevOverride : base.baseElev + elevOsc;
@@ -373,6 +402,40 @@ export class CameraDirector {
       transitionType,
       dissolveWeight,
       isRupture: !!seg.isRupture,
+    };
+  }
+
+  // V3.5 item 3/4: resolves camera params for an explicit director cue
+  // (DirectorCueSheet entry), reusing the exact same _paramsForSegment math
+  // the generative system uses — a cue is just a segment the director wrote
+  // by hand instead of the bar-grid cycling logic generating one. `cue.
+  // cameraMotion` (or `cue.shot`, so the brief's own worked example field
+  // name works unmodified) selects the recipe from SHOT_TYPES; a numeric
+  // `cue.cameraFraming` overrides the recipe's own occupancy with a fixed
+  // value (pushOverTime disabled in that case — an explicit framing number
+  // means "hold exactly this," not "sweep from the recipe's default").
+  resolveCueCamera(cue, t) {
+    const motionName = cue.cameraMotion || cue.shot || "STATIC";
+    const baseType = SHOT_TYPES[motionName] || SHOT_TYPES.STATIC;
+    const type = { ...baseType };
+    if (typeof cue.cameraFraming === "number") {
+      type.occupancy = [cue.cameraFraming, cue.cameraFraming];
+      type.pushOverTime = false;
+    }
+
+    const chapterIndex = findChapterIndex(t);
+    const seg = { start: cue.start, end: cue.end, chapterIndex };
+    const params = this._paramsForSegment(seg, type, t, getRestraintFactor(t));
+
+    return {
+      camPos: params.camPos,
+      camTarget: params.target,
+      fov: FOV_DEG,
+      shotType: motionName,
+      transitionType: cue.transition || "HARD_CUT",
+      dissolveWeight: 0,
+      isRupture: false,
+      isCue: true,
     };
   }
 }

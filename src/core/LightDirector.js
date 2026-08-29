@@ -53,6 +53,23 @@ const CHAPTER_LIGHT_SEQUENCE = [
 const MIN_HOLD = 30;
 const MAX_HOLD = 90;
 
+// V3.5 item 1C fix: v3 alternated NEAR_DARK/SILHOUETTE every second inside
+// a restraint window (`t % 2 < 1`) — a 1Hz flicker inside the piece's own
+// STILLEST passages, exactly backwards from "the strongest restraint
+// sections should remain almost completely still visually." Each restraint
+// window now holds exactly ONE light state for its full duration, chosen
+// per-window (not per-chapter) since R2/R3 sit inside Fracture (chapter 6,
+// whose own light sequence is [HARD_SPECULAR, NEAR_DARK]) but need to read
+// as MORE graphic contrast than a soft NEAR_DARK fade, per the restraint
+// doctrine's "contrast is the point" — SILHOUETTE (near-zero diffuse, edge-
+// only) delivers that; R1 (Contraction, chapter 2's own single-state
+// sequence is already [NEAR_DARK]) stays consistent with its chapter.
+const RESTRAINT_LIGHT_OVERRIDE = {
+  R1: LIGHT_MODE.NEAR_DARK,
+  R2: LIGHT_MODE.SILHOUETTE,
+  R3: LIGHT_MODE.SILHOUETTE,
+};
+
 function mulberry32(seed) {
   return function () {
     seed |= 0;
@@ -103,11 +120,13 @@ export class LightDirector {
     const seg = this._segmentAt(t);
     let mode = seg.mode;
 
-    // Restraint always overrides toward NEAR_DARK or SILHOUETTE — "the
+    // Restraint holds ONE light state for the window's full duration — "the
     // stillness is the feedback settling," now also true of light: a held
-    // quiet moment should also be graphically stark, not lit as usual.
-    const inRestraint = RESTRAINT_WINDOWS.some((w) => t >= w.start && t <= w.end);
-    if (inRestraint) mode = t % 2 < 1 ? LIGHT_MODE.NEAR_DARK : LIGHT_MODE.SILHOUETTE;
+    // quiet moment should also be graphically stark AND STILL, not
+    // alternating every second (V3.5 item 1C — see RESTRAINT_LIGHT_OVERRIDE
+    // comment above for why R1 differs from R2/R3).
+    const activeRestraint = RESTRAINT_WINDOWS.find((w) => t >= w.start && t <= w.end);
+    if (activeRestraint) mode = RESTRAINT_LIGHT_OVERRIDE[activeRestraint.id] ?? LIGHT_MODE.NEAR_DARK;
 
     // CHAMBER/rupture forces internal light — the light itself is part of
     // what tells the viewer they are now inside something, per Phase 3.
@@ -117,4 +136,14 @@ export class LightDirector {
     const recipe = LIGHT_RECIPES[mode];
     return { mode, dir: recipe.dir, intensity: recipe.intensity, ambient: recipe.ambient, rim: recipe.rim };
   }
+}
+
+// V3.5 item 5: director cues specify light by name (e.g. "HARD_SPECULAR"),
+// not by mode index — this is the lookup DirectorCueSheet overrides use in
+// main.js. Returns the same shape as LightDirector.sample().
+export function getLightRecipe(name) {
+  const mode = LIGHT_MODE[name];
+  if (mode == null) return null;
+  const recipe = LIGHT_RECIPES[mode];
+  return { mode, dir: recipe.dir, intensity: recipe.intensity, ambient: recipe.ambient, rim: recipe.rim };
 }

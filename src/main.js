@@ -8,8 +8,10 @@ import { AudioFeatureEngine } from "./core/AudioFeatureEngine.js";
 import { VisualDirector } from "./core/VisualDirector.js";
 import { MusicalDirector } from "./core/MusicalDirector.js";
 import { SceneDirector, FAMILY } from "./core/SceneDirector.js";
-import { LightDirector } from "./core/LightDirector.js";
-import { MaterialDirector } from "./core/MaterialDirector.js";
+import { LightDirector, getLightRecipe } from "./core/LightDirector.js";
+import { MaterialDirector, getMaterialRecipe } from "./core/MaterialDirector.js";
+import { DirectorCueSheet } from "./core/DirectorCueSheet.js";
+import directorCues from "./direction/director-cue-sheet.json";
 
 const appEl = document.getElementById("app");
 const hudEl = document.getElementById("hud");
@@ -104,6 +106,7 @@ const musicalDirector = new MusicalDirector();
 const sceneDirector = new SceneDirector(musicalDirector);
 const lightDirector = new LightDirector();
 const materialDirector = new MaterialDirector();
+const directorCueSheet = new DirectorCueSheet(directorCues);
 
 function resize() {
   const w = window.innerWidth;
@@ -134,12 +137,52 @@ function familyWeight(scene, family) {
 }
 
 function applyUniformsForT(t) {
-  const p = visualDirector.sample(t);
-  const cam = cameraDirector.update(p);
-  const scene = sceneDirector.sample(t);
-  const light = lightDirector.sample(t, scene.sceneState);
+  // V3.5 item 3: DIRECTOR CUE is the top of the fallback priority
+  // (DIRECTOR CUE > structurally-verified/human-confirmed event > MACRO/
+  // MESO plan > generative fallback). Looked up FIRST so `microResponse`
+  // can affect VisualDirector's own MICRO sampling below, not just be
+  // patched on after the fact.
+  const cue = directorCueSheet.at(t);
+
+  const p = visualDirector.sample(t, cue && cue.microResponse != null ? cue.microResponse : 1);
+  let cam = cameraDirector.update(p);
+  let scene = sceneDirector.sample(t);
+
+  if (cue) {
+    if (cue.cameraMotion || cue.shot) cam = cameraDirector.resolveCueCamera(cue, t);
+    if (cue.primaryFamily) {
+      scene = {
+        ...scene,
+        primaryFamily: cue.primaryFamily,
+        secondaryFamily: cue.secondaryFamily || scene.secondaryFamily,
+        blend: cue.sceneBlend != null ? cue.sceneBlend : scene.blend,
+        sceneState: "DIRECTED",
+      };
+    }
+  }
+
+  // CHAMBER_PRESENCE vs. CHAMBER_INTERIOR (V3.5 item 1D): scene.
+  // primaryFamily/secondaryFamily === CHAMBER is the aesthetic reading
+  // (material/atmosphere); chamberInteriorActive is the separate, honest
+  // signal for literal interior camera traversal. True ONLY during
+  // PASS_THROUGH, which by construction (every other shot/motion recipe
+  // clamps distance outside the solid via occupancy limits or safeMinDist)
+  // is the only shot type capable of crossing the wall threshold — see
+  // SceneDirector.js's header comment for the full reasoning.
+  const chamberInteriorActive = cam.shotType === "PASS_THROUGH";
+
+  let light = lightDirector.sample(t, scene.sceneState);
+  if (cue && cue.light) {
+    const override = getLightRecipe(cue.light);
+    if (override) light = override;
+  }
+
   const dominantFamily = scene.blend > 0.5 ? scene.secondaryFamily : scene.primaryFamily;
-  const mat = materialDirector.sample(p.chapterIndex, dominantFamily, scene.sceneState);
+  let mat = materialDirector.sample(p.chapterIndex, dominantFamily, scene.sceneState);
+  if (cue && cue.material) {
+    const override = getMaterialRecipe(cue.material);
+    if (override) mat = override;
+  }
 
   uniforms.uTime.value = t;
   uniforms.uCamPos.value.set(cam.camPos[0], cam.camPos[1], cam.camPos[2]);
@@ -158,8 +201,17 @@ function applyUniformsForT(t) {
   // TEMPORAL_DISSOLVE cuts (Fracture's restraint pockets) boost memoryWeight
   // for ~2s right at the cut so the previous shot visibly persists/decays
   // through the feedback trail instead of swapping instantly — see
-  // CameraDirector's transition-grammar comment.
-  uniforms.uMemoryWeight.value = Math.min(0.95, p.memoryWeight + cam.dissolveWeight * 0.6);
+  // CameraDirector's transition-grammar comment. A director cue's
+  // `memoryBehavior` can override memoryWeight directly (a number) or
+  // request the same boosted-decay ramp as TEMPORAL_DISSOLVE ("DISSOLVE").
+  let memoryWeight = p.memoryWeight + cam.dissolveWeight * 0.6;
+  if (cue && cue.memoryBehavior === "DISSOLVE") {
+    const timeSinceStart = t - cue.start;
+    memoryWeight = Math.max(memoryWeight, 1 - Math.min(1, timeSinceStart / 2.0));
+  } else if (cue && typeof cue.memoryBehavior === "number") {
+    memoryWeight = cue.memoryBehavior;
+  }
+  uniforms.uMemoryWeight.value = Math.min(0.95, memoryWeight);
   const [dx, dy] = memoryDriftAt(t);
   uniforms.uMemoryDrift.value.set(dx, dy);
 
@@ -188,6 +240,9 @@ function applyUniformsForT(t) {
   p.blend = scene.blend;
   p.materialName = mat.material;
   p.lightMode = light.mode;
+  p.chamberInteriorActive = chamberInteriorActive;
+  p.meso = scene.meso; // MusicalDirector.sample(t) snapshot — used by director-review.js annotations
+  p.directorCue = cue; // null when undirected — used by director-review.js and HUD
   return p;
 }
 
@@ -212,7 +267,9 @@ function renderAt(t) {
     `t=${t.toFixed(2)}  ch=${p.chapterIndex} ${p.chapterName}  phase=${p.phase} (${p.phaseT.toFixed(2)})  shot=${p.shotType} (${p.transitionType})\n` +
     `fold=${p.fold.toFixed(2)} blend=${p.foldBlend.toFixed(2)} turb=${p.turbulence.toFixed(2)} frac=${p.fracture.toFixed(2)} form=${p.formBlend.toFixed(2)}\n` +
     `camDist=${p.camDist.toFixed(2)} contrast=${p.contrast.toFixed(2)} colorMix=${p.colorMix.toFixed(2)} restraint=${p.restraint.toFixed(2)} mem=${p.memoryWeight.toFixed(2)} grain=${p.grainBoost.toFixed(2)}\n` +
-    `scene=${p.primaryFamily}->${p.secondaryFamily} (${p.blend.toFixed(2)}) ${p.sceneState}  material=${p.materialName}  light=${p.lightMode}`;
+    `scene=${p.primaryFamily}->${p.secondaryFamily} (${p.blend.toFixed(2)}) ${p.sceneState}  material=${p.materialName}  light=${p.lightMode}  chamberInterior=${p.chamberInteriorActive}\n` +
+    (p.directorCue ? `CUE: ${p.directorCue.reason || "(no reason given)"}\n` : "") +
+    (p.meso ? `meso: track=${p.meso.track} tension=${p.meso.tensionState} density=${p.meso.densityState} event=${p.meso.exceptionalEvent || "-"}/${p.meso.exceptionalEventConfidence || "-"}` : "");
 
   return p;
 }

@@ -1,0 +1,4147 @@
+{
+  "generatedAt": "2026-08-29T16:23:17.723Z",
+  "totalShots": 205,
+  "shots": [
+    {
+      "start": 0,
+      "end": 11.77,
+      "durationSec": 11.77,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 11.77,
+      "end": 23.38,
+      "durationSec": 11.61,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 23.38,
+      "end": 46.63,
+      "durationSec": 23.24,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 46.63,
+      "end": 67.92,
+      "durationSec": 21.29,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 67.92,
+      "end": 75.65,
+      "durationSec": 7.73,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 75.65,
+      "end": 91.14,
+      "durationSec": 15.49,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 91.14,
+      "end": 102.75,
+      "durationSec": 11.61,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 102.75,
+      "end": 114.38,
+      "durationSec": 11.63,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 114.38,
+      "end": 133.72,
+      "durationSec": 19.34,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 133.72,
+      "end": 150.19,
+      "durationSec": 16.47,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Emergence",
+      "scene": "SHELL->VOID(0.05)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 150.19,
+      "end": 166.65,
+      "durationSec": 16.46,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 166.65,
+      "end": 174.38,
+      "durationSec": 7.73,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 174.38,
+      "end": 187.92,
+      "durationSec": 13.54,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 187.92,
+      "end": 205.33,
+      "durationSec": 17.41,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 205.33,
+      "end": 220.82,
+      "durationSec": 15.49,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 220.82,
+      "end": 232.43,
+      "durationSec": 11.61,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 232.43,
+      "end": 247.92,
+      "durationSec": 15.49,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 247.92,
+      "end": 261.48,
+      "durationSec": 13.56,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 261.48,
+      "end": 271.14,
+      "durationSec": 9.66,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 271.14,
+      "end": 296.31,
+      "durationSec": 25.17,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 296.31,
+      "end": 304.04,
+      "durationSec": 7.73,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 304.04,
+      "end": 315.65,
+      "durationSec": 11.61,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 315.65,
+      "end": 333.07,
+      "durationSec": 17.41,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 333.07,
+      "end": 340.82,
+      "durationSec": 7.76,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 340.82,
+      "end": 354.62,
+      "durationSec": 13.79,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 354.62,
+      "end": 366.23,
+      "durationSec": 11.61,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 366.23,
+      "end": 379.76,
+      "durationSec": 13.54,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 379.76,
+      "end": 393.58,
+      "durationSec": 13.82,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 393.58,
+      "end": 412.92,
+      "durationSec": 19.34,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 412.92,
+      "end": 426.46,
+      "durationSec": 13.54,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.10)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 426.46,
+      "end": 440.02,
+      "durationSec": 13.56,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 440.02,
+      "end": 461.29,
+      "durationSec": 21.27,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 461.29,
+      "end": 470.97,
+      "durationSec": 9.68,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 470.97,
+      "end": 478.73,
+      "durationSec": 7.76,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 478.73,
+      "end": 501.95,
+      "durationSec": 23.22,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 501.95,
+      "end": 504.85,
+      "durationSec": 2.9,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "First Drive",
+      "scene": "SHELL->SHELL(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 504.85,
+      "end": 521.29,
+      "durationSec": 16.44,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 521.29,
+      "end": 552.26,
+      "durationSec": 30.98,
+      "shot": "LONG_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 552.26,
+      "end": 575.51,
+      "durationSec": 23.24,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 575.51,
+      "end": 612.26,
+      "durationSec": 36.76,
+      "shot": "LONG_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 612.26,
+      "end": 635.48,
+      "durationSec": 23.22,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 635.48,
+      "end": 664.53,
+      "durationSec": 29.05,
+      "shot": "LONG_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 664.53,
+      "end": 689.68,
+      "durationSec": 25.15,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 689.68,
+      "end": 712.92,
+      "durationSec": 23.24,
+      "shot": "LONG_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 712.92,
+      "end": 724.53,
+      "durationSec": 11.61,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 724.53,
+      "end": 763.36,
+      "durationSec": 38.82,
+      "shot": "LONG_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.10)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 763.36,
+      "end": 780.77,
+      "durationSec": 17.41,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.95)",
+      "sceneState": "RESTRAINT",
+      "light": "NEAR_DARK",
+      "material": "NEGATIVE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 780.77,
+      "end": 805.94,
+      "durationSec": 25.17,
+      "shot": "LONG_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.85)",
+      "sceneState": "RESTRAINT",
+      "light": "NEAR_DARK",
+      "material": "NEGATIVE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 805.94,
+      "end": 809.82,
+      "durationSec": 3.88,
+      "shot": "STATIC_HOLD",
+      "transition": "EASE",
+      "chapter": "Contraction",
+      "scene": "SHELL->VOID(0.85)",
+      "sceneState": "RESTRAINT",
+      "light": "NEAR_DARK",
+      "material": "NEGATIVE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 809.82,
+      "end": 823.24,
+      "durationSec": 13.42,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 823.24,
+      "end": 834.85,
+      "durationSec": 11.61,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.46)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 834.85,
+      "end": 836.78,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 836.78,
+      "end": 861.72,
+      "durationSec": 24.94,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 861.72,
+      "end": 869.47,
+      "durationSec": 7.76,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 869.47,
+      "end": 873.33,
+      "durationSec": 3.85,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 873.33,
+      "end": 896.55,
+      "durationSec": 23.22,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 896.55,
+      "end": 906.23,
+      "durationSec": 9.68,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 906.23,
+      "end": 910.11,
+      "durationSec": 3.88,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 910.11,
+      "end": 921.72,
+      "durationSec": 11.61,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 921.72,
+      "end": 935.25,
+      "durationSec": 13.54,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 935.25,
+      "end": 937.18,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 937.18,
+      "end": 960.66,
+      "durationSec": 23.48,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 960.66,
+      "end": 974.22,
+      "durationSec": 13.56,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 974.22,
+      "end": 978.09,
+      "durationSec": 3.88,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 978.09,
+      "end": 989.7,
+      "durationSec": 11.61,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 989.7,
+      "end": 999.36,
+      "durationSec": 9.66,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 999.36,
+      "end": 1001.29,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1001.29,
+      "end": 1022.58,
+      "durationSec": 21.29,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1022.58,
+      "end": 1032.27,
+      "durationSec": 9.68,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.00)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1032.27,
+      "end": 1036.12,
+      "durationSec": 3.85,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1036.12,
+      "end": 1057.44,
+      "durationSec": 21.32,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1061.31,
+      "end": 1076.78,
+      "durationSec": 15.46,
+      "shot": "PASS_THROUGH",
+      "transition": "PASS_THROUGH",
+      "chapter": "Re-ignition",
+      "scene": "SHELL->CHAMBER(0.25)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": true,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1076.78,
+      "end": 1090.34,
+      "durationSec": 13.56,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1090.34,
+      "end": 1103.88,
+      "durationSec": 13.54,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1103.88,
+      "end": 1119.36,
+      "durationSec": 15.49,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1119.36,
+      "end": 1130.97,
+      "durationSec": 11.61,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1130.97,
+      "end": 1140.66,
+      "durationSec": 9.68,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1140.66,
+      "end": 1148.39,
+      "durationSec": 7.73,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1148.39,
+      "end": 1156.14,
+      "durationSec": 7.76,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1156.14,
+      "end": 1173.82,
+      "durationSec": 17.67,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1173.82,
+      "end": 1183.47,
+      "durationSec": 9.66,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1183.47,
+      "end": 1195.06,
+      "durationSec": 11.59,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1195.06,
+      "end": 1206.56,
+      "durationSec": 11.49,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.32)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1206.56,
+      "end": 1221.86,
+      "durationSec": 15.3,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1221.86,
+      "end": 1231.45,
+      "durationSec": 9.59,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1231.45,
+      "end": 1242.92,
+      "durationSec": 11.47,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1242.92,
+      "end": 1252.51,
+      "durationSec": 9.59,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1252.51,
+      "end": 1263.98,
+      "durationSec": 11.47,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1263.98,
+      "end": 1277.63,
+      "durationSec": 13.65,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1277.63,
+      "end": 1285.18,
+      "durationSec": 7.55,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1285.18,
+      "end": 1296.67,
+      "durationSec": 11.49,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1296.67,
+      "end": 1306.33,
+      "durationSec": 9.66,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1306.33,
+      "end": 1315.92,
+      "durationSec": 9.59,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1315.92,
+      "end": 1325.49,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1325.49,
+      "end": 1344.62,
+      "durationSec": 19.13,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1344.62,
+      "end": 1354.21,
+      "durationSec": 9.59,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1354.21,
+      "end": 1363.78,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1363.78,
+      "end": 1373.34,
+      "durationSec": 9.57,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1373.34,
+      "end": 1381.24,
+      "durationSec": 7.89,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1381.24,
+      "end": 1392.97,
+      "durationSec": 11.73,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.31)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1392.97,
+      "end": 1402.53,
+      "durationSec": 9.57,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1402.53,
+      "end": 1414.03,
+      "durationSec": 11.49,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1414.03,
+      "end": 1423.59,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.35)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1423.59,
+      "end": 1442.75,
+      "durationSec": 19.16,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "SILHOUETTE",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1442.75,
+      "end": 1451.85,
+      "durationSec": 9.1,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Second Drift",
+      "scene": "SHELL->CHAMBER(0.20)",
+      "sceneState": "STABLE",
+      "light": "INTERNAL_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1451.85,
+      "end": 1463.81,
+      "durationSec": 11.96,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1463.81,
+      "end": 1484.87,
+      "durationSec": 21.06,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1484.87,
+      "end": 1494.44,
+      "durationSec": 9.57,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1494.44,
+      "end": 1502.1,
+      "durationSec": 7.66,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1502.1,
+      "end": 1513.59,
+      "durationSec": 11.49,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1513.59,
+      "end": 1525.06,
+      "durationSec": 11.47,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1525.06,
+      "end": 1534.89,
+      "durationSec": 9.82,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1534.89,
+      "end": 1544.45,
+      "durationSec": 9.57,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.45)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "high",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1544.45,
+      "end": 1555.95,
+      "durationSec": 11.49,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1555.95,
+      "end": 1578.91,
+      "durationSec": 22.96,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.67)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1578.91,
+      "end": 1586.57,
+      "durationSec": 7.66,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1586.57,
+      "end": 1594.24,
+      "durationSec": 7.66,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1594.24,
+      "end": 1605.73,
+      "durationSec": 11.49,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1605.73,
+      "end": 1621.03,
+      "durationSec": 15.3,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1621.03,
+      "end": 1630.62,
+      "durationSec": 9.59,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.46)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1630.62,
+      "end": 1638.4,
+      "durationSec": 7.78,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1638.4,
+      "end": 1655.75,
+      "durationSec": 17.35,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1655.75,
+      "end": 1677.04,
+      "durationSec": 21.29,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1677.04,
+      "end": 1686.6,
+      "durationSec": 9.57,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.67)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1686.6,
+      "end": 1700.03,
+      "durationSec": 13.42,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.45)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "high",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1700.03,
+      "end": 1719.16,
+      "durationSec": 19.13,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1719.16,
+      "end": 1740.22,
+      "durationSec": 21.06,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1740.22,
+      "end": 1749.81,
+      "durationSec": 9.59,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1749.81,
+      "end": 1765.13,
+      "durationSec": 15.33,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1765.13,
+      "end": 1774.7,
+      "durationSec": 9.57,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.45)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "high",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1774.7,
+      "end": 1794.04,
+      "durationSec": 19.34,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1794.04,
+      "end": 1801.71,
+      "durationSec": 7.66,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.45)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "high",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1801.71,
+      "end": 1817.05,
+      "durationSec": 15.35,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1817.05,
+      "end": 1838.07,
+      "durationSec": 21.01,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1838.07,
+      "end": 1855.32,
+      "durationSec": 17.25,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1855.32,
+      "end": 1864.91,
+      "durationSec": 9.59,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1864.91,
+      "end": 1874.5,
+      "durationSec": 9.59,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1874.5,
+      "end": 1884.07,
+      "durationSec": 9.57,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.67)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1884.07,
+      "end": 1901.55,
+      "durationSec": 17.48,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1901.55,
+      "end": 1911.12,
+      "durationSec": 9.57,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.51)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1911.12,
+      "end": 1918.78,
+      "durationSec": 7.66,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1918.78,
+      "end": 1936.03,
+      "durationSec": 17.25,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1936.03,
+      "end": 1951.31,
+      "durationSec": 15.28,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1951.31,
+      "end": 1957.07,
+      "durationSec": 5.76,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.57)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1957.07,
+      "end": 1964.73,
+      "durationSec": 7.66,
+      "shot": "NEGATIVE_SPACE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.45)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "high",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1964.73,
+      "end": 1980.04,
+      "durationSec": 15.31,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Widening",
+      "scene": "CHAMBER->FIELD(0.35)",
+      "sceneState": "STABLE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1980.04,
+      "end": 1981.96,
+      "durationSec": 1.92,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1981.96,
+      "end": 1993.43,
+      "durationSec": 11.47,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.39)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1993.43,
+      "end": 1997.29,
+      "durationSec": 3.85,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 1997.29,
+      "end": 2007.09,
+      "durationSec": 9.8,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2007.09,
+      "end": 2010.92,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2010.92,
+      "end": 2035.81,
+      "durationSec": 24.89,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2035.81,
+      "end": 2039.62,
+      "durationSec": 3.81,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2039.62,
+      "end": 2047.28,
+      "durationSec": 7.66,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2047.28,
+      "end": 2051.11,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2051.11,
+      "end": 2064.51,
+      "durationSec": 13.4,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2064.51,
+      "end": 2068.41,
+      "durationSec": 3.9,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2068.41,
+      "end": 2080.09,
+      "durationSec": 11.68,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2080.09,
+      "end": 2082.09,
+      "durationSec": 2,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.50)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2082.09,
+      "end": 2101.36,
+      "durationSec": 19.27,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.47)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2101.36,
+      "end": 2103.29,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2103.29,
+      "end": 2112.85,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2112.85,
+      "end": 2114.76,
+      "durationSec": 1.9,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "high",
+        "densityState": "dense",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2114.76,
+      "end": 2126.25,
+      "durationSec": 11.49,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2126.25,
+      "end": 2130.08,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2130.08,
+      "end": 2139.65,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2139.65,
+      "end": 2141.58,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2141.58,
+      "end": 2164.54,
+      "durationSec": 22.96,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2164.54,
+      "end": 2168.37,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2168.37,
+      "end": 2179.87,
+      "durationSec": 11.49,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2179.87,
+      "end": 2183.67,
+      "durationSec": 3.81,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.28)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2183.67,
+      "end": 2195.17,
+      "durationSec": 11.49,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.00)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2195.17,
+      "end": 2199,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.10)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2199,
+      "end": 2206.66,
+      "durationSec": 7.66,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.10)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2206.66,
+      "end": 2208.57,
+      "durationSec": 1.9,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.00)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2208.57,
+      "end": 2223.89,
+      "durationSec": 15.33,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.00)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2223.89,
+      "end": 2227.72,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2227.72,
+      "end": 2239.45,
+      "durationSec": 11.73,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2239.45,
+      "end": 2243.28,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2243.28,
+      "end": 2266.24,
+      "durationSec": 22.96,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2266.24,
+      "end": 2268.17,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2268.17,
+      "end": 2277.74,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2277.74,
+      "end": 2279.67,
+      "durationSec": 1.93,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2279.67,
+      "end": 2291.28,
+      "durationSec": 11.61,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2291.28,
+      "end": 2295.11,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.00)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2295.11,
+      "end": 2304.67,
+      "durationSec": 9.57,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.00)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2304.67,
+      "end": 2308.48,
+      "durationSec": 3.81,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.10)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2308.48,
+      "end": 2333.26,
+      "durationSec": 24.78,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.00)",
+      "sceneState": "RESTRAINT",
+      "light": "SILHOUETTE",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2333.26,
+      "end": 2337.09,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2337.09,
+      "end": 2344.75,
+      "durationSec": 7.66,
+      "shot": "PROFILE_SILHOUETTE",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.30)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "low",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2344.75,
+      "end": 2348.58,
+      "durationSec": 3.83,
+      "shot": "VIOLENT_INSERT",
+      "transition": "HARD_CUT",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2348.58,
+      "end": 2353.85,
+      "durationSec": 5.27,
+      "shot": "STATIC_HOLD",
+      "transition": "TEMPORAL_DISSOLVE",
+      "chapter": "Fracture",
+      "scene": "ECHO->SHELL(0.40)",
+      "sceneState": "STABLE",
+      "light": "NEAR_DARK",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2353.85,
+      "end": 2361.98,
+      "durationSec": 8.13,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->CHAMBER(0.60)",
+      "sceneState": "CONVERGENCE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "MEMBRANE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2361.98,
+      "end": 2384.94,
+      "durationSec": 22.96,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Synthesis",
+      "scene": "SHELL->ECHO(0.64)",
+      "sceneState": "CONVERGENCE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2384.94,
+      "end": 2398.34,
+      "durationSec": 13.4,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->ECHO(0.60)",
+      "sceneState": "CONVERGENCE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2398.34,
+      "end": 2406.01,
+      "durationSec": 7.66,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->ECHO(0.30)",
+      "sceneState": "CONVERGENCE",
+      "light": "VOLUMETRIC_BACKLIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2406.01,
+      "end": 2419.4,
+      "durationSec": 13.4,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Synthesis",
+      "scene": "SHELL->FIELD(0.30)",
+      "sceneState": "CONVERGENCE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2419.4,
+      "end": 2431.13,
+      "durationSec": 11.73,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->FIELD(0.60)",
+      "sceneState": "CONVERGENCE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2431.13,
+      "end": 2436.86,
+      "durationSec": 5.74,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->FIELD(0.69)",
+      "sceneState": "CONVERGENCE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2436.86,
+      "end": 2459.85,
+      "durationSec": 22.99,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Synthesis",
+      "scene": "SHELL->CHAMBER(0.30)",
+      "sceneState": "CONVERGENCE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2459.85,
+      "end": 2469.42,
+      "durationSec": 9.57,
+      "shot": "UNEXPECTED_HORIZON",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->ECHO(0.60)",
+      "sceneState": "CONVERGENCE",
+      "light": "TOP_LIGHT",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2469.42,
+      "end": 2479.01,
+      "durationSec": 9.59,
+      "shot": "MACRO",
+      "transition": "HARD_CUT",
+      "chapter": "Synthesis",
+      "scene": "SHELL->ECHO(0.60)",
+      "sceneState": "CONVERGENCE",
+      "light": "HARD_SPECULAR",
+      "material": "OBSIDIAN",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    },
+    {
+      "start": 2479.01,
+      "end": 2482,
+      "durationSec": 2.99,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Synthesis",
+      "scene": "SHELL->FIELD(0.71)",
+      "sceneState": "CONVERGENCE",
+      "light": "HARD_SPECULAR",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "rising",
+        "densityState": "developing",
+        "exceptionalEvent": "climax_2482",
+        "exceptionalEventConfidence": "structurally_verified"
+      }
+    },
+    {
+      "start": 2482,
+      "end": 2496.4,
+      "durationSec": 14.4,
+      "shot": "SLOW_PUSH",
+      "transition": "EASE",
+      "chapter": "Departure",
+      "scene": "SHELL->VOID(0.15)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "falling",
+        "densityState": "developing",
+        "exceptionalEvent": "climax_2482",
+        "exceptionalEventConfidence": "structurally_verified"
+      }
+    },
+    {
+      "start": 2496.4,
+      "end": 2526.93,
+      "durationSec": 30.53,
+      "shot": "EXTREME_WIDE",
+      "transition": "HARD_CUT",
+      "chapter": "Departure",
+      "scene": "SHELL->VOID(0.15)",
+      "sceneState": "STABLE",
+      "light": "TOP_LIGHT",
+      "material": "BONE",
+      "chamberInteriorActive": false,
+      "meso": {
+        "track": 0,
+        "tensionState": "falling",
+        "densityState": "developing",
+        "exceptionalEvent": null,
+        "exceptionalEventConfidence": null
+      }
+    }
+  ],
+  "events": [
+    {
+      "type": "RESTRAINT",
+      "id": "R1",
+      "start": 750.17,
+      "end": 809.82
+    },
+    {
+      "type": "EXCEPTIONAL_EVENT",
+      "id": "rupture_1747",
+      "t": 1067.19,
+      "confidence": "structurally_verified",
+      "label": "Spectral flash / 17:47 ontological rupture — also the track-map's own highest-corroborated cluster (17:21-17:48, three candidates in <30s)"
+    },
+    {
+      "type": "RESTRAINT",
+      "id": "R2",
+      "start": 2179.87,
+      "end": 2220.06
+    },
+    {
+      "type": "RESTRAINT",
+      "id": "R3",
+      "start": 2280.15,
+      "end": 2324.78
+    },
+    {
+      "type": "EXCEPTIONAL_EVENT",
+      "id": "climax_2482",
+      "t": 2482,
+      "confidence": "structurally_verified",
+      "label": "Global RMS maximum"
+    },
+    {
+      "type": "EXCEPTIONAL_EVENT",
+      "id": "final_fade_1744",
+      "t": 2503.98,
+      "confidence": "strong_candidate",
+      "label": "Highest-scored track-map candidate (0.682, every signal fired) — the mix's final track fading into Departure's collapse. NOT independently corroborated; not yet confirmed by ear."
+    }
+  ]
+}

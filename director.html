@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AUUH — Director Review</title>
+    <link rel="icon" href="data:," />
+    <style>
+      html, body { margin: 0; padding: 0; background: #000; overflow: hidden; height: 100%; }
+      #app { position: fixed; inset: 0; bottom: 220px; }
+      canvas { display: block; width: 100%; height: 100%; }
+      #hud {
+        position: fixed; left: 12px; top: 12px; z-index: 10;
+        font: 11px/1.4 ui-monospace, monospace; color: #0f0; opacity: 0.85;
+        pointer-events: none; white-space: pre; text-shadow: 0 0 3px #000;
+      }
+      #startOverlay {
+        position: fixed; inset: 0; z-index: 20; background: #000; color: #eee;
+        display: flex; align-items: center; justify-content: center;
+        font: 14px/1.4 ui-monospace, monospace; cursor: pointer; letter-spacing: 0.05em;
+      }
+      #startOverlay.hidden { display: none; }
+
+      #panel {
+        position: fixed; left: 0; right: 0; bottom: 0; height: 220px; z-index: 15;
+        background: #0a0a0a; border-top: 1px solid #333; color: #ddd;
+        font: 12px/1.4 ui-monospace, monospace; display: flex; flex-direction: column;
+      }
+      #transport { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #222; }
+      #scrub { flex: 1; }
+      #timeLabel { min-width: 150px; color: #8f8; }
+      #rangeIndicator { color: #fa0; min-width: 160px; }
+      #legend { padding: 6px 12px; color: #888; border-bottom: 1px solid #222; white-space: pre-wrap; }
+      #legend b { color: #ccc; }
+      #noteRow { display: flex; align-items: center; gap: 8px; padding: 6px 12px; border-bottom: 1px solid #222; }
+      #noteInput { flex: 1; background: #151515; color: #eee; border: 1px solid #333; padding: 4px 6px; font: 12px ui-monospace, monospace; }
+      #actions { display: flex; gap: 8px; padding: 6px 12px; border-bottom: 1px solid #222; }
+      button { background: #1a1a1a; color: #ddd; border: 1px solid #333; padding: 4px 10px; cursor: pointer; font: 12px ui-monospace, monospace; }
+      button:hover { background: #262626; }
+      #list { flex: 1; overflow-y: auto; padding: 4px 12px; }
+      .row { display: flex; gap: 8px; padding: 2px 0; border-bottom: 1px solid #181818; cursor: pointer; }
+      .row:hover { background: #141414; }
+      .row .t { color: #8f8; min-width: 130px; }
+      .row .type { min-width: 90px; font-weight: bold; }
+      .row .ctx { color: #777; flex: 1; }
+      .row .text { color: #ccc; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud"></div>
+    <div id="startOverlay">CLICK TO BEGIN DIRECTOR REVIEW — AUUH — 42:07</div>
+
+    <div id="panel">
+      <div id="transport">
+        <span id="timeLabel">00:00.0 / 42:06.9</span>
+        <input type="range" id="scrub" min="0" max="2526.9" step="0.1" value="0" />
+        <span id="rangeIndicator"></span>
+      </div>
+      <div id="legend"><b>SPACE</b> play/pause  <b>[</b> range-start  <b>Esc</b> cancel  ·  <b>K</b>eep <b>B</b>oring too<b>V</b>J <b>W</b>ow needs<b>S</b>tillness bad<b>C</b>amera bad<b>L</b>ight <b>M</b>usicalEvent <b>T</b>rackTransition <b>D</b>rop/Return b<b>R</b>eakdown <b>O</b>ther</div>
+      <div id="noteRow">
+        <span>note:</span>
+        <input type="text" id="noteInput" placeholder="(optional — type, then Enter to attach to the last marker; Esc to skip)" />
+      </div>
+      <div id="actions">
+        <button id="exportBtn">Export director-notes.json (E)</button>
+        <button id="importBtn">Import (I)</button>
+        <input type="file" id="importFile" style="display:none" accept="application/json" />
+        <span id="countLabel" style="color:#666"></span>
+      </div>
+      <div id="list"></div>
+    </div>
+
+    <script type="module" src="/src/director-review.js"></script>
+  </body>
+</html>
