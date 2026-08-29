@@ -1,0 +1,262 @@
+export const fragmentShader = /* glsl */ `
+precision highp float;
+
+uniform vec2 uResolution;
+uniform float uTime;
+uniform vec3 uCamPos;
+uniform vec3 uCamTarget;
+uniform float uFov;
+
+uniform float uFold;
+uniform float uFoldBlend;
+uniform float uTurbulence;
+uniform float uFracture;
+uniform float uContrast;
+uniform float uColorMix;
+uniform float uRestraint;
+
+varying vec2 vUv;
+
+// ---------- noise ----------
+float hash1(float n) { return fract(sin(n) * 43758.5453123); }
+float hash3(vec3 p) { return fract(sin(dot(p, vec3(12.9898, 78.233, 45.164))) * 43758.5453123); }
+
+float noise3(vec3 p) {
+  vec3 i = floor(p);
+  vec3 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  float n000 = hash3(i + vec3(0.0, 0.0, 0.0));
+  float n100 = hash3(i + vec3(1.0, 0.0, 0.0));
+  float n010 = hash3(i + vec3(0.0, 1.0, 0.0));
+  float n110 = hash3(i + vec3(1.0, 1.0, 0.0));
+  float n001 = hash3(i + vec3(0.0, 0.0, 1.0));
+  float n101 = hash3(i + vec3(1.0, 0.0, 1.0));
+  float n011 = hash3(i + vec3(0.0, 1.0, 1.0));
+  float n111 = hash3(i + vec3(1.0, 1.0, 1.0));
+  float nx00 = mix(n000, n100, f.x);
+  float nx10 = mix(n010, n110, f.x);
+  float nx01 = mix(n001, n101, f.x);
+  float nx11 = mix(n011, n111, f.x);
+  float nxy0 = mix(nx00, nx10, f.y);
+  float nxy1 = mix(nx01, nx11, f.y);
+  return mix(nxy0, nxy1, f.z);
+}
+
+float fbm(vec3 p) {
+  float s = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 4; i++) {
+    s += a * noise3(p);
+    p *= 2.02;
+    a *= 0.5;
+  }
+  return s;
+}
+
+// ---------- sdf primitives ----------
+float sdRoundBox(vec3 p, vec3 b, float r) {
+  vec3 q = abs(p) - b;
+  return length(max(q, 0.0)) + min(max(q.x, max(q.y, q.z)), 0.0) - r;
+}
+
+float sdTorus(vec3 p, vec2 t) {
+  vec2 q = vec2(length(p.xz) - t.x, p.y);
+  return length(q) - t.y;
+}
+
+float opSmoothUnion(float d1, float d2, float k) {
+  float h = clamp(0.5 + 0.5 * (d2 - d1) / k, 0.0, 1.0);
+  return mix(d2, d1, h) - k * h * (1.0 - h);
+}
+
+// Polar fold around the Y axis into N wedges, blended with the raw angle.
+// Interpolating the ANGLE (not the xz position) guarantees the result
+// always sits at the same radius as the input — mixing two same-length
+// vectors that point in different directions instead (the earlier version
+// of this function) shrinks the radius by an amount that varies with angle,
+// which fabricates false proximity to the body far out in empty space and
+// shows up as a large, regular, jagged phantom-geometry artifact filling
+// the background at any non-integer foldBlend.
+vec3 foldPolar(vec3 p, float n, float blend) {
+  float r = length(p.xz);
+  float a = atan(p.z, p.x);
+  float wedge = 6.2831853 / max(n, 1.0);
+  float folded = mod(a + wedge * 0.5, wedge) - wedge * 0.5;
+  float finalAngle = mix(a, folded, blend);
+  vec2 result = vec2(cos(finalAngle), sin(finalAngle)) * r;
+  return vec3(result.x, p.y, result.y);
+}
+
+// voronoi edge metric (F2 - F1): near-zero only along thin cell boundaries,
+// so it carves cracks rather than round craters when used as a cutting mask.
+float voronoiEdge(vec3 p) {
+  vec3 ip = floor(p);
+  float f1 = 10.0;
+  float f2 = 10.0;
+  for (int x = -1; x <= 1; x++) {
+    for (int y = -1; y <= 1; y++) {
+      for (int z = -1; z <= 1; z++) {
+        vec3 cell = vec3(float(x), float(y), float(z));
+        vec3 pos = cell + vec3(hash3(ip + cell), hash3(ip + cell + 7.1), hash3(ip + cell + 3.3)) - fract(p);
+        float d = dot(pos, pos);
+        if (d < f1) { f2 = f1; f1 = d; }
+        else if (d < f2) { f2 = d; }
+      }
+    }
+  }
+  return sqrt(f2) - sqrt(f1);
+}
+
+float opSmoothSubtraction(float d1, float d2, float k) {
+  float h = clamp(0.5 - 0.5 * (d2 + d1) / k, 0.0, 1.0);
+  return mix(d2, -d1, h) + k * h * (1.0 - h);
+}
+
+float map(vec3 p) {
+  // Noise-based warp/fracture must never influence points far from the
+  // body: sin()-based hashing loses precision at large coordinates (rays
+  // that miss travel out to t=40), which otherwise produces false
+  // near-zero "hits" scattered through empty space — visible as a bright
+  // phantom plane filling the background. Gate all noise contributions by
+  // proximity to the origin so distant space stays the exact, unperturbed
+  // (and therefore correctly monotonic) primitive distance.
+  float distMask = 1.0 - smoothstep(3.5, 7.0, length(p));
+
+  vec3 pf = foldPolar(p, floor(uFold + 0.5), uFoldBlend);
+
+  float warp = fbm(pf * 0.8 + uTime * 0.05) * uTurbulence * distMask;
+  vec3 pw = pf + warp * 0.6;
+
+  float body = sdRoundBox(pw, vec3(1.0, 1.4, 1.0), 0.35);
+  float ring = sdTorus(pw - vec3(0.0, 0.0, 0.0), vec2(1.6, 0.35));
+  float d = opSmoothUnion(body, ring, 0.6);
+
+  d += (fbm(pf * 2.3 - uTime * 0.03) - 0.5) * uTurbulence * 0.35 * distMask;
+
+  if (uFracture > 0.001 && distMask > 0.01) {
+    float edge = voronoiEdge(pf * 2.4 + 0.001);
+    float crackWidth = mix(0.4, 0.04, uFracture);
+    float crack = edge - crackWidth;
+    d = opSmoothSubtraction(crack, d, 0.05);
+  }
+
+  return d;
+}
+
+vec3 calcNormal(vec3 p) {
+  vec2 e = vec2(0.001, 0.0);
+  vec3 n = normalize(vec3(
+    map(p + e.xyy) - map(p - e.xyy),
+    map(p + e.yxy) - map(p - e.yxy),
+    map(p + e.yyx) - map(p - e.yyx)
+  ));
+
+  // Fixed-amplitude material grain, independent of uTurbulence. Restraint
+  // windows collapse turbulence to near zero (correctly killing macro-scale
+  // form motion), but turbulence was also the ONLY source of surface
+  // detail — with it gone, restrained passages went completely flat and
+  // plastic-looking instead of reading as a held, quiet moment. Restraint
+  // should mean the form stops moving, not that the material loses all
+  // presence.
+  vec3 bump = vec3(
+    hash3(p * 40.0) - 0.5,
+    hash3(p * 40.0 + 17.0) - 0.5,
+    hash3(p * 40.0 + 31.0) - 0.5
+  );
+  n = normalize(n + bump * 0.05);
+  return n;
+}
+
+void main() {
+  vec2 uv = (vUv - 0.5) * vec2(uResolution.x / uResolution.y, 1.0);
+
+  vec3 fwd = normalize(uCamTarget - uCamPos);
+  vec3 right = normalize(cross(fwd, vec3(0.0, 1.0, 0.0)));
+  vec3 up = cross(right, fwd);
+  float fovScale = tan(radians(uFov) * 0.5);
+  vec3 rd = normalize(fwd + (uv.x * fovScale) * right + (uv.y * fovScale) * up);
+  vec3 ro = uCamPos;
+
+  float t = 0.0;
+  float steps = 0.0;
+  bool hit = false;
+  vec3 p;
+  for (int i = 0; i < 100; i++) {
+    p = ro + rd * t;
+    float d = map(p);
+    steps += 1.0;
+    if (d < 0.001) { hit = true; break; }
+    if (t > 40.0) break;
+    t += d * 0.85;
+  }
+
+  vec3 col;
+  if (hit) {
+    vec3 n = calcNormal(p);
+    vec3 lightDir = normalize(vec3(0.5, 0.8, -0.4));
+    float diff = max(dot(n, lightDir), 0.0);
+    // Rim term is deliberately weak and steep: at true grazing angles
+    // (large flat surfaces like the ring seen edge-on) an unchecked rim
+    // term saturates the whole silhouette to flat white, which is what
+    // produced the illegible blown-out "phantom plane" panels in the first
+    // contact sheet — the geometry was fine, the shading model wasn't.
+    float rim = pow(1.0 - max(dot(n, -rd), 0.0), 4.0);
+    float ao = 1.0 - steps / 100.0;
+
+    float lum = diff * 0.8 + rim * 0.18 + ao * 0.12;
+    // Soft tonemap instead of a hard clamp: a surface facing the light
+    // near head-on pushes lum well past 1.0 across large areas, and a hard
+    // clamp(lum,0,1) flattens all of that into solid, textureless white —
+    // which is exactly what erased the bump-map grain added above in the
+    // brightest parts of the Contraction restraint passage. Reinhard-style
+    // compression keeps near-saturated values distinguishable instead of
+    // pinning them all to the same ceiling.
+    lum = 1.0 - exp(-lum * 1.3);
+    lum = pow(clamp(lum, 0.0, 1.0), 1.0 / max(uContrast, 0.05));
+
+    vec3 gray = vec3(lum);
+
+    // Rationed color: a single, unconventional hue wash rather than a
+    // lighting-based warm/cool split-tone. A shadow-cool / highlight-warm
+    // split is the standard commercial color grade (teal-and-orange) and
+    // reads as "the movie briefly turned into a normal color film," which
+    // works against the doctrine that these two moments should feel like
+    // an alien rupture, not a grading choice. A single narrow hue applied
+    // uniformly reads as a wash over the image instead of a lighting
+    // effect, and doesn't map to any familiar grading convention.
+    vec3 alienHue = vec3(0.55, 0.95, 0.35);
+    vec3 toned = gray * alienHue + gray * gray * 0.15;
+    col = mix(gray, toned, uColorMix);
+  } else {
+    float vign = 1.0 - length(uv) * 0.6;
+    col = vec3(0.02 * vign);
+  }
+
+  // Film grain and scanline roll — amplitudes raised from the original
+  // pass (0.035/0.02), which was tuned by eye against a single raw
+  // screenshot and turned out to be nearly invisible at normal viewing
+  // size, let alone after video compression. This is the doctrine's stated
+  // "analog decay, not digital glitch" material quality, so it needs to
+  // actually survive the export pipeline, not just exist in the shader.
+  float grain = hash3(vec3(vUv * uResolution, mod(uTime * 60.0, 1000.0))) - 0.5;
+  col += grain * 0.06;
+
+  float scan = sin((vUv.y + uTime * 0.03) * uResolution.y * 0.9) * 0.035;
+  col -= scan;
+
+  // vignette
+  float vig = smoothstep(1.0, 0.25, length(vUv - 0.5) * 1.35);
+  col *= mix(0.75, 1.0, vig);
+
+  col = clamp(col, 0.0, 1.0);
+  gl_FragColor = vec4(col, 1.0);
+}
+`;
+
+export const vertexShader = /* glsl */ `
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = vec4(position, 1.0);
+}
+`;

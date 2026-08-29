@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AUUH — Sides</title>
+    <link rel="icon" href="data:," />
+    <style>
+      html, body { margin: 0; padding: 0; background: #000; overflow: hidden; height: 100%; }
+      #app { position: fixed; inset: 0; }
+      canvas { display: block; width: 100%; height: 100%; }
+      #hud {
+        position: fixed; left: 12px; bottom: 12px; z-index: 10;
+        font: 11px/1.4 ui-monospace, monospace; color: #0f0; opacity: 0.75;
+        pointer-events: none; white-space: pre;
+      }
+      #startOverlay {
+        position: fixed; inset: 0; z-index: 20; background: #000; color: #eee;
+        display: flex; align-items: center; justify-content: center;
+        font: 14px/1.4 ui-monospace, monospace; cursor: pointer; letter-spacing: 0.05em;
+      }
+      #startOverlay.hidden { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="hud"></div>
+    <div id="startOverlay">CLICK TO BEGIN — AUUH — 42:07</div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
