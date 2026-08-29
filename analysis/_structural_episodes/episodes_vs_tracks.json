@@ -1,0 +1,342 @@
+{
+  "generatedAt": "2026-08-29T20:24:33.287Z",
+  "blendProximitySec": 25,
+  "episodes": [
+    {
+      "label": "small early tension/release",
+      "verified": {
+        "start": 56.34,
+        "trough": 61.96,
+        "end": 68.9
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 143.98,
+        "toTrack": 2,
+        "title": "Take Me To The Music",
+        "distanceSec": 82
+      },
+      "hostTrack": {
+        "trackNumber": 1,
+        "title": null
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"unknown\" (#1), not a track change."
+    },
+    {
+      "label": "FIRST MAJOR collapse/re-entry",
+      "verified": {
+        "start": 130.84,
+        "trough": 170.58,
+        "end": 188.52
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 143.98,
+        "toTrack": 2,
+        "title": "Take Me To The Music",
+        "distanceSec": 26.6
+      },
+      "hostTrack": {
+        "trackNumber": 2,
+        "title": "Take Me To The Music"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"Take Me To The Music\" (#2), not a track change."
+    },
+    {
+      "label": "substantial contraction / strong return",
+      "verified": {
+        "start": 359.92,
+        "trough": 394.86,
+        "end": 429.42
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 343.98,
+        "toTrack": 3,
+        "title": "Bien Pacheco",
+        "distanceSec": 50.9
+      },
+      "hostTrack": {
+        "trackNumber": 3,
+        "title": "Bien Pacheco"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"Bien Pacheco\" (#3), not a track change."
+    },
+    {
+      "label": "clear breath / re-entry",
+      "verified": {
+        "start": 616.66,
+        "trough": 654,
+        "end": 684.4
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 663.94,
+        "toTrack": 4,
+        "title": "SOL",
+        "distanceSec": 9.9
+      },
+      "hostTrack": {
+        "trackNumber": 3,
+        "title": "Bien Pacheco"
+      },
+      "note": "Within 25s of the evidenced boundary into track #4 (SOL) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    },
+    {
+      "label": "very deep sparse/breathing region",
+      "verified": {
+        "start": 765.42,
+        "trough": 791.94,
+        "end": 834.84
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 824,
+        "toTrack": 5,
+        "title": "Chipie",
+        "distanceSec": 32.1
+      },
+      "hostTrack": {
+        "trackNumber": 4,
+        "title": "SOL"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"SOL\" (#4), not a track change."
+    },
+    {
+      "label": "EXTREMELY IMPORTANT — strongest large-scale compression/trough/release in first 20 min",
+      "verified": {
+        "start": 1034.38,
+        "trough": 1067.82,
+        "end": 1084.1
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 1041.22,
+        "toTrack": 6,
+        "title": "Satisfaction - Tuccillo Vocal Radio Mix",
+        "distanceSec": 26.6
+      },
+      "hostTrack": {
+        "trackNumber": 6,
+        "title": "Satisfaction - Tuccillo Vocal Radio Mix"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"Satisfaction - Tuccillo Vocal Radio Mix\" (#6), not a track change."
+    },
+    {
+      "label": "second half region 1",
+      "verified": {
+        "start": 1263.32,
+        "trough": 1297.46,
+        "end": 1341.8
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 1359.82,
+        "toTrack": 8,
+        "title": "Mycelium",
+        "distanceSec": 62.4
+      },
+      "hostTrack": {
+        "trackNumber": 7,
+        "title": "July"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"July\" (#7), not a track change."
+    },
+    {
+      "label": "second half region 2",
+      "verified": {
+        "start": 1429.86,
+        "trough": 1458.38,
+        "end": 1477.74
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 1421.08,
+        "toTrack": 9,
+        "title": "Sirens of the Gumtrees",
+        "distanceSec": 37.3
+      },
+      "hostTrack": {
+        "trackNumber": 9,
+        "title": "Sirens of the Gumtrees"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"Sirens of the Gumtrees\" (#9), not a track change."
+    },
+    {
+      "label": "second half region 3",
+      "verified": {
+        "start": 1603.16,
+        "trough": 1640.42,
+        "end": 1646.22
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 1640.3,
+        "toTrack": 10,
+        "title": "Children",
+        "distanceSec": 0.1
+      },
+      "hostTrack": {
+        "trackNumber": 10,
+        "title": "Children"
+      },
+      "note": "Within 25s of the evidenced boundary into track #10 (Children) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    },
+    {
+      "label": "second half region 4",
+      "verified": {
+        "start": 1846.34,
+        "trough": 1879.42,
+        "end": 1914.78
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 1895.2,
+        "toTrack": 11,
+        "title": "Seven Days And One Week - Yotto Remix",
+        "distanceSec": 15.8
+      },
+      "hostTrack": {
+        "trackNumber": 10,
+        "title": "Children"
+      },
+      "note": "Within 25s of the evidenced boundary into track #11 (Seven Days And One Week - Yotto Remix) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    },
+    {
+      "label": "second half region 5",
+      "verified": {
+        "start": 1967.42,
+        "trough": 1976.56,
+        "end": 2017.54
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 1956.5,
+        "toTrack": 12,
+        "title": "La Ka Rubà",
+        "distanceSec": 20.1
+      },
+      "hostTrack": {
+        "trackNumber": 12,
+        "title": "La Ka Rubà"
+      },
+      "note": "Within 25s of the evidenced boundary into track #12 (La Ka Rubà) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    },
+    {
+      "label": "second half region 6",
+      "verified": {
+        "start": 2063.44,
+        "trough": 2083.3,
+        "end": 2112.46
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 2083.3,
+        "toTrack": 13,
+        "title": "Smile & Receive",
+        "distanceSec": 0
+      },
+      "hostTrack": {
+        "trackNumber": 13,
+        "title": "Smile & Receive"
+      },
+      "note": "Within 25s of the evidenced boundary into track #13 (Smile & Receive) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    },
+    {
+      "label": "second half region 7",
+      "verified": {
+        "start": 2159.36,
+        "trough": 2198.56,
+        "end": 2231.14
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 2312.16,
+        "toTrack": 14,
+        "title": "The Cure & The Cause - Radio Edit",
+        "distanceSec": 113.6
+      },
+      "hostTrack": {
+        "trackNumber": 13,
+        "title": "Smile & Receive"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"Smile & Receive\" (#13), not a track change."
+    },
+    {
+      "label": "second half region 8 (outer)",
+      "verified": {
+        "start": 2259.38,
+        "trough": 2282.5,
+        "end": 2327.82
+      },
+      "confidence": "structurally_verified",
+      "classification": "WITHIN_TRACK",
+      "nearestBoundary": {
+        "t": 2312.16,
+        "toTrack": 14,
+        "title": "The Cure & The Cause - Radio Edit",
+        "distanceSec": 29.7
+      },
+      "hostTrack": {
+        "trackNumber": 13,
+        "title": "Smile & Receive"
+      },
+      "note": "25s+ from any track boundary — an in-track build/breakdown/drop inside \"Smile & Receive\" (#13), not a track change."
+    },
+    {
+      "label": "second half region 8 (nested trough/release)",
+      "verified": {
+        "start": 2266.56,
+        "trough": 2312.02,
+        "end": 2327.82
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 2312.16,
+        "toTrack": 14,
+        "title": "The Cure & The Cause - Radio Edit",
+        "distanceSec": 0.1
+      },
+      "hostTrack": {
+        "trackNumber": 13,
+        "title": "Smile & Receive"
+      },
+      "note": "Within 25s of the evidenced boundary into track #14 (The Cure & The Cause - Radio Edit) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    },
+    {
+      "label": "final major stored-energy event before ending",
+      "verified": {
+        "start": 2460.4,
+        "trough": 2480.52,
+        "end": 2484.82
+      },
+      "confidence": "structurally_verified",
+      "classification": "TRACK_BLEND",
+      "nearestBoundary": {
+        "t": 2503.98,
+        "toTrack": 15,
+        "title": "Tanzen - Paula Tape Remix",
+        "distanceSec": 23.5
+      },
+      "hostTrack": {
+        "trackNumber": 14,
+        "title": "The Cure & The Cause - Radio Edit"
+      },
+      "note": "Within 25s of the evidenced boundary into track #15 (Tanzen - Paula Tape Remix) — this compression/release likely IS the DJ transition, not a separate in-track event."
+    }
+  ]
+}

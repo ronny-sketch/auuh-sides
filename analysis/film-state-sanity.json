@@ -1,0 +1,109 @@
+{
+  "generatedAt": "2026-08-29T21:15:10.047Z",
+  "totalChecks": 11,
+  "passed": 11,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "accumulated fields never decrease frame-to-frame",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "name": "assembly(15min) > assembly(5min)",
+      "ok": true,
+      "detail": {
+        "at5min": 0.2671,
+        "at15min": 1
+      }
+    },
+    {
+      "name": "interiorExpression is 0 before CHAMBER unlocks",
+      "ok": true,
+      "detail": {
+        "violatingSamples": 0,
+        "chamberUnlockT": 809.82
+      }
+    },
+    {
+      "name": "fieldExpression is 0 before FIELD unlocks",
+      "ok": true,
+      "detail": {
+        "violatingSamples": 0,
+        "fieldUnlockT": 1451.85
+      }
+    },
+    {
+      "name": "memoryExpression stays low before t=500s",
+      "ok": true,
+      "detail": {
+        "maxEarlyMemory": 0
+      }
+    },
+    {
+      "name": "MICRO events never exceed MICRO impact ceiling (0.08)",
+      "ok": true,
+      "detail": {
+        "violatingSamples": 0
+      }
+    },
+    {
+      "name": "MAJOR+HERO+CLIMAX releases are a minority of all releases",
+      "ok": true,
+      "detail": {
+        "tierCounts": {
+          "SECTION": 30,
+          "CLIMAX": 7,
+          "MICRO": 15,
+          "PHRASE": 14,
+          "MAJOR": 14,
+          "HERO": 4
+        },
+        "totalReleases": 84
+      }
+    },
+    {
+      "name": "visibleComplexity dips during the verified 12:44-13:46 breath episode",
+      "ok": true,
+      "detail": {
+        "avgInBreath": 0.05533188405797098,
+        "avgOutsideJustBefore": 0.08841156250000001
+      }
+    },
+    {
+      "name": "storedEnergy rises in the lead-up to top-10 releases",
+      "ok": true,
+      "detail": {
+        "notChargingCount": 0,
+        "of": 10
+      }
+    },
+    {
+      "name": "17:47 rupture ranks in the top 10 releases by magnitude",
+      "ok": true,
+      "detail": {
+        "rupture": {
+          "t": 1067.9,
+          "magnitude": 1.5204377010240842,
+          "tier": "CLIMAX",
+          "salience": 0.6911080459200382
+        },
+        "rank": 3,
+        "totalReleases": 84
+      }
+    },
+    {
+      "name": "~41:21 event ranks in the top 5 releases by magnitude",
+      "ok": true,
+      "detail": {
+        "late41": {
+          "t": 2480.6,
+          "magnitude": 1.8247073340428088,
+          "tier": "HERO",
+          "salience": 0.829412424564913
+        },
+        "rank": 1
+      }
+    }
+  ]
+}

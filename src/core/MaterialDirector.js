@@ -59,7 +59,13 @@ export class MaterialDirector {
   // FULLY CHAMBER), would keep reading as SHELL's default BONE material
   // instead of CHAMBER's MEMBRANE, which is exactly backwards for the one
   // moment this is supposed to look and feel like an interior.
-  sample(chapterIndex, dominantFamily, sceneState) {
+  /**
+   * @param {number} chapterIndex
+   * @param {string} dominantFamily
+   * @param {string} sceneState
+   * @param {{surfaceExpression?:number}|null} [journey] optional — JourneyExpressionDirector output. Omitted (every pre-journey call site) reproduces the exact original recipe unmodified.
+   */
+  sample(chapterIndex, dominantFamily, sceneState, journey = null) {
     let material = CHAPTER_MATERIAL_OVERRIDE[chapterIndex] || FAMILY_DEFAULT_MATERIAL[dominantFamily] || MATERIAL.BONE;
 
     // RECOGNITION (the final VOID tail into true silence) always resolves
@@ -68,7 +74,26 @@ export class MaterialDirector {
     if (sceneState === "RECOGNITION") material = MATERIAL.NEGATIVE;
 
     const recipe = MATERIAL_RECIPES[material];
-    return { material, mode: MATERIAL_MODE[material], ...recipe };
+    let { specular, roughness, grainMix } = recipe;
+
+    // Journey maturity (Part 11): "surface reveals richer behavior" as
+    // materialMaturity accumulates — a continuous nudge toward more
+    // specular/less rough within whichever material family is already
+    // authored for this chapter/family, never a different material
+    // (lineage preserved, per the brief's explicit instruction). Uses
+    // surfaceExpression (already gated by capability/breath in
+    // JourneyExpressionDirector) rather than raw accumulated maturity, so
+    // a breakdown correctly reads as the surface becoming plainer again,
+    // not the acquired maturity being un-learned. journey==null skips
+    // this entirely — identical recipe to before.
+    if (journey && journey.surfaceExpression > 0 && material !== MATERIAL.NEGATIVE) {
+      const m = Math.min(1, Math.max(0, journey.surfaceExpression));
+      specular = specular + (0.85 - specular) * m * 0.3;
+      roughness = roughness - roughness * m * 0.15;
+      grainMix = grainMix * (1 + m * 0.2);
+    }
+
+    return { material, mode: MATERIAL_MODE[material], albedo: recipe.albedo, specular, roughness, grainMix };
   }
 }
 

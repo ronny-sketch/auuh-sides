@@ -7,11 +7,12 @@ import { FeedbackPipeline } from "./core/FeedbackPipeline.js";
 import { AudioFeatureEngine } from "./core/AudioFeatureEngine.js";
 import { VisualDirector } from "./core/VisualDirector.js";
 import { MusicalDirector } from "./core/MusicalDirector.js";
-import { SceneDirector, FAMILY } from "./core/SceneDirector.js";
-import { LightDirector, LIGHT_MODE, getLightRecipe } from "./core/LightDirector.js";
-import { MaterialDirector, getMaterialRecipe } from "./core/MaterialDirector.js";
+import { SceneDirector } from "./core/SceneDirector.js";
+import { LightDirector, LIGHT_MODE } from "./core/LightDirector.js";
+import { MaterialDirector } from "./core/MaterialDirector.js";
 import { DirectorCueSheet } from "./core/DirectorCueSheet.js";
 import directorCues from "./direction/director-cue-sheet.json";
+import { createFrameDirector } from "./core/FrameDirector.js";
 
 // V3.5 item 2 — the director review mode. This is a SEPARATE entry point
 // (director.html) from the main piece (index.html/main.js), not a mode
@@ -41,10 +42,6 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 appEl.appendChild(renderer.domElement);
 
 const WALL_THICKNESS = 0.16;
-const smoothstep = (e0, e1, x) => {
-  const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
-  return t * t * (3 - 2 * t);
-};
 
 const uniforms = {
   uResolution: { value: new THREE.Vector2(1, 1) },
@@ -84,6 +81,7 @@ const uniforms = {
   uGrainRefWidth: { value: 1280 },
   uGrainRefHeight: { value: 720 },
   uTestPattern: { value: 0 },
+  uAssembly: { value: 1 }, // Journey v38 — 1.0 = pre-journey baseline, exact bypass in the shader
 };
 
 const geometry = new THREE.PlaneGeometry(2, 2);
@@ -112,110 +110,25 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-function memoryDriftAt(t) {
-  const dx = Math.sin(t * 0.13) * 0.0035 + Math.sin(t * 0.037) * 0.0018;
-  const dy = Math.cos(t * 0.11) * 0.0035 + Math.cos(t * 0.029) * 0.0018;
-  return [dx, dy];
-}
-
-function familyWeight(scene, family) {
-  if (scene.primaryFamily === family) return 1 - scene.blend;
-  if (scene.secondaryFamily === family) return scene.blend;
-  return 0;
-}
-
-// Identical to src/main.js's applyUniformsForT — see that file's comments
-// for the full reasoning behind the director-cue override layer. Kept as a
-// parallel copy rather than a shared import (see file header comment).
-function applyUniformsForT(t) {
-  const cue = directorCueSheet.at(t);
-  const p = visualDirector.sample(t, cue && cue.microResponse != null ? cue.microResponse : 1);
-  let cam = cameraDirector.update(p);
-  let scene = sceneDirector.sample(t);
-
-  if (cue) {
-    if (cue.cameraMotion || cue.shot) cam = cameraDirector.resolveCueCamera(cue, t);
-    if (cue.primaryFamily) {
-      scene = {
-        ...scene,
-        primaryFamily: cue.primaryFamily,
-        secondaryFamily: cue.secondaryFamily || scene.secondaryFamily,
-        blend: cue.sceneBlend != null ? cue.sceneBlend : scene.blend,
-        sceneState: "DIRECTED",
-      };
-    }
-  }
-
-  const chamberInteriorActive = cam.shotType === "PASS_THROUGH";
-
-  let light = lightDirector.sample(t, scene.sceneState);
-  if (cue && cue.light) {
-    const override = getLightRecipe(cue.light);
-    if (override) light = override;
-  }
-
-  const dominantFamily = scene.blend > 0.5 ? scene.secondaryFamily : scene.primaryFamily;
-  let mat = materialDirector.sample(p.chapterIndex, dominantFamily, scene.sceneState);
-  if (cue && cue.material) {
-    const override = getMaterialRecipe(cue.material);
-    if (override) mat = override;
-  }
-
-  uniforms.uTime.value = t;
-  uniforms.uCamPos.value.set(cam.camPos[0], cam.camPos[1], cam.camPos[2]);
-  uniforms.uCamTarget.value.set(cam.camTarget[0], cam.camTarget[1], cam.camTarget[2]);
-  uniforms.uFov.value = cam.fov;
-  uniforms.uFold.value = p.fold;
-  uniforms.uFoldBlend.value = p.foldBlend;
-  uniforms.uTurbulence.value = p.turbulence;
-  uniforms.uFracture.value = p.fracture;
-  uniforms.uContrast.value = p.contrast;
-  uniforms.uColorMix.value = p.colorMix;
-  uniforms.uRestraint.value = p.restraint;
-  uniforms.uFormBlend.value = p.formBlend;
-  uniforms.uGrainBoost.value = p.grainBoost;
-
-  let memoryWeight = p.memoryWeight + cam.dissolveWeight * 0.6;
-  if (cue && cue.memoryBehavior === "DISSOLVE") {
-    const timeSinceStart = t - cue.start;
-    memoryWeight = Math.max(memoryWeight, 1 - Math.min(1, timeSinceStart / 2.0));
-  } else if (cue && typeof cue.memoryBehavior === "number") {
-    memoryWeight = cue.memoryBehavior;
-  }
-  uniforms.uMemoryWeight.value = Math.min(0.95, memoryWeight);
-  const [dx, dy] = memoryDriftAt(t);
-  uniforms.uMemoryDrift.value.set(dx, dy);
-
-  uniforms.uWallThickness.value = WALL_THICKNESS;
-  uniforms.uFieldWeight.value = familyWeight(scene, FAMILY.FIELD);
-  uniforms.uEchoWeight.value = familyWeight(scene, FAMILY.ECHO);
-  uniforms.uBlackout.value = smoothstep(EVENTS.silenceFloor, DURATION, t);
-
-  uniforms.uLightMode.value = light.mode;
-  uniforms.uLightDir.value.set(light.dir[0], light.dir[1], light.dir[2]);
-  uniforms.uLightIntensity.value = light.intensity;
-  uniforms.uAmbient.value = light.ambient;
-  uniforms.uRimAmount.value = light.rim;
-
-  uniforms.uMaterialMode.value = mat.mode;
-  uniforms.uAlbedo.value = mat.albedo;
-  uniforms.uSpecular.value = mat.specular;
-  uniforms.uRoughness.value = mat.roughness;
-  uniforms.uGrainMix.value = mat.grainMix;
-
-  p.shotType = cam.shotType;
-  p.transitionType = cam.transitionType;
-  p.sceneState = scene.sceneState;
-  p.primaryFamily = scene.primaryFamily;
-  p.secondaryFamily = scene.secondaryFamily;
-  p.blend = scene.blend;
-  p.materialName = mat.material;
-  p.lightMode = light.mode;
-  p.chamberInteriorActive = chamberInteriorActive;
-  p.meso = scene.meso;
-  p.directorCue = cue;
-  return p;
-}
+// Shared film-state logic (journey v38 Part 2) — see src/core/
+// FrameDirector.js's header. This file's own header comment above
+// explains why the render bootstrap is duplicated across entry points
+// (director.html needs its own UI shell) — but the DIRECTION LOGIC itself
+// no longer is; enableJourney:true means what Ronny reviews here is
+// exactly what main.js/master-render.js will also compute for the same t.
+const frameDirector = createFrameDirector({
+  uniforms,
+  directorCueSheet,
+  visualDirector,
+  cameraDirector,
+  sceneDirector,
+  lightDirector,
+  materialDirector,
+  featureEngine,
+  musicalDirector,
+  enableJourney: true,
+});
+const applyUniformsForT = frameDirector.applyUniformsForT;
 
 let lastP = null;
 
@@ -227,7 +140,10 @@ function renderAt(t) {
     `t=${t.toFixed(2)}  ch=${lastP.chapterIndex} ${lastP.chapterName}  phase=${lastP.phase} (${lastP.phaseT.toFixed(2)})  shot=${lastP.shotType} (${lastP.transitionType})\n` +
     `scene=${lastP.primaryFamily}->${lastP.secondaryFamily} (${lastP.blend.toFixed(2)}) ${lastP.sceneState}  material=${lastP.materialName}  light=${LIGHT_MODE_NAMES[lastP.lightMode]}  chamberInterior=${lastP.chamberInteriorActive}\n` +
     (lastP.directorCue ? `CUE: ${lastP.directorCue.reason || "(no reason)"}\n` : "") +
-    (lastP.meso ? `meso: track=${lastP.meso.track} tension=${lastP.meso.tensionState} density=${lastP.meso.densityState} event=${lastP.meso.exceptionalEvent || "-"}/${lastP.meso.exceptionalEventConfidence || "-"}` : "");
+    (lastP.meso ? `meso: track=${lastP.meso.track} tension=${lastP.meso.tensionState} density=${lastP.meso.densityState} event=${lastP.meso.exceptionalEvent || "-"}/${lastP.meso.exceptionalEventConfidence || "-"}\n` : "") +
+    (lastP.journeyExpression
+      ? `journey: phase=${lastP.journeyExpression.filmPhase} tier=${lastP.journeyExpression.eventTier} assembly=${lastP.journeyExpression.assemblyExpression.toFixed(2)} interior=${lastP.journeyExpression.interiorExpression.toFixed(2)} field=${lastP.journeyExpression.fieldExpression.toFixed(2)} stillness=${lastP.journeyExpression.cameraStillness.toFixed(2)} stored=${lastP.evolution.storedEnergy.toFixed(2)}`
+      : "");
   return lastP;
 }
 
@@ -464,6 +380,12 @@ async function init() {
     await musicalDirector.load("/track-map.json", "/annotations.json", featureEngine);
   } catch (err) {
     console.warn("MusicalDirector not available, SceneDirector running MACRO-only:", err);
+  }
+
+  try {
+    await frameDirector.loadJourneyData();
+  } catch (err) {
+    console.warn("Journey data not available:", err);
   }
 
   scrubEl.max = String(DURATION);

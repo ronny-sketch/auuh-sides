@@ -1,0 +1,808 @@
+{
+  "generatedAt": "2026-08-29T19:58:14.260Z",
+  "generatedFromCommit": null,
+  "totalMusicEventStreamEvents": 3832,
+  "reviewCandidateCount": 80,
+  "candidates": [
+    {
+      "t": 30.04,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 61.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 94.8,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 143.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 171.84,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 216.72,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 243.82,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 280.2,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 306.26,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 343.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 383.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 418.52,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 441.82,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 483.68,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 522.4,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 563.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 599.08,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 643.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 664.88,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 703.6,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 743.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 770.14,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 792.68,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 824,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 846.72,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 893.28,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 928.12,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 982.1,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1018.1,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1041.22,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1067.19,
+      "suggestedTag": null,
+      "sourceType": "EXCEPTIONAL_RUPTURE_1747",
+      "hierarchy": "HERO",
+      "confidence": "structurally_verified",
+      "salience": 1,
+      "label": "Spectral flash / 17:47 ontological rupture — also the track-map's own highest-corroborated cluster (17:21-17:48, three candidates in <30s)",
+      "confirmed": false
+    },
+    {
+      "t": 1068.42,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1092.42,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1138.1,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1160.84,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1197.36,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1220.3,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1260.66,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1283.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1322.38,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1359.82,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1383.64,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1421.08,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1441.66,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1473.54,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1511.92,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1534.9,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1560.34,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1583.8,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1623.76,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1663.72,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1683.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1704,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1739.2,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1764.12,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1793.34,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1824,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1852.64,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1879.62,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1904,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1933.52,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1956.5,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 1984.2,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2031.16,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2063.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2084.48,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2107.3,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2137.94,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2183.54,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2204,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2248.94,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2283.46,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2312.16,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2363.84,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2393.04,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2432.78,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2480.54,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "candidate",
+      "salience": 0.35,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2482,
+      "suggestedTag": null,
+      "sourceType": "EXCEPTIONAL_CLIMAX_2482",
+      "hierarchy": "CLIMAX",
+      "confidence": "structurally_verified",
+      "salience": 1,
+      "label": "Global RMS maximum",
+      "confirmed": false
+    },
+    {
+      "t": 2503.98,
+      "suggestedTag": "TRACK_BLEND_START",
+      "sourceType": "TRACK_TRANSITION",
+      "hierarchy": "TRACK",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": null,
+      "confirmed": false
+    },
+    {
+      "t": 2503.98,
+      "suggestedTag": null,
+      "sourceType": "EXCEPTIONAL_FINAL_FADE_1744",
+      "hierarchy": "HERO",
+      "confidence": "strong_candidate",
+      "salience": 0.55,
+      "label": "Highest-scored track-map candidate (0.682, every signal fired) — the mix's final track fading into Departure's collapse. NOT independently corroborated; not yet confirmed by ear.",
+      "confirmed": false
+    }
+  ]
+}

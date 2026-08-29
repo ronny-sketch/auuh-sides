@@ -1,0 +1,505 @@
+{
+  "generatedAt": "2026-08-29T20:14:50.215Z",
+  "method": "RMS smoothed over 4s, local extrema searched within +/-10s of each claimed timestamp",
+  "confidenceCounts": {
+    "structurally_verified": 16
+  },
+  "episodes": [
+    {
+      "label": "small early tension/release",
+      "claimed": {
+        "start": 47,
+        "trough": 61,
+        "end": 69
+      },
+      "verified": {
+        "start": 56.34,
+        "trough": 61.96,
+        "end": 68.9
+      },
+      "driftFromClaimedSec": {
+        "start": 9.34,
+        "trough": 0.96,
+        "end": -0.1
+      },
+      "relativeDip": 0.609,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.5584,
+        "trough": 0.2279,
+        "post": 0.6076
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.1,
+        "onsetStrengthAtEnd": 0.565,
+        "bassAtTrough": 0.22,
+        "bassAtEnd": 0.485
+      }
+    },
+    {
+      "label": "FIRST MAJOR collapse/re-entry",
+      "claimed": {
+        "start": 131,
+        "trough": 170,
+        "end": 189
+      },
+      "verified": {
+        "start": 130.84,
+        "trough": 170.58,
+        "end": 188.52
+      },
+      "driftFromClaimedSec": {
+        "start": -0.16,
+        "trough": 0.58,
+        "end": -0.48
+      },
+      "relativeDip": 0.975,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.6194,
+        "trough": 0.0164,
+        "post": 0.6946
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.001,
+        "onsetStrengthAtEnd": 0.168,
+        "bassAtTrough": 0.036,
+        "bassAtEnd": 0.312
+      }
+    },
+    {
+      "label": "substantial contraction / strong return",
+      "claimed": {
+        "start": 359,
+        "trough": 394,
+        "end": 429
+      },
+      "verified": {
+        "start": 359.92,
+        "trough": 394.86,
+        "end": 429.42
+      },
+      "driftFromClaimedSec": {
+        "start": 0.92,
+        "trough": 0.86,
+        "end": 0.42
+      },
+      "relativeDip": 0.851,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.2648,
+        "trough": 0.0838,
+        "post": 0.8569
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.024,
+        "onsetStrengthAtEnd": 0.472,
+        "bassAtTrough": 0.001,
+        "bassAtEnd": 0.055
+      }
+    },
+    {
+      "label": "clear breath / re-entry",
+      "claimed": {
+        "start": 619,
+        "trough": 654,
+        "end": 680
+      },
+      "verified": {
+        "start": 616.66,
+        "trough": 654,
+        "end": 684.4
+      },
+      "driftFromClaimedSec": {
+        "start": -2.34,
+        "trough": 0,
+        "end": 4.4
+      },
+      "relativeDip": 0.764,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.5912,
+        "trough": 0.1391,
+        "post": 0.5888
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.107,
+        "onsetStrengthAtEnd": 0.621,
+        "bassAtTrough": 0.031,
+        "bassAtEnd": 0.617
+      }
+    },
+    {
+      "label": "very deep sparse/breathing region",
+      "claimed": {
+        "start": 764,
+        "trough": 791,
+        "end": 826
+      },
+      "verified": {
+        "start": 765.42,
+        "trough": 791.94,
+        "end": 834.84
+      },
+      "driftFromClaimedSec": {
+        "start": 1.42,
+        "trough": 0.94,
+        "end": 8.84
+      },
+      "relativeDip": 0.984,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.1106,
+        "trough": 0.0025,
+        "post": 0.2128
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.03,
+        "onsetStrengthAtEnd": 0.686,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.001
+      }
+    },
+    {
+      "label": "EXTREMELY IMPORTANT — strongest large-scale compression/trough/release in first 20 min",
+      "claimed": {
+        "start": 1034,
+        "trough": 1067,
+        "end": 1083
+      },
+      "verified": {
+        "start": 1034.38,
+        "trough": 1067.82,
+        "end": 1084.1
+      },
+      "driftFromClaimedSec": {
+        "start": 0.38,
+        "trough": 0.82,
+        "end": 1.1
+      },
+      "relativeDip": 1,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.5561,
+        "trough": 0,
+        "post": 0.6378
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.01,
+        "onsetStrengthAtEnd": 1,
+        "bassAtTrough": 0,
+        "bassAtEnd": 1
+      }
+    },
+    {
+      "label": "second half region 1",
+      "claimed": {
+        "start": 1263,
+        "trough": 1294,
+        "end": 1333
+      },
+      "verified": {
+        "start": 1263.32,
+        "trough": 1297.46,
+        "end": 1341.8
+      },
+      "driftFromClaimedSec": {
+        "start": 0.32,
+        "trough": 3.46,
+        "end": 8.8
+      },
+      "relativeDip": 0.79,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.5362,
+        "trough": 0.1262,
+        "post": 0.6681
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.06,
+        "onsetStrengthAtEnd": 0.375,
+        "bassAtTrough": 0.175,
+        "bassAtEnd": 0.66
+      }
+    },
+    {
+      "label": "second half region 2",
+      "claimed": {
+        "start": 1429,
+        "trough": 1457,
+        "end": 1478
+      },
+      "verified": {
+        "start": 1429.86,
+        "trough": 1458.38,
+        "end": 1477.74
+      },
+      "driftFromClaimedSec": {
+        "start": 0.86,
+        "trough": 1.38,
+        "end": -0.26
+      },
+      "relativeDip": 0.988,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.6876,
+        "trough": 0.0083,
+        "post": 0.674
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.016,
+        "onsetStrengthAtEnd": 0.753,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.441
+      }
+    },
+    {
+      "label": "second half region 3",
+      "claimed": {
+        "start": 1605,
+        "trough": 1639,
+        "end": 1646
+      },
+      "verified": {
+        "start": 1603.16,
+        "trough": 1640.42,
+        "end": 1646.22
+      },
+      "driftFromClaimedSec": {
+        "start": -1.84,
+        "trough": 1.42,
+        "end": 0.22
+      },
+      "relativeDip": 0.98,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.8114,
+        "trough": 0.0164,
+        "post": 0.843
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.034,
+        "onsetStrengthAtEnd": 0.463,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.465
+      }
+    },
+    {
+      "label": "second half region 4",
+      "claimed": {
+        "start": 1842,
+        "trough": 1878,
+        "end": 1911
+      },
+      "verified": {
+        "start": 1846.34,
+        "trough": 1879.42,
+        "end": 1914.78
+      },
+      "driftFromClaimedSec": {
+        "start": 4.34,
+        "trough": 1.42,
+        "end": 3.78
+      },
+      "relativeDip": 0.855,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.6877,
+        "trough": 0.1001,
+        "post": 0.6893
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.066,
+        "onsetStrengthAtEnd": 0.402,
+        "bassAtTrough": 0.052,
+        "bassAtEnd": 0.636
+      }
+    },
+    {
+      "label": "second half region 5",
+      "claimed": {
+        "start": 1968,
+        "trough": 1977,
+        "end": 2016
+      },
+      "verified": {
+        "start": 1967.42,
+        "trough": 1976.56,
+        "end": 2017.54
+      },
+      "driftFromClaimedSec": {
+        "start": -0.58,
+        "trough": -0.44,
+        "end": 1.54
+      },
+      "relativeDip": 0.961,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.7002,
+        "trough": 0.019,
+        "post": 0.2834
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0,
+        "onsetStrengthAtEnd": 0.085,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.768
+      }
+    },
+    {
+      "label": "second half region 6",
+      "claimed": {
+        "start": 2062,
+        "trough": 2083,
+        "end": 2111
+      },
+      "verified": {
+        "start": 2063.44,
+        "trough": 2083.3,
+        "end": 2112.46
+      },
+      "driftFromClaimedSec": {
+        "start": 1.44,
+        "trough": 0.3,
+        "end": 1.46
+      },
+      "relativeDip": 0.988,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.3266,
+        "trough": 0.0061,
+        "post": 0.7035
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.009,
+        "onsetStrengthAtEnd": 0.348,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.589
+      }
+    },
+    {
+      "label": "second half region 7",
+      "claimed": {
+        "start": 2169,
+        "trough": 2204,
+        "end": 2231
+      },
+      "verified": {
+        "start": 2159.36,
+        "trough": 2198.56,
+        "end": 2231.14
+      },
+      "driftFromClaimedSec": {
+        "start": -9.64,
+        "trough": -5.44,
+        "end": 0.14
+      },
+      "relativeDip": 0.852,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.6924,
+        "trough": 0.1086,
+        "post": 0.7786
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.45,
+        "onsetStrengthAtEnd": 0.538,
+        "bassAtTrough": 0.001,
+        "bassAtEnd": 0.235
+      }
+    },
+    {
+      "label": "second half region 8 (outer)",
+      "claimed": {
+        "start": 2258,
+        "trough": 2290,
+        "end": 2328
+      },
+      "verified": {
+        "start": 2259.38,
+        "trough": 2282.5,
+        "end": 2327.82
+      },
+      "driftFromClaimedSec": {
+        "start": 1.38,
+        "trough": -7.5,
+        "end": -0.18
+      },
+      "relativeDip": 0.926,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.771,
+        "trough": 0.0587,
+        "post": 0.8078
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0,
+        "onsetStrengthAtEnd": 0.511,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.264
+      }
+    },
+    {
+      "label": "second half region 8 (nested trough/release)",
+      "claimed": {
+        "start": 2275,
+        "trough": 2313,
+        "end": 2334
+      },
+      "verified": {
+        "start": 2266.56,
+        "trough": 2312.02,
+        "end": 2327.82
+      },
+      "driftFromClaimedSec": {
+        "start": -8.44,
+        "trough": -0.98,
+        "end": -6.18
+      },
+      "relativeDip": 0.887,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.7686,
+        "trough": 0.0889,
+        "post": 0.8078
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.009,
+        "onsetStrengthAtEnd": 0.511,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.264
+      }
+    },
+    {
+      "label": "final major stored-energy event before ending",
+      "claimed": {
+        "start": 2455,
+        "trough": 2479,
+        "end": 2492
+      },
+      "verified": {
+        "start": 2460.4,
+        "trough": 2480.52,
+        "end": 2484.82
+      },
+      "driftFromClaimedSec": {
+        "start": 5.4,
+        "trough": 1.52,
+        "end": -7.18
+      },
+      "relativeDip": 0.928,
+      "confidence": "structurally_verified",
+      "rms": {
+        "pre": 0.7919,
+        "trough": 0.0591,
+        "post": 0.8455
+      },
+      "secondaryEvidence": {
+        "fluxAtTrough": 0.147,
+        "onsetStrengthAtEnd": 0.354,
+        "bassAtTrough": 0,
+        "bassAtEnd": 0.502
+      }
+    }
+  ]
+}

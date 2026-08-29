@@ -1,16 +1,16 @@
 import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders/main.frag.js";
 import { CameraDirector } from "./core/CameraDirector.js";
-import { DURATION, EVENTS } from "./core/timeline.js";
 import { FeedbackPipeline } from "./core/FeedbackPipeline.js";
 import { AudioFeatureEngine } from "./core/AudioFeatureEngine.js";
 import { VisualDirector } from "./core/VisualDirector.js";
 import { MusicalDirector } from "./core/MusicalDirector.js";
-import { SceneDirector, FAMILY } from "./core/SceneDirector.js";
-import { LightDirector, getLightRecipe } from "./core/LightDirector.js";
-import { MaterialDirector, getMaterialRecipe } from "./core/MaterialDirector.js";
+import { SceneDirector } from "./core/SceneDirector.js";
+import { LightDirector } from "./core/LightDirector.js";
+import { MaterialDirector } from "./core/MaterialDirector.js";
 import { DirectorCueSheet } from "./core/DirectorCueSheet.js";
 import directorCues from "./direction/director-cue-sheet.json";
+import { createFrameDirector } from "./core/FrameDirector.js";
 
 // V4 Part 1 — the TRUE offline master renderer. Unlike proxy-record.js:
 //   - NO real-time playback, NO requestAnimationFrame, NO audio element,
@@ -52,10 +52,6 @@ renderer.setSize(renderWidth, renderHeight);
 document.getElementById("app").appendChild(renderer.domElement);
 
 const WALL_THICKNESS = 0.16;
-const smoothstep = (e0, e1, x) => {
-  const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
-  return t * t * (3 - 2 * t);
-};
 
 const uniforms = {
   uResolution: { value: new THREE.Vector2(renderWidth, renderHeight) },
@@ -101,6 +97,7 @@ const uniforms = {
   // V4 Part 3: ?testpattern=1 renders the color-calibration bars instead
   // of the piece — see main.frag.js and docs/v4-color-pipeline.md.
   uTestPattern: { value: params.get("testpattern") === "1" ? 1 : 0 },
+  uAssembly: { value: 1 }, // Journey v38 — 1.0 = pre-journey baseline, exact bypass in the shader
 };
 
 const geometry = new THREE.PlaneGeometry(2, 2);
@@ -118,95 +115,26 @@ const lightDirector = new LightDirector();
 const materialDirector = new MaterialDirector();
 const directorCueSheet = new DirectorCueSheet(directorCues);
 
-function memoryDriftAt(t) {
-  const dx = Math.sin(t * 0.13) * 0.0035 + Math.sin(t * 0.037) * 0.0018;
-  const dy = Math.cos(t * 0.11) * 0.0035 + Math.cos(t * 0.029) * 0.0018;
-  return [dx, dy];
-}
-function familyWeight(scene, family) {
-  if (scene.primaryFamily === family) return 1 - scene.blend;
-  if (scene.secondaryFamily === family) return scene.blend;
-  return 0;
-}
-
-// Identical logic to src/main.js's applyUniformsForT — see that file for
-// full comments on the director-cue override layer.
-function applyUniformsForT(t) {
-  const cue = directorCueSheet.at(t);
-  const p = visualDirector.sample(t, cue && cue.microResponse != null ? cue.microResponse : 1);
-  let cam = cameraDirector.update(p);
-  let scene = sceneDirector.sample(t);
-
-  if (cue) {
-    if (cue.cameraMotion || cue.shot) cam = cameraDirector.resolveCueCamera(cue, t);
-    if (cue.primaryFamily) {
-      scene = {
-        ...scene,
-        primaryFamily: cue.primaryFamily,
-        secondaryFamily: cue.secondaryFamily || scene.secondaryFamily,
-        blend: cue.sceneBlend != null ? cue.sceneBlend : scene.blend,
-        sceneState: "DIRECTED",
-      };
-    }
-  }
-
-  let light = lightDirector.sample(t, scene.sceneState);
-  if (cue && cue.light) {
-    const override = getLightRecipe(cue.light);
-    if (override) light = override;
-  }
-
-  const dominantFamily = scene.blend > 0.5 ? scene.secondaryFamily : scene.primaryFamily;
-  let mat = materialDirector.sample(p.chapterIndex, dominantFamily, scene.sceneState);
-  if (cue && cue.material) {
-    const override = getMaterialRecipe(cue.material);
-    if (override) mat = override;
-  }
-
-  uniforms.uTime.value = t;
-  uniforms.uCamPos.value.set(cam.camPos[0], cam.camPos[1], cam.camPos[2]);
-  uniforms.uCamTarget.value.set(cam.camTarget[0], cam.camTarget[1], cam.camTarget[2]);
-  uniforms.uFov.value = cam.fov;
-  uniforms.uFold.value = p.fold;
-  uniforms.uFoldBlend.value = p.foldBlend;
-  uniforms.uTurbulence.value = p.turbulence;
-  uniforms.uFracture.value = p.fracture;
-  uniforms.uContrast.value = p.contrast;
-  uniforms.uColorMix.value = p.colorMix;
-  uniforms.uRestraint.value = p.restraint;
-  uniforms.uFormBlend.value = p.formBlend;
-  uniforms.uGrainBoost.value = p.grainBoost;
-
-  let memoryWeight = p.memoryWeight + cam.dissolveWeight * 0.6;
-  if (cue && cue.memoryBehavior === "DISSOLVE") {
-    const timeSinceStart = t - cue.start;
-    memoryWeight = Math.max(memoryWeight, 1 - Math.min(1, timeSinceStart / 2.0));
-  } else if (cue && typeof cue.memoryBehavior === "number") {
-    memoryWeight = cue.memoryBehavior;
-  }
-  uniforms.uMemoryWeight.value = Math.min(0.95, memoryWeight);
-  const [dx, dy] = memoryDriftAt(t);
-  uniforms.uMemoryDrift.value.set(dx, dy);
-
-  uniforms.uWallThickness.value = WALL_THICKNESS;
-  uniforms.uFieldWeight.value = familyWeight(scene, FAMILY.FIELD);
-  uniforms.uEchoWeight.value = familyWeight(scene, FAMILY.ECHO);
-  uniforms.uBlackout.value = smoothstep(EVENTS.silenceFloor, DURATION, t);
-
-  uniforms.uLightMode.value = light.mode;
-  uniforms.uLightDir.value.set(light.dir[0], light.dir[1], light.dir[2]);
-  uniforms.uLightIntensity.value = light.intensity;
-  uniforms.uAmbient.value = light.ambient;
-  uniforms.uRimAmount.value = light.rim;
-
-  uniforms.uMaterialMode.value = mat.mode;
-  uniforms.uAlbedo.value = mat.albedo;
-  uniforms.uSpecular.value = mat.specular;
-  uniforms.uRoughness.value = mat.roughness;
-  uniforms.uGrainMix.value = mat.grainMix;
-
-  return p;
-}
+// Shared film-state logic (journey v38 Part 2) — see src/core/
+// FrameDirector.js's header. This is the file that produces the actual
+// master; enableJourney:true means the master master render is driven by
+// the exact same EvolutionDirector/JourneyExpressionDirector state main.js
+// (interactive) and director-review.js (human review) already see —
+// "we cannot creatively approve one renderer and master a subtly
+// different one."
+const frameDirector = createFrameDirector({
+  uniforms,
+  directorCueSheet,
+  visualDirector,
+  cameraDirector,
+  sceneDirector,
+  lightDirector,
+  materialDirector,
+  featureEngine,
+  musicalDirector,
+  enableJourney: true,
+});
+const applyUniformsForT = frameDirector.applyUniformsForT;
 
 function renderAt(t) {
   pipeline.renderFrame(() => applyUniformsForT(t));
@@ -244,6 +172,11 @@ async function init() {
     await musicalDirector.load("/track-map.json", "/annotations.json", featureEngine);
   } catch (err) {
     console.warn("MusicalDirector not available:", err);
+  }
+  try {
+    await frameDirector.loadJourneyData();
+  } catch (err) {
+    console.warn("Journey data not available:", err);
   }
   renderAt(0);
   window.__AUUH_MASTER_READY__ = true;
