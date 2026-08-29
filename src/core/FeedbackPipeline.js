@@ -1,21 +1,44 @@
 import * as THREE from "three";
 import { presentFragmentShader, presentVertexShader } from "../shaders/present.frag.js";
 
-// Two-pass ping-pong feedback: the scene shader writes to an offscreen
-// render target (reading the OTHER target's texture as last frame's
-// history), then a trivial present pass blits that target to the screen.
-// Targets swap every frame.
+// Two-pass temporal-feedback pipeline. V3 Phase 7 (docs/v3-creative-
+// direction.md): upgraded from a single ping-pong pair to a RING of
+// history targets so the scene shader can read several distinct lags at
+// once (ECHO family) instead of only "last frame" — per the brief,
+// "explore a small multi-tap temporal history... use a ring/history
+// architecture rather than allocating new textures each frame."
 //
-// Two operating modes (Phase 6 of docs/v2-plan.md):
-//   - SEEK/QA: warmUp(t, seconds) renders `seconds` worth of frames ending
-//     at t, discarding their on-screen result, so the feedback buffer has
-//     plausible history before the real captured frame. Same t + same
-//     warm-up recipe always produces the same pixels (seek-determinism
-//     preserved, just redefined to include "with this much feedback
-//     history").
-//   - MASTER SEQUENTIAL: never reset; call renderFrame(t) once per frame
-//     in increasing t order for the whole 42 minutes, feedback carries
-//     forward continuously.
+// RING_SIZE targets are allocated ONCE. Each frame writes into exactly one
+// slot (the one that held the OLDEST frame in the ring) and reads whatever
+// lag taps it needs from the OTHER slots before overwriting — so the cost
+// per frame is still exactly one scene-pass render + one present blit,
+// same as the v2 two-target version; the ring only changes how many
+// textures are available to SAMPLE from, not how much is rendered.
+//
+// TAP_LAGS (frames): [1, 4, 10, 16] approximates the brief's "previous
+// frame / ~4 frames / ~12 frames / ~1 second" ladder at this project's
+// preview/master frame rates (24-30fps => lag 16 is ~0.5-0.7s). Going
+// further ("optionally several seconds") would need a much larger ring
+// (seconds x fps textures) — deferred, noted in docs/v3-creative-
+// direction.md §7, not implemented here; RING_SIZE is the one constant to
+// raise if that's revisited.
+//
+// RING_SIZE must be STRICTLY GREATER than the largest lag: with lag L and
+// an L-sized ring, (writeIndex - L) mod L === writeIndex, which binds the
+// slot about to be written as a READ source in the same draw call — a
+// framebuffer/texture feedback loop (caught by an actual WebGL
+// GL_INVALID_OPERATION warning during Phase 13 smoke-testing, not by
+// reasoning about the code — the exact discipline docs/creative-critique-
+// v2.md's Finding 1 already established for this codebase).
+const TAP_LAGS = [1, 4, 10, 16];
+const RING_SIZE = Math.max(...TAP_LAGS) + 1;
+
+// Two operating modes (unchanged in spirit from v2's Phase 6):
+//   - SEEK/QA: warmUp(...) renders warm-up frames ending at t, discarding
+//     on-screen output, so every ring slot has plausible history before the
+//     real captured frame — same t + same warm-up recipe is deterministic.
+//   - MASTER SEQUENTIAL: never reset; renderFrame(t) once per frame in
+//     increasing t order, ring carries forward continuously.
 export class FeedbackPipeline {
   constructor(renderer, sceneMesh, sceneMaterial, width, height) {
     this.renderer = renderer;
@@ -26,21 +49,17 @@ export class FeedbackPipeline {
     this.sceneScene.add(sceneMesh);
     this.orthoCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-    this.targetA = this._makeTarget(width, height);
-    this.targetB = this._makeTarget(width, height);
-    this.writeTarget = this.targetA;
-    this.readTarget = this.targetB;
+    this.ring = Array.from({ length: RING_SIZE }, () => this._makeTarget(width, height));
+    this.writeIndex = 0;
 
     this.presentMaterial = new THREE.ShaderMaterial({
-      uniforms: { uTex: { value: this.readTarget.texture } },
+      uniforms: { uTex: { value: this.ring[0].texture } },
       vertexShader: presentVertexShader,
       fragmentShader: presentFragmentShader,
     });
     this.presentMesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), this.presentMaterial);
     this.presentScene = new THREE.Scene();
     this.presentScene.add(this.presentMesh);
-
-    this._blankTexture = this.readTarget.texture; // used until first real frame exists
   }
 
   _makeTarget(width, height) {
@@ -55,33 +74,41 @@ export class FeedbackPipeline {
   }
 
   setSize(width, height) {
-    this.targetA.setSize(width, height);
-    this.targetB.setSize(width, height);
+    for (const target of this.ring) target.setSize(width, height);
   }
 
-  // Renders one frame: scene pass (reading readTarget as history) into
-  // writeTarget, then blits writeTarget to the screen. Swaps targets
-  // afterward so next call reads what was just written.
+  _tapIndex(lag) {
+    return (this.writeIndex - lag + RING_SIZE * 100) % RING_SIZE;
+  }
+
+  // Renders one frame: binds the lag taps (uPrevFrame = lag 1, uHistory1-3
+  // = the rest of TAP_LAGS) as history reads, writes the new scene into
+  // the ring slot being retired, blits it to the screen, advances the
+  // write pointer.
   renderFrame(setUniformsForT) {
-    this.sceneMaterial.uniforms.uPrevFrame.value = this.readTarget.texture;
+    const u = this.sceneMaterial.uniforms;
+    u.uPrevFrame.value = this.ring[this._tapIndex(TAP_LAGS[0])].texture;
+    u.uHistory1.value = this.ring[this._tapIndex(TAP_LAGS[1])].texture;
+    u.uHistory2.value = this.ring[this._tapIndex(TAP_LAGS[2])].texture;
+    u.uHistory3.value = this.ring[this._tapIndex(TAP_LAGS[3])].texture;
+
     setUniformsForT();
 
-    this.renderer.setRenderTarget(this.writeTarget);
+    const writeTarget = this.ring[this.writeIndex];
+    this.renderer.setRenderTarget(writeTarget);
     this.renderer.render(this.sceneScene, this.orthoCamera);
 
-    this.presentMaterial.uniforms.uTex.value = this.writeTarget.texture;
+    this.presentMaterial.uniforms.uTex.value = writeTarget.texture;
     this.renderer.setRenderTarget(null);
     this.renderer.render(this.presentScene, this.orthoCamera);
 
-    const tmp = this.writeTarget;
-    this.writeTarget = this.readTarget;
-    this.readTarget = tmp;
+    this.writeIndex = (this.writeIndex + 1) % RING_SIZE;
   }
 
-  // Discards on-screen output for `count` warm-up frames — used by seek/QA
-  // mode so a fresh seek to timestamp t has plausible feedback history
-  // instead of starting from a blank buffer. `getUniformsAt(t)` must be
-  // the same pure-function-of-t uniform setter the real render uses.
+  // Discards on-screen output for warm-up frames leading up to t — used by
+  // seek/QA mode so a fresh seek has plausible ring history instead of an
+  // all-black ring. `getUniformsAt(t)` must be the same pure-function-of-t
+  // uniform setter the real render uses.
   warmUp(getUniformsAt, tStart, tEnd, stepSeconds) {
     for (let t = tStart; t < tEnd; t += stepSeconds) {
       this.renderFrame(() => getUniformsAt(t));
@@ -89,10 +116,11 @@ export class FeedbackPipeline {
   }
 
   reset() {
-    this.renderer.setRenderTarget(this.writeTarget);
-    this.renderer.clear();
-    this.renderer.setRenderTarget(this.readTarget);
-    this.renderer.clear();
+    for (const target of this.ring) {
+      this.renderer.setRenderTarget(target);
+      this.renderer.clear();
+    }
     this.renderer.setRenderTarget(null);
+    this.writeIndex = 0;
   }
 }

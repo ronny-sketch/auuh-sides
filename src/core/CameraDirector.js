@@ -1,15 +1,27 @@
 import { DURATION, findChapterIndex, getRestraintFactor } from "./timeline.js";
 
-// Camera/editing grammar (v2, Phase 5 of docs/v2-plan.md). Replaces
-// CameraRig's "one continuous orbit per chapter" model with an authored
-// SEQUENCE of shot types per chapter, cut only at bar boundaries (downbeats)
-// — "permission for editorial events" per the Phase 4 mapping table — with
-// a few explicitly documented off-downbeat exceptions already established
-// in docs/cue-sheet.md (Ch1->Ch2, Ch2->Ch3, the climax).
+// Camera/editing grammar (v2 Phase 5, upgraded in V3 Phase 8 — see
+// docs/v3-creative-direction.md). Precomputes the whole 42:06.9 timeline
+// ONCE into a flat, sorted list of shot segments (same discipline as
+// timeline.js/params.js) so getShotAt(t) is a pure function of t.
 //
-// The whole 42:06.9 timeline is precomputed ONCE into a flat, sorted list
-// of shot segments (same discipline as camera.js's azimuthAt lookup table)
-// so getShotAt(t) is a pure function of t — deterministic and seek-safe.
+// V3 changes from v2:
+//   - Shot distance is now solved from actual screen-space frame occupancy
+//     (how much of the frame height the body's bounding radius should
+//     fill) instead of a multiplier on the chapter's own camDist — fixes
+//     the documented v2 bug (creative-critique-v2.md Finding 5) where
+//     EXTREME_WIDE's multiplier stacked on an already-small chapter camDist
+//     and produced a close-up instead of a wide shot. "Wide" now always
+//     means the same thing: a small target occupancy, solved for whatever
+//     the chapter's geometry actually needs.
+//   - A new PASS_THROUGH shot type with an explicit (not occupancy-solved)
+//     distance sweep from outside the body to deep inside it — the only
+//     shot type allowed to cross into CHAMBER's auto-detected interior
+//     traversal (main.frag.js) — inserted at one authored, hand-picked
+//     moment (the 17:47 rupture), not as part of any chapter's normal cycle.
+//   - A small transition-grammar layer (EASE, TEMPORAL_DISSOLVE, HARD_CUT)
+//     between segments, instead of every cut being an instant parameter
+//     swap by construction.
 
 const TAU = Math.PI * 2;
 
@@ -25,25 +37,56 @@ function mulberry32(seed) {
   };
 }
 
+// Approximate bounding radius of the raymarched body across every fold/
+// formBlend configuration (round-box half-extents up to (1,1.4,1) plus its
+// torus reaching r=1.6+0.35=1.95; octahedron pair reaching s=1.55/r=1.9+0.12
+// — 2.1 comfortably covers all of them with a small margin). Used to solve
+// "how far away must the camera be for this body to fill this fraction of
+// the frame," which is what "EXTREME_WIDE actually appears extreme wide"
+// requires — a single shared radius, not a per-shot fudge factor.
+const BODY_RADIUS = 2.1;
+const FOV_DEG = 45;
+const TAN_HALF_FOV = Math.tan((FOV_DEG / 2) * (Math.PI / 180));
+
+// occupancy = target fraction of half-frame-height the body's bounding
+// radius should span. <1 = object smaller than frame (wide/negative-space
+// shots); >1 = object larger than frame (macro/extreme-close shots).
+function occupancyDist(occupancy) {
+  return BODY_RADIUS / (TAN_HALF_FOV * Math.max(occupancy, 0.01));
+}
+
 const SHOT_TYPES = {
-  EXTREME_WIDE: { minDur: 8, maxDur: 20, distMult: [1.8, 2.2], angSpeedMult: 0.6, elevOverride: null, offsetMult: 1.0, allowMotion: true },
-  MACRO: { minDur: 4, maxDur: 10, distMult: [0.3, 0.42], angSpeedMult: 0.4, elevOverride: null, offsetMult: 0.6, allowMotion: true, safeMinDist: 2.8 },
-  PROFILE_SILHOUETTE: { minDur: 6, maxDur: 14, distMult: [0.9, 1.1], angSpeedMult: 0.0, elevOverride: null, offsetMult: 0.3, allowMotion: false, azimuthLockOffset: Math.PI / 2 },
-  NEGATIVE_SPACE: { minDur: 6, maxDur: 15, distMult: [1.3, 1.6], angSpeedMult: 0.3, elevOverride: null, offsetMult: 2.6, allowMotion: true },
-  UNEXPECTED_HORIZON: { minDur: 6, maxDur: 14, distMult: [1.0, 1.3], angSpeedMult: 0.4, elevOverride: 0.85, offsetMult: 0.8, allowMotion: true },
-  SLOW_PUSH: { minDur: 10, maxDur: 25, distMult: [1.5, 0.65], angSpeedMult: 0.2, elevOverride: null, offsetMult: 0.7, allowMotion: true, pushOverTime: true },
-  VIOLENT_INSERT: { minDur: 1.5, maxDur: 3, distMult: [0.32, 0.32], angSpeedMult: 1.4, elevOverride: null, offsetMult: 0.4, allowMotion: true, safeMinDist: 2.8, extraJitter: 0.06 },
-  STATIC_HOLD: { minDur: 10, maxDur: 25, distMult: [1.0, 1.0], angSpeedMult: 0.0, elevOverride: null, offsetMult: 1.0, allowMotion: false },
-  LONG_HOLD: { minDur: 20, maxDur: 40, distMult: [1.1, 0.95], angSpeedMult: 0.0, elevOverride: null, offsetMult: 1.0, allowMotion: false, pushOverTime: true },
+  EXTREME_WIDE: { minDur: 8, maxDur: 20, occupancy: [0.16, 0.16], angSpeedMult: 0.6, elevOverride: null, offsetMult: 1.0, allowMotion: true },
+  MACRO: { minDur: 4, maxDur: 10, occupancy: [2.4, 2.7], angSpeedMult: 0.4, elevOverride: null, offsetMult: 0.6, allowMotion: true, safeMinDist: 2.8 },
+  PROFILE_SILHOUETTE: { minDur: 6, maxDur: 14, occupancy: [1.0, 1.0], angSpeedMult: 0.0, elevOverride: null, offsetMult: 0.3, allowMotion: false, azimuthLockOffset: Math.PI / 2 },
+  NEGATIVE_SPACE: { minDur: 6, maxDur: 15, occupancy: [0.32, 0.32], angSpeedMult: 0.3, elevOverride: null, offsetMult: 2.6, allowMotion: true },
+  UNEXPECTED_HORIZON: { minDur: 6, maxDur: 14, occupancy: [0.55, 0.55], angSpeedMult: 0.4, elevOverride: 0.85, offsetMult: 0.8, allowMotion: true },
+  SLOW_PUSH: { minDur: 10, maxDur: 25, occupancy: [0.45, 1.35], angSpeedMult: 0.2, elevOverride: null, offsetMult: 0.7, allowMotion: true, pushOverTime: true, transitionType: "EASE" },
+  VIOLENT_INSERT: { minDur: 1.5, maxDur: 3, occupancy: [2.8, 2.8], angSpeedMult: 1.4, elevOverride: null, offsetMult: 0.4, allowMotion: true, safeMinDist: 2.8, extraJitter: 0.06 },
+  STATIC_HOLD: { minDur: 10, maxDur: 25, occupancy: [0.82, 0.82], angSpeedMult: 0.0, elevOverride: null, offsetMult: 1.0, allowMotion: false, transitionType: "EASE" },
+  LONG_HOLD: { minDur: 20, maxDur: 40, occupancy: [0.75, 0.92], angSpeedMult: 0.0, elevOverride: null, offsetMult: 1.0, allowMotion: false, pushOverTime: true, transitionType: "EASE" },
+  // V3 Phase 3/8: the only shot type that crosses into CHAMBER. distRange is
+  // an EXPLICIT distance sweep (not occupancy-solved — once inside, "frame
+  // occupancy of the exterior body" is no longer a meaningful quantity),
+  // with no safeMinDist floor, because reaching inside the shell on purpose
+  // is the entire point. See main.frag.js's in-shader interior auto-detect
+  // (originSolidD < -uWallThickness*1.3).
+  // distRange[1]=0.55 stops well short of the origin (V3 Phase 13 finding:
+  // diving all the way to ~0.1 put the camera nose-against-the-interior-
+  // wall, reading as a near-featureless flat gray plane instead of a
+  // legible chamber — see docs/creative-critique-v3.md). Stopping at 0.55
+  // keeps the camera inside the hollow (past uWallThickness*1.3 ≈ 0.21 in
+  // every direction the body's geometry actually reaches) with enough room
+  // to see the interior ring architecture rather than pressed against it.
+  PASS_THROUGH: { minDur: 9, maxDur: 9, distRange: [7.0, 0.55], angSpeedMult: 0.1, elevOverride: null, offsetMult: 0.2, allowMotion: false, pushOverTime: true, explicitDist: true, transitionType: "PASS_THROUGH" },
 };
 
 // Authored per-chapter shot sequences (cycled if the chapter runs longer
 // than one pass through the list). Chosen per creative-bible.md's per-
-// chapter dramatic function, not arbitrarily — e.g. Contraction leans on
-// STATIC_HOLD (it IS the restraint chapter), Fracture alternates
-// VIOLENT_INSERT with STATIC_HOLD (matching its real audio turbulence/
-// trough alternation), Widening opens wide and pushes into its macro
-// insert, Departure recedes.
+// chapter dramatic function — e.g. Contraction leans on STATIC_HOLD (it IS
+// the restraint chapter), Fracture alternates VIOLENT_INSERT with
+// STATIC_HOLD (matching its real audio turbulence/trough alternation),
+// Widening opens wide and pushes into its macro insert, Departure recedes.
 const CHAPTER_SHOT_SEQUENCES = [
   ["EXTREME_WIDE", "UNEXPECTED_HORIZON", "SLOW_PUSH"], // 0 Emergence
   ["SLOW_PUSH", "NEGATIVE_SPACE", "PROFILE_SILHOUETTE"], // 1 First Drive
@@ -57,9 +100,9 @@ const CHAPTER_SHOT_SEQUENCES = [
 ];
 
 // Per-chapter base recipe (heading/elevation character), carried over from
-// the old CHAPTER_CAMERA table in camera.js — the shot grammar modulates
-// these rather than replacing them, so each chapter keeps its own
-// underlying "handwriting."
+// the old CHAPTER_CAMERA table — the shot grammar modulates these rather
+// than replacing them, so each chapter keeps its own underlying
+// "handwriting."
 const CHAPTER_BASE = [
   { baseAngSpeed: 0.015, baseElev: 0.24, offset: [0.35, -0.15] },
   { baseAngSpeed: 0.05, baseElev: 0.24, offset: [-0.4, 0.1] },
@@ -70,6 +113,28 @@ const CHAPTER_BASE = [
   { baseAngSpeed: 0.09, baseElev: 0.22, offset: [-0.2, 0.25] },
   { baseAngSpeed: 0.04, baseElev: 0.1, offset: [0.15, -0.1] },
   { baseAngSpeed: 0.012, baseElev: 0.15, offset: [-0.3, 0.15] },
+];
+
+// 17:47 ontological rupture (V3 §"17:47 CRITICAL STORY PIVOT"): the ONE
+// authored PASS_THROUGH event in the whole piece. Duplicated as a constant
+// (not imported) rather than pulled from MusicalDirector, matching this
+// file's existing style of duplicating CHAPTER_START_END to avoid a
+// circular/async dependency — MusicalDirector.load() is async (fetches
+// track-map.json) and CameraDirector.init() must stay synchronous and run
+// before first render. Must match MusicalDirector's EXCEPTIONAL_EVENTS
+// "rupture_1747" entry.
+const RUPTURE_T = 1067.19;
+const RUPTURE_LEAD_BARS = 3; // start the pass-through this many bars before the rupture instant
+const RUPTURE_TAIL_BARS = 4; // hold inside a few bars past it before cutting away
+
+// Chapter boundaries duplicated here (not imported) to avoid a circular
+// import with timeline.js at module-init time when this file is first
+// evaluated before timeline.js's CHAPTERS constant is guaranteed ready in
+// all bundler orders; values are identical to timeline.js's CHAPTERS.
+const CHAPTER_START_END = [
+  [0.0, 150.19], [150.19, 504.85], [504.85, 809.82], [809.82, 1067.19],
+  [1067.19, 1451.85], [1451.85, 1980.04], [1980.04, 2353.85],
+  [2353.85, 2482.0], [2482.0, DURATION],
 ];
 
 function buildShotSegments(barTimes) {
@@ -118,20 +183,34 @@ function buildShotSegments(barTimes) {
   return segments;
 }
 
-// Chapter boundaries duplicated here (not imported) to avoid a circular
-// import with timeline.js at module-init time when this file is first
-// evaluated before timeline.js's CHAPTERS constant is guaranteed ready in
-// all bundler orders; values are identical to timeline.js's CHAPTERS.
-const CHAPTER_START_END = [
-  [0.0, 150.19], [150.19, 504.85], [504.85, 809.82], [809.82, 1067.19],
-  [1067.19, 1451.85], [1451.85, 1980.04], [1980.04, 2353.85],
-  [2353.85, 2482.0], [2482.0, DURATION],
-];
+// Splices the one authored PASS_THROUGH event into the segment table across
+// the 17:47 rupture, replacing whatever the normal per-chapter cycle would
+// have put there. Snapped to the bar grid on both ends — "permission for
+// editorial events," same doctrine as every other cut in this file — and
+// deliberately straddles the Ch4(Re-ignition)/Ch5(Second Drift) boundary,
+// since that boundary already lands exactly on the rupture instant per
+// docs/cue-sheet.md ("Ch4 -> Ch5... coincides with the spectral spike
+// event... same instant, not a separate cut").
+function spliceRuptureOverride(segments, barTimes) {
+  const before = barTimes.filter((b) => b <= RUPTURE_T);
+  const after = barTimes.filter((b) => b > RUPTURE_T);
+  const start = before[Math.max(0, before.length - 1 - RUPTURE_LEAD_BARS)];
+  const end = after[Math.min(after.length - 1, RUPTURE_TAIL_BARS)];
+  if (start == null || end == null || end <= start) return segments; // beat grid too sparse near the rupture — leave the normal cycle in place rather than risk a malformed segment
+
+  const kept = segments.filter((s) => s.end <= start || s.start >= end);
+  const chapterIndexAtRupture = findChapterIndex(RUPTURE_T);
+  kept.push({ start, end, type: "PASS_THROUGH", chapterIndex: chapterIndexAtRupture, isRupture: true });
+  return kept.sort((a, b) => a.start - b.start);
+}
 
 function pseudoNoise(x) {
   const s = Math.sin(x * 12.9898) * 43758.5453;
   return s - Math.floor(s);
 }
+
+const lerp3 = (a, b, e) => [a[0] + (b[0] - a[0]) * e, a[1] + (b[1] - a[1]) * e, a[2] + (b[2] - a[2]) * e];
+const ease = (t) => t * t * (3 - 2 * t);
 
 export class CameraDirector {
   constructor() {
@@ -141,7 +220,8 @@ export class CameraDirector {
 
   // Must be called once (after beat_grid.json loads) before update().
   init(barTimes) {
-    this.shotSegments = buildShotSegments(barTimes);
+    const base = buildShotSegments(barTimes);
+    this.shotSegments = spliceRuptureOverride(base, barTimes);
     this._buildAzimuthTable();
   }
 
@@ -178,44 +258,38 @@ export class CameraDirector {
       if (segs[mid].end <= t) lo = mid + 1;
       else hi = mid;
     }
-    const seg = segs[Math.min(lo, segs.length - 1)];
-    return { seg, type: SHOT_TYPES[seg.type] };
+    const idx = Math.min(lo, segs.length - 1);
+    return { seg: segs[idx], type: SHOT_TYPES[segs[idx].type], idx };
   }
 
-  update(p) {
-    if (!this.shotSegments) {
-      throw new Error("CameraDirector.init(barTimes) must be called before update()");
+  // Pure function: camera params for a given segment/type at a given
+  // absolute time `t` (not necessarily t inside [seg.start,seg.end) — used
+  // both for "this shot right now" and for "what would the PREVIOUS shot's
+  // params have been at the moment of the cut," which is what an EASE
+  // transition blends from.
+  _paramsForSegment(seg, type, t, restraintOverride) {
+    const base = CHAPTER_BASE[seg.chapterIndex];
+    const shotT = ease(Math.min(1, Math.max(0, seg.end > seg.start ? (t - seg.start) / (seg.end - seg.start) : 0)));
+
+    let dist;
+    if (type.explicitDist) {
+      dist = type.distRange[0] + (type.distRange[1] - type.distRange[0]) * shotT;
+    } else {
+      const occNow = type.pushOverTime ? type.occupancy[0] + (type.occupancy[1] - type.occupancy[0]) * shotT : type.occupancy[0];
+      dist = occupancyDist(occNow);
+      if (type.safeMinDist) dist = Math.max(dist, type.safeMinDist);
     }
-    const base = CHAPTER_BASE[p.chapterIndex];
-    const { seg, type } = this._shotAt(p.t);
 
-    const shotT = seg.end > seg.start ? (p.t - seg.start) / (seg.end - seg.start) : 0;
-
-    // camDist: interpolate the shot's distance multiplier (pushOverTime
-    // shots sweep from distMult[0] to distMult[1] across the shot;
-    // otherwise it's a fixed multiplier of the chapter's own camDist).
-    const distMultNow = type.pushOverTime
-      ? type.distMult[0] + (type.distMult[1] - type.distMult[0]) * shotT
-      : type.distMult[0];
-    let dist = p.camDist * distMultNow;
-    if (type.safeMinDist) dist = Math.max(dist, type.safeMinDist);
-
-    // v2 Phase 4: kick -> pressure/displacement, a brief push-in rather
-    // than a brightness or scale pulse — the mapping table's "pressure,
-    // weight, spatial displacement" for kick/sub. p.kick is already
-    // restraint-gated and attack/release-smoothed by VisualDirector /
-    // AudioFeatureEngine, so no extra gating needed here.
-    if (p.kick) dist *= 1 - p.kick * 0.035;
-
-    const az0 = this._azimuthAt(p.t);
+    const az0 = this._azimuthAt(t);
     const az = type.azimuthLockOffset != null ? az0 + type.azimuthLockOffset : az0;
 
-    const elevOsc = type.allowMotion ? Math.sin(p.t * 0.05) * 0.08 : 0;
+    const elevOsc = type.allowMotion ? Math.sin(t * 0.05) * 0.08 : 0;
     const elev = type.elevOverride != null ? type.elevOverride : base.baseElev + elevOsc;
 
-    const jitterAmt = (type.extraJitter || 0) * (1 - p.restraint);
-    const jitterX = jitterAmt > 0 ? (pseudoNoise(p.t * 17.3) - 0.5) * jitterAmt : 0;
-    const jitterY = jitterAmt > 0 ? (pseudoNoise(p.t * 23.7 + 91.0) - 0.5) * jitterAmt : 0;
+    const restraint = restraintOverride != null ? restraintOverride : getRestraintFactor(t);
+    const jitterAmt = (type.extraJitter || 0) * (1 - restraint);
+    const jitterX = jitterAmt > 0 ? (pseudoNoise(t * 17.3) - 0.5) * jitterAmt : 0;
+    const jitterY = jitterAmt > 0 ? (pseudoNoise(t * 23.7 + 91.0) - 0.5) * jitterAmt : 0;
 
     const finalAz = az + jitterX;
     const finalEl = elev + jitterY;
@@ -233,6 +307,72 @@ export class CameraDirector {
       0,
     ];
 
-    return { camPos, camTarget: target, fov: 45, shotType: seg.type };
+    return { camPos, target, dist };
+  }
+
+  update(p) {
+    if (!this.shotSegments) {
+      throw new Error("CameraDirector.init(barTimes) must be called before update()");
+    }
+    const { seg, type, idx } = this._shotAt(p.t);
+    const current = this._paramsForSegment(seg, type, p.t, p.restraint);
+
+    let camPos = current.camPos;
+    let target = current.target;
+    let dissolveWeight = 0;
+
+    // Transition grammar (V3 Phase 8): most cuts are still hard cuts by
+    // construction (consecutive segments simply swap recipe at the bar
+    // boundary — a deliberate, editorial choice, not an oversight, per
+    // v2's own documented rationale). EASE blends camera position across a
+    // short window from the previous segment's own end-state; TEMPORAL_
+    // DISSOLVE (Fracture's restraint-pocket entries/exits) is signaled back
+    // to main.js as a memoryWeight boost rather than a camera change — the
+    // cut visibly persists through the feedback trail instead of an instant
+    // swap, reusing MEMORY rather than building a second crossfade system.
+    const timeSinceStart = p.t - seg.start;
+    // Fracture's restraint pockets (R2/R3) are specifically STATIC_HOLD
+    // segments inside chapter 6 — override STATIC_HOLD's default EASE with
+    // TEMPORAL_DISSOLVE only there, so the "contrast is the point" pockets
+    // read as the just-finished turbulence decaying through the feedback
+    // trail rather than a smoothed camera move. STATIC_HOLD everywhere else
+    // (e.g. Contraction) keeps the plain EASE behavior.
+    let transitionType = type.transitionType || "HARD_CUT";
+    if (seg.type === "STATIC_HOLD" && seg.chapterIndex === 6) transitionType = "TEMPORAL_DISSOLVE";
+
+    const EASE_WINDOW = 1.6;
+    if (transitionType === "EASE" && idx > 0 && timeSinceStart < EASE_WINDOW) {
+      const prevSeg = this.shotSegments[idx - 1];
+      const prevType = SHOT_TYPES[prevSeg.type];
+      const prevAtCut = this._paramsForSegment(prevSeg, prevType, seg.start, p.restraint);
+      const e = ease(Math.min(1, timeSinceStart / EASE_WINDOW));
+      camPos = lerp3(prevAtCut.camPos, camPos, e);
+      target = lerp3(prevAtCut.target, target, e);
+    }
+    if (transitionType === "TEMPORAL_DISSOLVE" && timeSinceStart < 2.0) {
+      dissolveWeight = 1 - ease(Math.min(1, timeSinceStart / 2.0));
+    }
+
+    let dist = Math.hypot(camPos[0], camPos[1], camPos[2]);
+
+    // v2 Phase 4 (unchanged): kick -> pressure/displacement, a brief
+    // push-in rather than a brightness or scale pulse. Skipped during
+    // PASS_THROUGH — a kick-driven wobble while deliberately threading the
+    // camera through a thin shell wall risks visibly clipping the cut.
+    if (p.kick && !type.explicitDist) {
+      const scale = 1 - p.kick * 0.035;
+      camPos = [camPos[0] * scale, camPos[1] * scale, camPos[2] * scale];
+      dist *= scale;
+    }
+
+    return {
+      camPos,
+      camTarget: target,
+      fov: FOV_DEG,
+      shotType: seg.type,
+      transitionType,
+      dissolveWeight,
+      isRupture: !!seg.isRupture,
+    };
   }
 }

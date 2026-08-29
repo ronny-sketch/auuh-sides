@@ -1,0 +1,1045 @@
+{
+  "note": "Candidates only \u2014 not hallucinated from track names (none known). Confirm/correct/densify with analysis/annotate.html. Tempo is a single global 123.05 BPM estimate from analysis/analyze.py, NOT re-verified with a windowed tempogram in this pass \u2014 see docs/v2-plan.md Phase 2.",
+  "n_candidates": 124,
+  "candidates": [
+    {
+      "t": 30.04,
+      "score": 0.21273326873779297,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 61.98,
+      "score": 0.38590483272774145,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 64.0,
+      "score": 0.26862549781799316,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 94.8,
+      "score": 0.2974271774291992,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 105.04,
+      "score": 0.28937381505966187,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 143.98,
+      "score": 0.30850041688424135,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 163.92,
+      "score": 0.3674751818180084,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 171.84,
+      "score": 0.3383120000362396,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 184.0,
+      "score": 0.317332923412323,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 216.72,
+      "score": 0.32073270043805246,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 243.82,
+      "score": 0.25503355264663696,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 247.66,
+      "score": 0.3437182605266571,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 280.2,
+      "score": 0.27276039123535156,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 294.24,
+      "score": 0.3883975702516734,
+      "evidence": [
+        "bass_drop",
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 306.26,
+      "score": 0.24398264288902283,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 343.98,
+      "score": 0.4506655799940228,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 363.98,
+      "score": 0.3726798892021179,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 383.98,
+      "score": 0.38102400302886963,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 392.04,
+      "score": 0.3176576495170593,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 418.52,
+      "score": 0.2266962230205536,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 441.82,
+      "score": 0.3097725510597229,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 457.22,
+      "score": 0.34800328516196166,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 483.68,
+      "score": 0.24126777052879333,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 484.66,
+      "score": 0.24126777052879333,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 522.4,
+      "score": 0.26915907859802246,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 525.04,
+      "score": 0.34511396288871765,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 563.98,
+      "score": 0.31317025423049927,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 577.54,
+      "score": 0.30061084032058716,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 599.08,
+      "score": 0.34023696184158325,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 618.44,
+      "score": 0.32589128613471985,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 643.98,
+      "score": 0.37475407806914296,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 663.94,
+      "score": 0.3932967782020569,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 664.88,
+      "score": 0.3932967782020569,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 703.6,
+      "score": 0.3374797999858856,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 722.94,
+      "score": 0.33877289295196533,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 743.98,
+      "score": 0.3995702564716339,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 763.72,
+      "score": 0.32410693168640137,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 770.14,
+      "score": 0.3650931715965271,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 792.68,
+      "score": 0.4157884418964386,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 808.48,
+      "score": 0.3883223831653595,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 824.0,
+      "score": 0.45764321088790894,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 846.72,
+      "score": 0.3829231858253479,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 866.54,
+      "score": 0.3236609101295471,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 893.28,
+      "score": 0.27718546986579895,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 908.76,
+      "score": 0.3150905668735504,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 928.12,
+      "score": 0.3202934265136719,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 944.6,
+      "score": 0.2811814248561859,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 982.1,
+      "score": 0.27946221828460693,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 988.42,
+      "score": 0.2770257592201233,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1018.1,
+      "score": 0.33614975214004517,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1041.22,
+      "score": 0.5572892824181704,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1060.16,
+      "score": 0.5029361437869346,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1068.42,
+      "score": 0.564991098826863,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1092.42,
+      "score": 0.38407161831855774,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1107.9,
+      "score": 0.4240853190422058,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1138.1,
+      "score": 0.342235803604126,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1160.84,
+      "score": 0.5287120824502228,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1174.32,
+      "score": 0.25741997361183167,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1197.36,
+      "score": 0.4065651681998743,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1220.3,
+      "score": 0.4286467322269455,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1232.0,
+      "score": 0.2949090898036957,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1260.66,
+      "score": 0.33566373586654663,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1283.98,
+      "score": 0.3413509130477905,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1287.1,
+      "score": 0.35872405767440796,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1322.38,
+      "score": 0.3230605125427246,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1324.3,
+      "score": 0.345805287361145,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1359.82,
+      "score": 0.5422230485845823,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1383.64,
+      "score": 0.3145415782928467,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1384.3,
+      "score": 0.2689383625984192,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1421.08,
+      "score": 0.4895625888539944,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1441.66,
+      "score": 0.4656924903392792,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1458.4,
+      "score": 0.4303782284259796,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1473.54,
+      "score": 0.4433406889438629,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1491.44,
+      "score": 0.42925333976745605,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1511.92,
+      "score": 0.3880329132080078,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1534.9,
+      "score": 0.3938594460487366,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1560.34,
+      "score": 0.3506253904346377,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1583.8,
+      "score": 0.3359220623970032,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1595.56,
+      "score": 0.34306836128234863,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1623.76,
+      "score": 0.2435866892337799,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1640.3,
+      "score": 0.3790070712566376,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1663.72,
+      "score": 0.32275766134262085,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1683.98,
+      "score": 0.25151246786117554,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1700.34,
+      "score": 0.23820459842681885,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1704.0,
+      "score": 0.3047090172767639,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1739.2,
+      "score": 0.3347272276878357,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1747.84,
+      "score": 0.3059178590774536,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1764.12,
+      "score": 0.32612964510917664,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1793.34,
+      "score": 0.2835550308227539,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1808.66,
+      "score": 0.3100903034210205,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1824.0,
+      "score": 0.31857919692993164,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1852.64,
+      "score": 0.27974653244018555,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1879.62,
+      "score": 0.4510907332748873,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1895.2,
+      "score": 0.5883441934081115,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1904.0,
+      "score": 0.27195796370506287,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 1933.52,
+      "score": 0.48998370691526794,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1956.5,
+      "score": 0.5530358263146917,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 1976.04,
+      "score": 0.4373969407341516,
+      "evidence": [
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 1984.2,
+      "score": 0.3072928190231323,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2004.0,
+      "score": 0.36079877614974976,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2031.16,
+      "score": 0.33634719252586365,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2063.98,
+      "score": 0.37564757466316223,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2083.3,
+      "score": 0.49353256821632385,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 2084.48,
+      "score": 0.49353256821632385,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 2107.3,
+      "score": 0.30295610427856445,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2137.94,
+      "score": 0.3160479664802551,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2155.58,
+      "score": 0.37824990804828695,
+      "evidence": [
+        "bass_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2183.54,
+      "score": 0.44223761558532715,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 2185.12,
+      "score": 0.44223761558532715,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 2204.0,
+      "score": 0.45689600706100464,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "medium"
+    },
+    {
+      "t": 2224.0,
+      "score": 0.39217931032180786,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2248.94,
+      "score": 0.32496923208236694,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2283.46,
+      "score": 0.3848143517971039,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2289.14,
+      "score": 0.2868713438510895,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2312.16,
+      "score": 0.4805119037628174,
+      "evidence": [
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "high"
+    },
+    {
+      "t": 2324.0,
+      "score": 0.3676571846008301,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2363.84,
+      "score": 0.3061235547065735,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2379.14,
+      "score": 0.3905068039894104,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2393.04,
+      "score": 0.35378915071487427,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2407.84,
+      "score": 0.38668397068977356,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2432.78,
+      "score": 0.3373733162879944,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2446.18,
+      "score": 0.38996416330337524,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2480.54,
+      "score": 0.37212496995925903,
+      "evidence": [
+        "chroma_discontinuity"
+      ],
+      "tier": "low"
+    },
+    {
+      "t": 2503.98,
+      "score": 0.6821583645947373,
+      "evidence": [
+        "bass_drop",
+        "percussive_drop",
+        "chroma_discontinuity",
+        "rms_dip"
+      ],
+      "tier": "high"
+    }
+  ]
+}

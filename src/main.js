@@ -2,18 +2,42 @@ import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders/main.frag.js";
 import { CameraDirector } from "./core/CameraDirector.js";
 import { AudioEngine } from "./core/audio.js";
-import { DURATION } from "./core/timeline.js";
+import { DURATION, EVENTS } from "./core/timeline.js";
 import { FeedbackPipeline } from "./core/FeedbackPipeline.js";
 import { AudioFeatureEngine } from "./core/AudioFeatureEngine.js";
 import { VisualDirector } from "./core/VisualDirector.js";
+import { MusicalDirector } from "./core/MusicalDirector.js";
+import { SceneDirector, FAMILY } from "./core/SceneDirector.js";
+import { LightDirector } from "./core/LightDirector.js";
+import { MaterialDirector } from "./core/MaterialDirector.js";
 
 const appEl = document.getElementById("app");
 const hudEl = document.getElementById("hud");
 const startOverlay = document.getElementById("startOverlay");
 
+// docs/v3-creative-direction.md §1: every existing QA preview clip has the
+// debug HUD baked into the frame, which changes how a composed shot reads
+// (text over the bottom third of frame). ?hud=off hides the overlay so
+// exemplar renders can be judged purely on composition.
+if (new URLSearchParams(location.search).get("hud") === "off") {
+  hudEl.style.display = "none";
+}
+
 const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 appEl.appendChild(renderer.domElement);
+
+// CHAMBER shell thickness (V3 Phase 3) — a single shared constant rather
+// than a per-family-blend-modulated value: the interior/exterior switch is
+// driven by real camera position crossing this thickness (main.frag.js),
+// not by a continuous blend, so varying it per frame would make where the
+// camera can safely cross both fuzzy and non-deterministic-feeling.
+const WALL_THICKNESS = 0.16;
+
+const smoothstep = (e0, e1, x) => {
+  const t = Math.min(1, Math.max(0, (x - e0) / (e1 - e0)));
+  return t * t * (3 - 2 * t);
+};
 
 const uniforms = {
   uResolution: { value: new THREE.Vector2(1, 1) },
@@ -28,14 +52,34 @@ const uniforms = {
   uContrast: { value: 0.8 },
   uColorMix: { value: 0 },
   uRestraint: { value: 0 },
-  // Phase 6 (temporal feedback) uniforms — uPrevFrame is assigned per-frame
-  // by FeedbackPipeline from the ping-pong history target.
+  // Phase 6/7 (temporal feedback) uniforms — uPrevFrame/uHistory1-3 are
+  // assigned per-frame by FeedbackPipeline from its history ring.
   uPrevFrame: { value: null },
+  uHistory1: { value: null },
+  uHistory2: { value: null },
+  uHistory3: { value: null },
   uMemoryWeight: { value: 0 },
   uMemoryDrift: { value: new THREE.Vector2(0, 0) },
   // BODY topology blend (v2 Phase 3) + micro-texture boost (v2 Phase 4)
   uFormBlend: { value: 0 },
   uGrainBoost: { value: 1 },
+  // V3 SceneDirector families
+  uWallThickness: { value: WALL_THICKNESS },
+  uFieldWeight: { value: 0 },
+  uEchoWeight: { value: 0 },
+  uBlackout: { value: 0 },
+  // V3 LightDirector
+  uLightMode: { value: 1 },
+  uLightDir: { value: new THREE.Vector3(0.6, 0.75, -0.3) },
+  uLightIntensity: { value: 1.0 },
+  uAmbient: { value: 0.02 },
+  uRimAmount: { value: 0.18 },
+  // V3 MaterialDirector
+  uMaterialMode: { value: 0 },
+  uAlbedo: { value: 0.85 },
+  uSpecular: { value: 0.15 },
+  uRoughness: { value: 0.85 },
+  uGrainMix: { value: 1.0 },
 };
 
 const geometry = new THREE.PlaneGeometry(2, 2);
@@ -50,12 +94,16 @@ const pipeline = new FeedbackPipeline(
   window.innerHeight
 );
 
-pipeline.reset(); // start both history targets from a known black state
+pipeline.reset(); // start the history ring from a known black state
 
 const cameraDirector = new CameraDirector();
 const audio = new AudioEngine("/AUUH.m4a");
 const featureEngine = new AudioFeatureEngine();
 const visualDirector = new VisualDirector(featureEngine);
+const musicalDirector = new MusicalDirector();
+const sceneDirector = new SceneDirector(musicalDirector);
+const lightDirector = new LightDirector();
+const materialDirector = new MaterialDirector();
 
 function resize() {
   const w = window.innerWidth;
@@ -76,9 +124,22 @@ function memoryDriftAt(t) {
   return [dx, dy];
 }
 
+// How much of a family's presence is "live" right now, given SceneDirector's
+// primary/secondary/blend model (blend=0 -> pure primary, blend=1 -> pure
+// secondary) — shared by the FIELD and ECHO uniform wiring below.
+function familyWeight(scene, family) {
+  if (scene.primaryFamily === family) return 1 - scene.blend;
+  if (scene.secondaryFamily === family) return scene.blend;
+  return 0;
+}
+
 function applyUniformsForT(t) {
   const p = visualDirector.sample(t);
   const cam = cameraDirector.update(p);
+  const scene = sceneDirector.sample(t);
+  const light = lightDirector.sample(t, scene.sceneState);
+  const dominantFamily = scene.blend > 0.5 ? scene.secondaryFamily : scene.primaryFamily;
+  const mat = materialDirector.sample(p.chapterIndex, dominantFamily, scene.sceneState);
 
   uniforms.uTime.value = t;
   uniforms.uCamPos.value.set(cam.camPos[0], cam.camPos[1], cam.camPos[2]);
@@ -91,13 +152,42 @@ function applyUniformsForT(t) {
   uniforms.uContrast.value = p.contrast;
   uniforms.uColorMix.value = p.colorMix;
   uniforms.uRestraint.value = p.restraint;
-  uniforms.uMemoryWeight.value = p.memoryWeight;
   uniforms.uFormBlend.value = p.formBlend;
   uniforms.uGrainBoost.value = p.grainBoost;
+
+  // TEMPORAL_DISSOLVE cuts (Fracture's restraint pockets) boost memoryWeight
+  // for ~2s right at the cut so the previous shot visibly persists/decays
+  // through the feedback trail instead of swapping instantly — see
+  // CameraDirector's transition-grammar comment.
+  uniforms.uMemoryWeight.value = Math.min(0.95, p.memoryWeight + cam.dissolveWeight * 0.6);
   const [dx, dy] = memoryDriftAt(t);
   uniforms.uMemoryDrift.value.set(dx, dy);
 
+  uniforms.uWallThickness.value = WALL_THICKNESS;
+  uniforms.uFieldWeight.value = familyWeight(scene, FAMILY.FIELD);
+  uniforms.uEchoWeight.value = familyWeight(scene, FAMILY.ECHO);
+  uniforms.uBlackout.value = smoothstep(EVENTS.silenceFloor, DURATION, t);
+
+  uniforms.uLightMode.value = light.mode;
+  uniforms.uLightDir.value.set(light.dir[0], light.dir[1], light.dir[2]);
+  uniforms.uLightIntensity.value = light.intensity;
+  uniforms.uAmbient.value = light.ambient;
+  uniforms.uRimAmount.value = light.rim;
+
+  uniforms.uMaterialMode.value = mat.mode;
+  uniforms.uAlbedo.value = mat.albedo;
+  uniforms.uSpecular.value = mat.specular;
+  uniforms.uRoughness.value = mat.roughness;
+  uniforms.uGrainMix.value = mat.grainMix;
+
   p.shotType = cam.shotType;
+  p.transitionType = cam.transitionType;
+  p.sceneState = scene.sceneState;
+  p.primaryFamily = scene.primaryFamily;
+  p.secondaryFamily = scene.secondaryFamily;
+  p.blend = scene.blend;
+  p.materialName = mat.material;
+  p.lightMode = light.mode;
   return p;
 }
 
@@ -105,7 +195,7 @@ function applyUniformsForT(t) {
 // (Puppeteer sets window.__AUUH_MANUAL_T__ and calls __AUUH_RENDER_AT__).
 let manualT = null;
 
-// Seek/QA mode: warm up the feedback buffer from WARMUP_SECONDS before the
+// Seek/QA mode: warm up the feedback ring from WARMUP_SECONDS before the
 // requested t, discarding that output, so a direct seek doesn't start from
 // a blank feedback history. Same t + same warm-up recipe is deterministic
 // (pure function of t throughout — see core/CameraDirector.js, core/params.js).
@@ -119,9 +209,10 @@ function renderAt(t) {
   });
 
   hudEl.textContent =
-    `t=${t.toFixed(2)}  ch=${p.chapterIndex} ${p.chapterName}  phase=${p.phase} (${p.phaseT.toFixed(2)})  shot=${p.shotType}\n` +
+    `t=${t.toFixed(2)}  ch=${p.chapterIndex} ${p.chapterName}  phase=${p.phase} (${p.phaseT.toFixed(2)})  shot=${p.shotType} (${p.transitionType})\n` +
     `fold=${p.fold.toFixed(2)} blend=${p.foldBlend.toFixed(2)} turb=${p.turbulence.toFixed(2)} frac=${p.fracture.toFixed(2)} form=${p.formBlend.toFixed(2)}\n` +
-    `camDist=${p.camDist.toFixed(2)} contrast=${p.contrast.toFixed(2)} colorMix=${p.colorMix.toFixed(2)} restraint=${p.restraint.toFixed(2)} mem=${p.memoryWeight.toFixed(2)} grain=${p.grainBoost.toFixed(2)}`;
+    `camDist=${p.camDist.toFixed(2)} contrast=${p.contrast.toFixed(2)} colorMix=${p.colorMix.toFixed(2)} restraint=${p.restraint.toFixed(2)} mem=${p.memoryWeight.toFixed(2)} grain=${p.grainBoost.toFixed(2)}\n` +
+    `scene=${p.primaryFamily}->${p.secondaryFamily} (${p.blend.toFixed(2)}) ${p.sceneState}  material=${p.materialName}  light=${p.lightMode}`;
 
   return p;
 }
@@ -151,6 +242,18 @@ async function init() {
     console.log(`AudioFeatureEngine loaded: ${featureEngine.nFrames} frames`);
   } catch (err) {
     console.warn("AudioFeatureEngine not available, running MACRO-only:", err);
+  }
+
+  // MusicalDirector (V3 Phase 1) is also optional/graceful — SceneDirector
+  // falls back to MACRO-only family plans if track-map.json can't load, and
+  // the 17:47 CHAMBER reveal itself is driven by CameraDirector's own
+  // hardcoded PASS_THROUGH splice + the shader's real-camera-position
+  // interior detection, so it does not depend on MusicalDirector at all.
+  try {
+    await musicalDirector.load("/track-map.json", "/annotations.json", featureEngine);
+    console.log(`MusicalDirector loaded: ${musicalDirector.transitions.length} transitions`);
+  } catch (err) {
+    console.warn("MusicalDirector not available, SceneDirector running MACRO-only:", err);
   }
 
   window.__AUUH_RENDER_AT__ = (t) => {
