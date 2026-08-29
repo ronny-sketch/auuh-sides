@@ -172,14 +172,54 @@ both exist to enforce.
   path), and automated pixel checks (0 issues across 150 samples, with the
   explicit caveat in Finding 4 about what that does and doesn't prove).
 
-## Not yet critiqued (pending more render output)
+## Finding 5: EXTREME_WIDE doesn't always look wide — shot-type distance multipliers stack on top of the chapter's own macro camDist curve, not an absolute frame
 
-This document will be extended once the full contact sheet and per-chapter
-preview clips (in progress as of this writing — see
-`docs/v2-plan.md` Phase 9) are available: specifically, whether the
-INTERIOR/FIELD families' absence is felt as a real gap when watching
-whole-chapter spans rather than single frames, whether the camera grammar
-reads as authored cinematography or still as "a slightly fancier orbit"
-when watched in motion rather than sampled at single timestamps, and
-whether the MEMORY/feedback trails are visible and dreamlike in motion the
+**Evidence:** `previews/v2/ch5_widening_macro.mp4` at t=1702 and t=1714 —
+HUD reads `shot=EXTREME_WIDE` at both instants, but `camDist=3.2-3.24`,
+and the body fills nearly the entire frame. This is Widening's macro-
+insert region, where the chapter's own authored `camDist` arc is already
+very small (per `params.js`, dipping toward ~2.7 at its transformation
+peak). `EXTREME_WIDE`'s multiplier (1.8-2.2x, see `CameraDirector.js`
+`SHOT_TYPES`) is applied *relative to* that already-small base, so the
+"widest" shot type available still produces a close-up during this window
+— the shot grammar modulates the chapter's own distance curve rather than
+imposing an absolute framing, which is the correct architecture (per
+`docs/v2-plan.md`'s "each chapter keeps its own underlying handwriting")
+but means a shot type's name doesn't always match what it visually
+delivers when it lands inside a chapter's own extreme moment. Not a bug —
+a real interaction between two systems that both have legitimate authority
+over camera distance — but worth knowing before assuming "EXTREME_WIDE"
+means the same thing everywhere it appears in the shot-segment table.
+
+**What IS confirmed working in motion, not just single frames:** comparing
+the same two timestamps, azimuth has genuinely rotated (the fold-seam line
+crossing the body moved position), and `fold`/`turbulence` continue
+evolving smoothly (8.35→8.65, 0.58→0.61) — this is real, continuous camera
+and parameter motion across the clip, not a static frame sampled twice.
+
+## Verdict on the questions this section was left open for
+
+- **INTERIOR/FIELD absence, felt in motion**: yes, still felt. Watching
+  full 18-second spans confirms the piece currently has exactly one kind
+  of spatial experience (looking at an object from outside, at varying
+  distance/angle) for the entire 42 minutes. The BODY topology blend gives
+  real silhouette variety (confirmed above), but there's no moment where
+  the camera's *relationship* to the form changes qualitatively — it never
+  goes from "observing an object" to "occupying a space," which is exactly
+  what INTERIOR was designed to provide. This remains the most important
+  deferred item for the next pass.
+- **Camera grammar in motion**: reads as more than "a fancier orbit" —
+  the STATIC_HOLD/VIOLENT_INSERT alternation visible across the Fracture
+  clip and the genuine azimuth/distance drift confirmed above are real,
+  bar-gated editorial decisions, not a single continuous function. Finding
+  5 is the honest caveat: the grammar's *labels* imply more absolute
+  control over framing than the system actually has.
+- **MEMORY/feedback trails, in motion**: visible but subtle at the
+  `memoryWeight` values most chapters actually reach (0.1-0.2 outside
+  restraint windows) — confirmed present (soft double-edges on moving
+  silhouettes in the Fracture and Widening clips) but not yet strongly
+  "dreamlike." Raising baseline `memoryWeight` moderately, or making it
+  audio-reactive (per `docs/v2-plan.md`'s noted future work — currently
+  it's chapter-authored, not MESO/MICRO-driven) is the likely next lever
+  if stronger persistence is wanted.
 way single-frame screenshots can't fully show.
