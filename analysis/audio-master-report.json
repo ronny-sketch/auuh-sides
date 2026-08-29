@@ -1,0 +1,62 @@
+{
+  "source": "audio/AUUH.m4a",
+  "measuredAt": "2026-08-29",
+  "method": "ffprobe (format/stream) + ffmpeg loudnorm (EBU R128 analysis pass) + ffmpeg astats + ffmpeg silencedetect(noise=-50dB,d=0.5)",
+  "container": "mov,mp4,m4a,3gp,3g2,mj2 (M4A brand)",
+  "codec": "aac",
+  "codecProfile": "LC",
+  "sampleRateHz": 44100,
+  "channels": 2,
+  "channelLayout": "stereo",
+  "bitsPerSample": null,
+  "bitrateBps": 320074,
+  "durationSec": 2526.934785,
+  "fileSizeBytes": 101547343,
+  "encoderInitialPaddingSamples": 2112,
+  "loudness": {
+    "integratedLUFS": -16.22,
+    "loudnessRangeLU": 7.2,
+    "gatingThresholdLUFS": -26.31,
+    "truePeakDBTP": 0.11,
+    "samplePeakDB": 0.004,
+    "samplePeakCount": 2,
+    "maxSampleValue": 1.000471,
+    "minSampleValue": -0.997317,
+    "dcOffset": 0.000004,
+    "nanCount": 0,
+    "infCount": 0,
+    "denormalCount": 0
+  },
+  "silence": {
+    "headSilenceStartSec": 0,
+    "headSilenceEndSec": 2.068163,
+    "headSilenceDurationSec": 2.068163,
+    "tailSilenceStartSec": 2503.688413,
+    "tailSilenceEndSec": 2526.886893,
+    "tailSilenceDurationSec": 23.198481,
+    "silenceThresholdDB": -50,
+    "note": "Head/tail silence windows corroborate docs/cue-sheet.md's independently-derived boundaries (first onset ~00:02.09, silence floor ~42:00) — cross-check, not a new finding."
+  },
+  "findings": [
+    {
+      "id": "true_peak_over_0dbtp",
+      "severity": "minor",
+      "description": "True peak measured at +0.11 dBTP, exceeding full scale. A measured, real condition from a lossy AAC source (confirmed by astats: 2 sample-peak counts at/above 0dBFS, max sample value 1.000471).",
+      "affects": "Lossy distribution encodes only (H.264/HEVC delivery re-encoding audio). Does NOT affect the PCM archival master, where +0.11 dBTP is headroom-negative but not clipping.",
+      "recommendedAction": "Apply a transparent true-peak-safe ceiling (e.g. -1.0 dBTP) ONLY on the audio stream feeding the two delivery MP4s, via a single-pass true-peak limiter (ffmpeg alimiter or equivalent), not a loudness normalization."
+    },
+    {
+      "id": "integrated_loudness_healthy",
+      "severity": "none",
+      "description": "-16.22 LUFS integrated is close to Apple Music's -16 LUFS reference and is a normal level for a continuously-mixed DJ set of already-mastered records.",
+      "affects": "none",
+      "recommendedAction": "No loudness normalization anywhere in the pipeline. Do not target -14 LUFS or any other streaming-platform number — per the brief, preserve the mix's own artistic loudness relationships."
+    }
+  ],
+  "decision": {
+    "archivalMaster": "Decode original AAC once to PCM (24-bit, 44.1kHz source rate preserved unless the delivery container requires 48kHz, in which case document the single resample step explicitly). No gain, no limiting, no normalization. This does not restore information lost to the original AAC encode — it prevents an ADDITIONAL lossy generation inside the archival master.",
+    "hevcDelivery": "Stream-copy audio if the AAC source can be copied as-is into the MP4 container without transcoding; otherwise single-pass AAC re-encode at a transparent high bitrate (256kbps+) plus the true-peak-safe ceiling above.",
+    "h264Delivery": "Same as HEVC delivery.",
+    "processingPhilosophy": "Default assumption: less processing is better. No AI enhancement, no exciters, no stereo widening, no remastering of an already-mastered mix, no arbitrary compression. Every departure from stream-copy is logged above with its exact measured justification."
+  }
+}

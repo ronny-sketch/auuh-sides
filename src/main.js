@@ -82,6 +82,10 @@ const uniforms = {
   uSpecular: { value: 0.15 },
   uRoughness: { value: 0.85 },
   uGrainMix: { value: 1.0 },
+  // V4 Part 6: fixed grain/scanline reference resolution — see main.frag.js.
+  uGrainRefWidth: { value: 1280 },
+  uGrainRefHeight: { value: 720 },
+  uTestPattern: { value: 0 },
 };
 
 const geometry = new THREE.PlaneGeometry(2, 2);

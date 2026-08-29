@@ -2,6 +2,16 @@ export const fragmentShader = /* glsl */ `
 precision highp float;
 
 uniform vec2 uResolution;
+
+// V4 Part 6 (docs/v4-mastering-audit.md): grain and scanlines were
+// authored against uResolution directly, so their apparent density scaled
+// with actual output resolution — at 4K (9x the pixel count of 720p),
+// grain became fine digital noise and scanlines packed 3x denser, instead
+// of "the same artwork photographed with a better camera." Fixed to the
+// ORIGINAL 1280x720 reference the look was tuned at, independent of actual
+// render resolution — see main()'s grain/scanline block.
+uniform float uGrainRefWidth;
+uniform float uGrainRefHeight;
 uniform float uTime;
 uniform vec3 uCamPos;
 uniform vec3 uCamTarget;
@@ -77,6 +87,16 @@ uniform vec2 uMemoryDrift;
 // cut to nothing"). Applied as a final multiply so it overrides every
 // other family/light/material state rather than competing with them.
 uniform float uBlackout;
+
+// V4 Part 3: color-management test pattern. When >0.5, main() shortcuts to
+// flat vertical bars at EXACT intended code values (0/1/2/5/10/18/50/90/
+// 100%) plus a smooth gradient — bypassing the raymarch/tonemap entirely —
+// so the render pipeline's fidelity (WebGL canvas -> page.screenshot ->
+// ffmpeg encode) can be measured directly: does gl_FragColor=0.18 actually
+// arrive at the delivered file as code value ~46/255, or does an
+// unexpected transform (double gamma, clipping, elevated blacks) show up
+// as a measured discrepancy. See docs/v4-color-pipeline.md.
+uniform float uTestPattern;
 
 varying vec2 vUv;
 
@@ -304,6 +324,23 @@ vec3 calcNormal(vec3 p, bool interior) {
 }
 
 void main() {
+  if (uTestPattern > 0.5) {
+    // 9 flat vertical bars at exact code values, then a smooth gradient
+    // strip along the bottom third. No tonemap, no gamma, no grain — the
+    // rawest possible signal for measuring what the pipeline does to it.
+    float steps[9];
+    steps[0] = 0.0; steps[1] = 0.01; steps[2] = 0.02; steps[3] = 0.05; steps[4] = 0.10;
+    steps[5] = 0.18; steps[6] = 0.50; steps[7] = 0.90; steps[8] = 1.00;
+    float barIdx = floor(vUv.x * 9.0);
+    float barValue = steps[int(clamp(barIdx, 0.0, 8.0))];
+    vec3 col = vec3(barValue);
+    if (vUv.y < 0.28) {
+      col = vec3(vUv.x); // smooth 0->1 gradient strip
+    }
+    gl_FragColor = vec4(col, 1.0);
+    return;
+  }
+
   vec2 uv = (vUv - 0.5) * vec2(uResolution.x / uResolution.y, 1.0);
 
   vec3 fwd = normalize(uCamTarget - uCamPos);
@@ -444,10 +481,17 @@ void main() {
   // size, let alone after video compression. This is the doctrine's stated
   // "analog decay, not digital glitch" material quality, so it needs to
   // actually survive the export pipeline, not just exist in the shader.
-  float grain = hash3(vec3(vUv * uResolution, mod(uTime * 60.0, 1000.0))) - 0.5;
+  //
+  // V4 Part 6: sampled in REFERENCE resolution (uGrainRefWidth/Height,
+  // the original 1280x720 the look was authored at), not uResolution — a
+  // 4K render reads the exact same grain/scanline frequency as 720p did,
+  // just resolved with more real pixels, instead of becoming finer digital
+  // noise / 3x-denser scanlines purely because the canvas got bigger.
+  vec2 grainRefRes = vec2(uGrainRefWidth, uGrainRefHeight);
+  float grain = hash3(vec3(vUv * grainRefRes, mod(uTime * 60.0, 1000.0))) - 0.5;
   col += grain * 0.06 * uGrainBoost * uGrainMix;
 
-  float scan = sin((vUv.y + uTime * 0.03) * uResolution.y * 0.9) * 0.035;
+  float scan = sin((vUv.y + uTime * 0.03) * uGrainRefHeight * 0.9) * 0.035;
   col -= scan;
 
   // vignette

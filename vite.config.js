@@ -25,6 +25,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         director: resolve(__dirname, "director.html"),
         proxyRecord: resolve(__dirname, "proxy-record.html"),
+        masterRender: resolve(__dirname, "master-render.html"),
       },
     },
   },

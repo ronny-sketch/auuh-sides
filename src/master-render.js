@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import { fragmentShader, vertexShader } from "./shaders/main.frag.js";
 import { CameraDirector } from "./core/CameraDirector.js";
-import { AudioEngine } from "./core/audio.js";
 import { DURATION, EVENTS } from "./core/timeline.js";
 import { FeedbackPipeline } from "./core/FeedbackPipeline.js";
 import { AudioFeatureEngine } from "./core/AudioFeatureEngine.js";
@@ -13,26 +12,43 @@ import { MaterialDirector, getMaterialRecipe } from "./core/MaterialDirector.js"
 import { DirectorCueSheet } from "./core/DirectorCueSheet.js";
 import directorCues from "./direction/director-cue-sheet.json";
 
-// V3.5 item 8 — the director review PROXY renderer. NOT the master: this
-// plays the piece in real time (audio + rAF, exactly like a normal
-// viewing) and records the canvas+audio via MediaRecorder, instead of the
-// expensive deterministic per-frame Puppeteer-screenshot pipeline used for
-// the Phase-13-style exemplar clips. 42 minutes of real-time playback is
-// dramatically cheaper than ~30,000 individual screenshot round-trips
-// (which measured at several hundred ms each during V3's exemplar
-// rendering — hours for the full length), at the cost of NOT being frame-
-// exact/deterministic — acceptable and correct for a proxy whose only job
-// is "let Ronny watch the whole thing economically," not for the master.
+// V4 Part 1 — the TRUE offline master renderer. Unlike proxy-record.js:
+//   - NO real-time playback, NO requestAnimationFrame, NO audio element,
+//     NO MediaRecorder, NO browser audio capture (Part 9: audio is muxed
+//     separately from the original source, never captured from the page).
+//   - Every frame is requested explicitly by the driver at
+//     t = frameIndex / fps via __AUUH_RENDER_SEQUENTIAL__, called in
+//     strictly increasing order — identical discipline to main.js's
+//     master-sequential mode, just driven frame-by-frame from Node instead
+//     of from a live rAF loop, so there is no dependency on real-time
+//     browser performance and no dropped/duplicated frames are possible.
+//   - Resolution/quality are configurable via URL query params
+//     (?w=3840&h=2160&quality=MASTER) rather than hardcoded, per Part 1's
+//     --width/--height/--quality CLI requirements (analysis/render_master.mjs
+//     forwards its own CLI flags into this URL).
 //
-// Fixed 1280x720 (not window-size-based) so the recording resolution is
-// deterministic regardless of the host window/screen.
+// Frame delivery to Node: __AUUH_RENDER_AND_SEND__(t, endpoint) reads the
+// canvas's raw pixels via gl.readPixels and POSTs them to a local HTTP
+// endpoint (analysis/render_master.mjs's own frame-sink server) rather than
+// returning them through page.evaluate()'s JSON-serialized return channel
+// — a 3840x2160 RGBA frame is ~33MB, and CDP's Runtime.evaluate return-by-
+// value path serializes through JSON, which measured (see docs/v4-
+// mastering-audit.md's architecture-benchmark section) as dramatically
+// slower than letting the browser's own network stack send raw bytes to a
+// localhost server that pipes them directly into ffmpeg's stdin.
 
-const WIDTH = 1280;
-const HEIGHT = 720;
+const params = new URLSearchParams(location.search);
+const WIDTH = parseInt(params.get("w") || "1280", 10);
+const HEIGHT = parseInt(params.get("h") || "720", 10);
+const QUALITY = params.get("quality") || "PREVIEW"; // PREVIEW | MASTER | ULTRA — see FeedbackPipeline.js
+const SS = parseFloat(params.get("ss") || "1"); // supersample factor — render at WIDTH*SS x HEIGHT*SS, downsample happens ffmpeg-side (Part 4)
 
-const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
+const renderWidth = Math.round(WIDTH * SS);
+const renderHeight = Math.round(HEIGHT * SS);
+
+const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance", preserveDrawingBuffer: true });
 renderer.setPixelRatio(1);
-renderer.setSize(WIDTH, HEIGHT);
+renderer.setSize(renderWidth, renderHeight);
 document.getElementById("app").appendChild(renderer.domElement);
 
 const WALL_THICKNESS = 0.16;
@@ -42,7 +58,7 @@ const smoothstep = (e0, e1, x) => {
 };
 
 const uniforms = {
-  uResolution: { value: new THREE.Vector2(WIDTH, HEIGHT) },
+  uResolution: { value: new THREE.Vector2(renderWidth, renderHeight) },
   uTime: { value: 0 },
   uCamPos: { value: new THREE.Vector3(0, 0, 9) },
   uCamTarget: { value: new THREE.Vector3(0, 0, 0) },
@@ -76,19 +92,24 @@ const uniforms = {
   uSpecular: { value: 0.15 },
   uRoughness: { value: 0.85 },
   uGrainMix: { value: 1.0 },
+  // V4 Part 6: resolution-independent grain/scanline reference — see
+  // main.frag.js. Fixed to the ORIGINAL 1280x720 authored reference
+  // regardless of actual render resolution, so 4K doesn't change the
+  // perceptual grain/scanline density (only sharpens what's already there).
   uGrainRefWidth: { value: 1280 },
   uGrainRefHeight: { value: 720 },
-  uTestPattern: { value: 0 },
+  // V4 Part 3: ?testpattern=1 renders the color-calibration bars instead
+  // of the piece — see main.frag.js and docs/v4-color-pipeline.md.
+  uTestPattern: { value: params.get("testpattern") === "1" ? 1 : 0 },
 };
 
 const geometry = new THREE.PlaneGeometry(2, 2);
 const material = new THREE.ShaderMaterial({ uniforms, vertexShader, fragmentShader });
 const quad = new THREE.Mesh(geometry, material);
-const pipeline = new FeedbackPipeline(renderer, quad, material, WIDTH, HEIGHT);
+const pipeline = new FeedbackPipeline(renderer, quad, material, renderWidth, renderHeight, QUALITY);
 pipeline.reset();
 
 const cameraDirector = new CameraDirector();
-const audio = new AudioEngine("/AUUH.m4a");
 const featureEngine = new AudioFeatureEngine();
 const visualDirector = new VisualDirector(featureEngine);
 const musicalDirector = new MusicalDirector();
@@ -108,9 +129,8 @@ function familyWeight(scene, family) {
   return 0;
 }
 
-// Identical logic to src/main.js's applyUniformsForT (see that file for
-// full comments) — duplicated per this project's established pattern for
-// separate entry points (director-review.js does the same).
+// Identical logic to src/main.js's applyUniformsForT — see that file for
+// full comments on the director-cue override layer.
 function applyUniformsForT(t) {
   const cue = directorCueSheet.at(t);
   const p = visualDirector.sample(t, cue && cue.microResponse != null ? cue.microResponse : 1);
@@ -129,8 +149,6 @@ function applyUniformsForT(t) {
       };
     }
   }
-
-  const chamberInteriorActive = cam.shotType === "PASS_THROUGH";
 
   let light = lightDirector.sample(t, scene.sceneState);
   if (cue && cue.light) {
@@ -194,87 +212,24 @@ function renderAt(t) {
   pipeline.renderFrame(() => applyUniformsForT(t));
 }
 
-let rafHandle = null;
-function loop(endT, onDone) {
-  const t = audio.currentTime;
+// Architecture A (chosen — see docs/v4-mastering-audit.md's benchmark
+// section): read the canvas's raw RGBA8 pixels directly via gl.readPixels
+// and POST them to a local Node HTTP sink, which pipes straight into
+// ffmpeg's stdin as rawvideo. No PNG encode/decode, no MediaRecorder, no
+// intermediate compression generation.
+window.__AUUH_RENDER_AND_SEND__ = async (t, endpoint) => {
   renderAt(t);
-  if (t >= endT || audio.ended) {
-    onDone();
-    return;
-  }
-  rafHandle = requestAnimationFrame(() => loop(endT, onDone));
-}
-
-// Exposed to the Puppeteer driver. startT/endT let the same page be used
-// for a short validation run before committing to the full 42-minute pass.
-//
-// DELIBERATELY NOT an async function the caller awaits: Puppeteer's
-// page.evaluate() on an async function uses CDP's Runtime.callFunctionOn
-// with awaitPromise:true, which is bound by Puppeteer's protocolTimeout
-// (default ~3 minutes) regardless of how long the PAGE itself is willing
-// to keep running — this killed the first full-length attempt at ~3
-// minutes in with "Runtime.callFunctionOn timed out," well before the
-// page's own work was anywhere near done. Returning synchronously and
-// running the real work in a detached async IIFE means page.evaluate()
-// resolves almost immediately; the driver instead polls
-// window.__PROXY_DONE__ via waitForFunction (a repeated short poll, not
-// one long blocking call), which is immune to this timeout class entirely.
-window.__START_PROXY_RECORDING__ = (startT = 0, endT = DURATION, fps = 15) => {
-  recordProxy(startT, endT, fps);
-  return true;
+  const gl = renderer.getContext();
+  const buffer = new Uint8Array(renderWidth * renderHeight * 4);
+  gl.readPixels(0, 0, renderWidth, renderHeight, gl.RGBA, gl.UNSIGNED_BYTE, buffer);
+  await fetch(endpoint, { method: "POST", body: buffer });
 };
 
-async function recordProxy(startT, endT, fps) {
-  audio.seek(startT);
-  // Warm the feedback ring so the recording doesn't open on a blank buffer
-  // if startT > 0 (used by the short validation run against a mid-piece
-  // window like the 17:47 rupture).
-  if (startT > 0) {
-    pipeline.reset();
-    const warmStart = Math.max(0, startT - 3.0);
-    pipeline.warmUp(applyUniformsForT, warmStart, startT, 1 / 30);
-  }
-
-  const videoStream = renderer.domElement.captureStream(fps);
-  const audioStream = audio.el.captureStream();
-  const combined = new MediaStream([...videoStream.getVideoTracks(), ...audioStream.getAudioTracks()]);
-
-  const recorder = new MediaRecorder(combined, {
-    mimeType: "video/webm;codecs=vp8,opus",
-    videoBitsPerSecond: 700_000,
-    audioBitsPerSecond: 96_000,
-  });
-  const chunks = [];
-  recorder.ondataavailable = (e) => {
-    if (e.data.size > 0) chunks.push(e.data);
-  };
-
-  const stopped = new Promise((resolve) => {
-    recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: "video/webm" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "director_proxy_raw.webm";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(() => URL.revokeObjectURL(url), 5000);
-      resolve();
-    };
-  });
-
-  recorder.start(1000); // 1s timeslice so ondataavailable fires periodically, not just once at the end
-  await audio.start();
-  loop(endT, () => {
-    cancelAnimationFrame(rafHandle);
-    audio.pause();
-    recorder.stop();
-  });
-
-  await stopped;
-  window.__PROXY_DONE__ = true;
-}
+// Architecture C comparison path: just render, let the driver call
+// page.screenshot() externally (no page-side code needed beyond rendering).
+window.__AUUH_RENDER_SEQUENTIAL__ = (t) => {
+  renderAt(t);
+};
 
 async function init() {
   const res = await fetch("/beat_grid.json");
@@ -291,6 +246,6 @@ async function init() {
     console.warn("MusicalDirector not available:", err);
   }
   renderAt(0);
-  window.__PROXY_READY__ = true;
+  window.__AUUH_MASTER_READY__ = true;
 }
 init();
