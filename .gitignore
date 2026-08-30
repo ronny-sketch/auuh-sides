@@ -7,5 +7,6 @@ audio/AUUH_mono22k.wav
 screenshots/_ordered/
 analysis/film-state-trace.json
 analysis/_assembly_diagnostic/
+analysis/_motion_check/
 analysis/_renders/
 reviews/journey_ab/

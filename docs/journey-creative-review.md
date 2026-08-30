@@ -101,9 +101,36 @@ the ~41:21 ending).
 
 Main's V4 quality critique (`docs/v4-quality-critique.md`) explicitly
 flagged that its comparison was based on still frames and had not yet
-proven motion-dependent quality. These three clips are the first real test
-of that. Logged directly against the rendered files, not guessed from
-stills — see the "Motion quality" section below, filled in after render.
+proven motion-dependent quality. Inspected via evenly-sampled frame grids
+pulled directly from the rendered NEW files (`analysis/_motion_check/`,
+not committed — regenerate with `ffmpeg -i <clip> -vf "select='not(mod(n\,15))'" -fps_mode vfr`),
+not guessed from a single still. This is a still-frame sample, not a
+full playback review — genuinely motion-only artifacts (shimmer, flicker)
+need Ronny's eyes on actual playback; what follows is what a frame grid
+alone can and can't tell us.
+
+- **CONSTRUCTION**: a thin hairline seam is visible on the assembled body's
+  surface in more than one frame (e.g. across the smooth core in the
+  first-row-second-column style frames) — likely `opSmoothUnion`'s blend
+  radius (0.35) being slightly too small relative to the turbulence
+  displacement right at a bead/core join boundary. Worth a second look on
+  playback for flicker as beads settle; not touched here per Part 12's
+  "do not derail creative review into mastering work."
+- **BREATH**: consistently dark/low-contrast across nearly the whole
+  window as expected (expression collapse), with texture only returning
+  near the window's end — no dropped/black frames, no visible banding in
+  the near-black range.
+- **RUPTURE**: the FRACTURE voronoi-crack cut is clearly visible and
+  reads as a genuinely dramatic shattering moment at the rupture — this
+  is a strong sign for "does the release feel earned." The same thin
+  hairline seam artifact seen in CONSTRUCTION also appears here on a
+  post-rupture smooth surface; same likely cause, same recommendation
+  (playback check for flicker, not an immediate fix).
+- No FIELD-density artifacts, no NaN/corrupted (magenta/green) frames, no
+  feedback-ghost stability issues visible in any sampled frame across all
+  three clips.
+- Grain/scanline texture is present and consistent in the darker BREATH
+  frames — did not wash out or disappear during the expression collapse.
 
 ## Four questions for Ronny
 
