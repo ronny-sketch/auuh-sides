@@ -101,6 +101,7 @@ export function createFrameDirector(deps) {
     if (!enableJourney) return;
     await evolutionDirector.trackContext.load(deps.trackContextUrl || "/set-track-alignment.json");
     await evolutionDirector.structuralEpisodes.load(deps.structuralEpisodesUrl || "/structural-episodes.json", "candidate");
+    await journeyExpressionDirector.load(deps.releaseCalibrationUrl || "/release-calibration.json");
     if (musicalDirector && musicalDirector.ready) {
       eventStream = new MusicEventStream(musicalDirector, featureEngine);
     }

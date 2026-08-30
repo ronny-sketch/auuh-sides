@@ -39,20 +39,38 @@ const TIER_IMPACT_CEILING = {
   CLIMAX: 1.0,
 };
 
-// Classifies a release's TIER from its rank among releases-SO-FAR (causal,
-// same discipline as EnergyReservoir's rarity factor — this file never
-// looks into the future) rather than a fixed magnitude cutoff, which would
-// need constant re-tuning as EnergyReservoir's factor weights change.
-// Percentile thresholds chosen to land in the brief's suggested rough
-// distribution (many MICRO/PHRASE, ~10-20 SECTION, ~5-8 MAJOR, ~3-5 HERO,
-// 1 CLIMAX out of the measured 84 total) — see
-// analysis/trace_film_state.mjs's tier-distribution report for whether
-// this actually lands there on the real data, and retune here if not.
-function classifyEventTier(magnitude, priorMagnitudes) {
-  if (priorMagnitudes.length < 3) return "SECTION"; // not enough history yet to rank — the film's first few releases default to a modest, non-presumptuous tier
-  const sorted = [...priorMagnitudes].sort((a, b) => a - b);
-  const rank = sorted.filter((m) => m <= magnitude).length / sorted.length;
-  if (rank >= 0.988) return "CLIMAX"; // ~top 1 of 84
+// V3.9 tiering fix: this used to rank a release against releases-SO-FAR
+// (causal/online) — a real bug, because "top 1% of what's happened so
+// far" is a wildly different bar 90 seconds into the film (maybe 3
+// releases have happened) than at minute 40 (maybe 80 have). That produced
+// false early CLIMAX labels: an ordinary early release could rank #1 of
+// the 2-3 releases seen so far and get crowned CLIMAX, a word that should
+// mean something. This is an OFFLINE-AUTHORED FILM — the full 84-release
+// magnitude distribution is already known in advance
+// (analysis/_calibration/energy_reservoir_calibration.json, calibrated by
+// running the same EnergyReservoir once over the whole track in advance —
+// see calibrate_energy_reservoir.mjs) — so there is no reason to pretend
+// otherwise at runtime. Percentile is now computed against the FULL 84,
+// not the online prefix. `localRecord` (see sample()) keeps the old
+// causal "strongest so far" idea alive as a separate, explicitly-labeled
+// descriptive value — it must never again feed the actual visible tier.
+//
+// Percentile thresholds unchanged from before (still land in the brief's
+// suggested rough distribution on the real 84-release data — see
+// analysis/trace_film_state.mjs's tier-distribution report) EXCEPT that
+// CLIMAX is additionally gated to CLIMAX_WINDOW (below): "the word CLIMAX
+// must remain meaningful" means reserved for the film's actual ending, not
+// just whichever passage happens to hit the loudest raw number — the
+// single highest-magnitude release in the whole film (1904.1s / 31:44,
+// magnitude 2.03) sits well BEFORE the final act and must read as HERO,
+// not steal the word CLIMAX from the ~41:21 ending the film is actually
+// built to land on.
+const CLIMAX_WINDOW = [2455, 2503.98]; // permanent-acquisitions.json's "final_convergence" window — the verified final major stored-energy episode leading directly into MusicalDirector's independently-detected final_fade_1744 (2503.98s)
+function classifyEventTier(magnitude, fullFilmMagnitudesSorted, t) {
+  if (!fullFilmMagnitudesSorted || fullFilmMagnitudesSorted.length === 0) return "SECTION"; // calibration not loaded — degrade to a modest, non-presumptuous tier rather than guessing
+  const rank = fullFilmMagnitudesSorted.filter((m) => m <= magnitude).length / fullFilmMagnitudesSorted.length;
+  const inClimaxWindow = t >= CLIMAX_WINDOW[0] && t <= CLIMAX_WINDOW[1];
+  if (rank >= 0.988) return inClimaxWindow ? "CLIMAX" : "HERO"; // ~top 1 of 84 — CLIMAX only inside the film's actual ending
   if (rank >= 0.94) return "HERO"; // ~top 3-5 of 84
   if (rank >= 0.82) return "MAJOR"; // ~top 8-15 of 84
   if (rank >= 0.55) return "SECTION"; // ~top 40% — "clearly perceptible"
@@ -62,9 +80,32 @@ function classifyEventTier(magnitude, priorMagnitudes) {
 
 export class JourneyExpressionDirector {
   constructor() {
-    this._releaseMagnitudeHistory = [];
+    this._releaseMagnitudeHistory = []; // causal, releases-seen-so-far — used ONLY for localRecord, never for eventTier
+    this._fullFilmMagnitudesSorted = []; // offline calibration — the actual tier classifier's population
+    this._maxMagnitudeSoFar = 0;
     this._lastReleaseCount = 0;
     this._activeEnvelope = null; // { tier, salience, startT, ... } — see _updateEnvelope
+  }
+
+  /**
+   * Loads the offline, full-film release-magnitude calibration (all 84
+   * releases, known in advance since this is an authored film, not a live
+   * stream) so classifyEventTier() ranks against the real population
+   * instead of a causal prefix. Call once before the first sample(), same
+   * pattern as TrackContext.load()/StructuralEpisodes.load(). Missing/
+   * failed fetch degrades gracefully to classifyEventTier's SECTION
+   * fallback rather than throwing — a review render without this file
+   * should still run, just without properly calibrated tiers.
+   */
+  async load(url = "/release-calibration.json") {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return;
+      const data = await res.json();
+      this._fullFilmMagnitudesSorted = (data.rankedReleases || []).map((r) => r.magnitude).sort((a, b) => a - b);
+    } catch {
+      // leave _fullFilmMagnitudesSorted empty — classifyEventTier degrades gracefully
+    }
   }
 
   /**
@@ -88,16 +129,28 @@ export class JourneyExpressionDirector {
     const releaseCount = evolution.releaseCount ?? 0;
     let eventTier = "MICRO";
     let eventSalience = 0;
+    let localRecord = false;
     if (releaseCount > this._lastReleaseCount) {
       this._lastReleaseCount = releaseCount;
       const magnitude = evolution.lastReleaseMagnitude;
-      eventTier = classifyEventTier(magnitude, this._releaseMagnitudeHistory);
+      // globalStoryTier: the actual visible/ceiling-setting classification —
+      // ranked against the full-film offline calibration, never the causal
+      // prefix. See classifyEventTier's header comment.
+      eventTier = classifyEventTier(magnitude, this._fullFilmMagnitudesSorted, t);
+      // localRecord: purely descriptive/debug — "is this louder than
+      // anything the causal playthrough has seen so far." Explicitly NOT
+      // used to set eventTier (that was the bug) — kept only because it's
+      // a legitimately different, occasionally useful fact ("the film just
+      // topped itself locally") from "how big is this globally."
+      localRecord = magnitude > this._maxMagnitudeSoFar;
+      this._maxMagnitudeSoFar = Math.max(this._maxMagnitudeSoFar, magnitude);
       this._releaseMagnitudeHistory.push(magnitude);
       eventSalience = clamp01(magnitude / 2.2); // observed real range ~0.3-2.0 (see analysis/_calibration) — 2.2 headroom so a genuine record-setter can still read as "more," not clipped flat against the same ceiling as everything else
-      this._activeEnvelope = { tier: eventTier, salience: eventSalience, startT: t, ceiling: TIER_IMPACT_CEILING[eventTier] };
+      this._activeEnvelope = { tier: eventTier, salience: eventSalience, startT: t, ceiling: TIER_IMPACT_CEILING[eventTier], localRecord };
     } else if (this._activeEnvelope) {
       eventTier = this._activeEnvelope.tier;
       eventSalience = this._activeEnvelope.salience;
+      localRecord = this._activeEnvelope.localRecord;
     }
 
     // Envelope phase timing (Part 6): PREPARATION/IMPACT/AFTERSHOCK/
@@ -164,7 +217,16 @@ export class JourneyExpressionDirector {
     // file makes the same guarantee available as a continuous 0..1 value
     // for every family, not just a binary family switch.
     const surfaceExpression = clamp01(expr.surfaceComplexity);
-    const interiorExpression = cap.has("CHAMBER") ? clamp01(expr.interiorDepth) : 0;
+    // interiorHintExpression: pre-reveal concavity/seam/aperture-suggestion
+    // reading (Part 2) — bounded low by EvolutionDirector's
+    // interiorHintDepth ceiling, gated by INTERIOR_HINT so it is exactly 0
+    // before the pre-rupture compression window even begins.
+    const interiorHintExpression = cap.has("INTERIOR_HINT") ? clamp01(expr.interiorHintDepth) : 0;
+    // interiorExpression: TRUE navigable-interior reading — gated by
+    // INTERIOR_REVEALED (unlocked only at the verified 17:47 rupture), so
+    // this is exactly 0 for the entire film before that instant, matching
+    // EvolutionDirector.accumulated.interiorDepth being exactly 0 there too.
+    const interiorExpression = cap.has("INTERIOR_REVEALED") ? clamp01(expr.interiorDepth) : 0;
     const fieldExpression = cap.has("FIELD") ? clamp01(expr.fieldReach) : 0;
     const memoryExpression = cap.has("ECHO") ? clamp01(expr.memoryDepth) : 0;
     const voidExpression = cap.has("VOID_DOMINANCE") ? clamp01(1 - expr.assembly) * 0.5 : cap.has("VOID_WHISPER") ? 0.05 : 0;
@@ -192,6 +254,7 @@ export class JourneyExpressionDirector {
       spatialExpansion,
       symmetryLock,
       surfaceExpression,
+      interiorHintExpression,
       interiorExpression,
       fieldExpression,
       memoryExpression,
@@ -204,6 +267,7 @@ export class JourneyExpressionDirector {
       filmPhase,
       eventTier,
       eventSalience,
+      localRecord,
       corroboration: eventStream ? eventStream.corroborationCount(t) : 0,
     };
   }

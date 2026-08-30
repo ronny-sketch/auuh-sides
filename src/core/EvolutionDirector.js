@@ -72,23 +72,28 @@ function chapterIndexAt(t) {
 // (another ratchet, at the set level).
 //
 // CORRECTED (session 2) to match SceneDirector.js's OWN already-authored
-// CHAPTER_PLAN exactly, instead of the earlier session's generic fraction-
-// of-duration guesses: SceneDirector.js's comments state plainly that
-// "CHAMBER is not yet possible except at the 17:47 rupture" until chapter 3
-// (Re-ignition, starting 809.82s) and that chapter 5 (Widening, 1451.85s)
-// is where "CHAMBER opens into FIELD," and chapter 6 (Fracture, 1980.04s)
-// is where ECHO becomes dominant. Those are load-bearing creative
-// decisions already made and tested in that file — this file now reflects
-// them exactly (in seconds, converted to journeyProgress fractions of
-// DURATION) rather than inventing a second, competing schedule.
-// VOID is a special case: SceneDirector already uses it as a low-weight
-// SECONDARY "whisper" from chapter 0 (Emergence) onward — it does not need
-// to be earned to appear faintly. What DOES need earning is VOID as a
-// DOMINANT/PRIMARY reading (the final collapse, chapter 7/Synthesis
-// onward, where SceneDirector's convergence rotation and the true-silence
-// tail live) — tracked separately as `voidDominance`, not blocking the
-// whisper.
-const CHAMBER_UNLOCK_T = CHAPTERS[3].start; // 809.82 — Re-ignition
+// CHAPTER_PLAN for FIELD/ECHO/VOID_DOMINANCE — chapter 5 (Widening,
+// 1451.85s) is where "CHAMBER opens into FIELD," and chapter 6 (Fracture,
+// 1980.04s) is where ECHO becomes dominant.
+//
+// CORRECTED AGAIN (V3.9, interior semantics fix): the single "CHAMBER"
+// capability unlocking at chapter 3's start (809.82s) contradicted the
+// verified ground truth in analysis/permanent-acquisitions.json, which
+// places INTERIOR_HINT's earliest evidence at 1034.38s (the compression
+// leading into the rupture) and INTERIOR_REVEALED at 1067.82s (the
+// rupture itself — the deepest verified collapse in the first 20
+// minutes, matching CameraDirector's independent PASS_THROUGH splice at
+// 1067.19s). SceneDirector's own CHAMBER_LANGUAGE aesthetic (MEMBRANE
+// material/softer atmosphere as a chapter-3 secondary blend, per its
+// V3.5 "CHAMBER_PRESENCE vs CHAMBER_INTERIOR" honesty fix) is a
+// permitted pre-reveal HINT — concavity, seams, aperture suggestion, not
+// a claim of true navigable interior — but this file's own capability
+// gate must not independently unlock full interior expression a quarter
+// of an hour before the story actually earns it. See
+// JourneyExpressionDirector.js's interiorHintExpression/interiorExpression
+// split, which is what this schedule now feeds.
+const INTERIOR_HINT_T = 1034.38; // permanent-acquisitions.json "interior_hint".earliestHint — pre-rupture compression
+const INTERIOR_REVEALED_T = 1067.82; // permanent-acquisitions.json "interior_revealed".earliestHint — the rupture instant itself
 const FIELD_UNLOCK_T = CHAPTERS[5].start; // 1451.85 — Widening
 const ECHO_UNLOCK_T = CHAPTERS[6].start; // 1980.04 — Fracture
 const VOID_DOMINANCE_UNLOCK_T = CHAPTERS[7].start; // 2353.85 — Synthesis, where convergence/collapse begins
@@ -108,7 +113,8 @@ const VOID_DOMINANCE_UNLOCK_T = CHAPTERS[7].start; // 2353.85 — Synthesis, whe
 const CAPABILITY_UNLOCK_PROGRESS = [
   { name: "SHELL", atT: 0 },
   { name: "VOID_WHISPER", atT: 0 }, // matches SceneDirector's chapter-0 secondary=VOID usage — available as a faint secondary from the start
-  { name: "CHAMBER", atT: CHAMBER_UNLOCK_T },
+  { name: "INTERIOR_HINT", atT: INTERIOR_HINT_T },
+  { name: "INTERIOR_REVEALED", atT: INTERIOR_REVEALED_T },
   { name: "FIELD", atT: FIELD_UNLOCK_T },
   { name: "ECHO", atT: ECHO_UNLOCK_T },
   { name: "VOID_DOMINANCE", atT: VOID_DOMINANCE_UNLOCK_T },
@@ -132,6 +138,7 @@ export class EvolutionDirector {
       surfaceComplexity: 0,
       topologyComplexity: 0,
       spatialDepth: 0,
+      interiorHintDepth: 0,
       interiorDepth: 0,
       fieldReach: 0,
       memoryDepth: 0,
@@ -147,7 +154,9 @@ export class EvolutionDirector {
     this.expression = 1;
     this.breath = 0;
     this.tension = 0;
-    this.storedEnergy = 0;
+    this.storedEnergy = 0; // == effectiveVisualStoredEnergy, kept for existing callers (JourneyExpressionDirector's contraction/attraction/PREPARATION-threshold logic) — see effectiveVisualStoredEnergy's own comment in update()
+    this.rawStoredEnergy = 0;
+    this.effectiveVisualStoredEnergy = 0;
 
     this._confirmedTransitionsSeen = 0;
     this._exceptionalEventsSeen = new Set();
@@ -180,7 +189,7 @@ export class EvolutionDirector {
     const e = this.energy.sample();
     this.breath = e.breath;
     this.tension = e.tension;
-    this.storedEnergy = e.storedEnergy;
+    this.rawStoredEnergy = e.storedEnergy;
 
     const chapterIdx = chapterIndexAt(t);
     const chapterProgress = chapterIdx / Math.max(1, CHAPTERS.length - 1);
@@ -199,7 +208,21 @@ export class EvolutionDirector {
     a.surfaceComplexity = ratchet(a.surfaceComplexity, p * 0.8 + chapterProgress * 0.2);
     a.topologyComplexity = ratchet(a.topologyComplexity, smoothstep(DURATION * 0.1, DURATION * 0.9, t));
     a.spatialDepth = ratchet(a.spatialDepth, smoothstep(DURATION * 0.15, DURATION, t));
-    a.interiorDepth = ratchet(a.interiorDepth, smoothstep(DURATION * 0.3, DURATION, t)); // "later it contains chamber-space"
+    // interiorHintDepth: pre-reveal only, bounded well below 1 — concavity/
+    // seam/aperture-suggestion territory (Part 2's "allowed before 17:47"
+    // list), never the real thing. Rides the compression window
+    // (INTERIOR_HINT_T -> INTERIOR_REVEALED_T) then holds at its 0.35
+    // ceiling rather than continuing to climb once the real interiorDepth
+    // below takes over.
+    a.interiorHintDepth = ratchet(a.interiorHintDepth, smoothstep(INTERIOR_HINT_T, INTERIOR_REVEALED_T, t) * 0.35);
+    // interiorDepth: TRUE navigable-interior complexity. Zero by
+    // construction for any t < INTERIOR_REVEALED_T (smoothstep(edge0,...)
+    // is exactly 0 below edge0) — the rupture is what "the organism
+    // permanently owns interiority" means, not a gradual pre-earn. Once
+    // past it, this is the same "later it contains chamber-space" curve
+    // as before, just correctly time-shifted to start AT the reveal
+    // instead of a quarter-hour before it.
+    a.interiorDepth = ratchet(a.interiorDepth, smoothstep(INTERIOR_REVEALED_T, DURATION, t));
     a.fieldReach = ratchet(a.fieldReach, smoothstep(DURATION * 0.4, DURATION, t)); // "later it affects its surroundings"
     a.memoryDepth = ratchet(a.memoryDepth, smoothstep(DURATION * 0.55, DURATION, t) + this._confirmedTransitionsSeen * 0.03);
     a.materialMaturity = ratchet(a.materialMaturity, p * 0.6);
@@ -240,6 +263,28 @@ export class EvolutionDirector {
       a.fracturePotential = ratchet(a.fracturePotential, a.fracturePotential + e.lastReleaseMagnitude * 0.12);
       a.materialMaturity = ratchet(a.materialMaturity, a.materialMaturity + 0.04);
     }
+
+    // --- Visual energy capacity (V3.9, "the möykky learns how to hold
+    // energy"): EnergyReservoir's raw storedEnergy (this.rawStoredEnergy,
+    // set above) is a valid MUSICAL measurement — how much the track
+    // itself is charging — and is kept as-is; the bug was treating that
+    // number as if it were also already the organism's VISUAL capacity.
+    // Early in the film the organism hasn't yet built the physical mass/
+    // assembly/material maturity/spatial depth to stage the same enormous
+    // compression/release a mature body can, even if the music itself is
+    // charging hard. developmentalCapacity is a function of ACCUMULATED
+    // STATE (never resets, per the ratchet discipline) — not time/duration
+    // directly — so a real developmental shortcut (an early exceptional
+    // event that jumps assembly/mass ahead) legitimately raises capacity
+    // early, exactly as it should.
+    const developmentalCapacity = clamp01(a.assembly * 0.3 + a.mass * 0.25 + a.growth * 0.15 + a.materialMaturity * 0.15 + a.spatialDepth * 0.15);
+    // Floor, not zero: per the brief, "seed can pulse, seed can attract,
+    // seed can twitch" — a brand-new organism must still visibly respond
+    // to the music, just far below what full capacity allows.
+    const CAPACITY_FLOOR = 0.25;
+    const capacity = CAPACITY_FLOOR + (1 - CAPACITY_FLOOR) * developmentalCapacity;
+    this.effectiveVisualStoredEnergy = this.rawStoredEnergy * capacity;
+    this.storedEnergy = this.effectiveVisualStoredEnergy; // existing callers (JourneyExpressionDirector's contraction/attraction/PREPARATION-threshold logic) read `storedEnergy` expecting the VISUAL quantity — see file header's accumulated-vs-expressed discipline, same principle applied to energy.
 
     // --- Capability unlocks (set-level ratchet).
     for (const cap of CAPABILITY_UNLOCK_PROGRESS) {
@@ -294,7 +339,9 @@ export class EvolutionDirector {
       expression: this.expression,
       breath: this.breath,
       tension: this.tension,
-      storedEnergy: this.storedEnergy,
+      storedEnergy: this.storedEnergy, // == effectiveVisualStoredEnergy — kept for existing callers
+      rawStoredEnergy: this.rawStoredEnergy,
+      effectiveVisualStoredEnergy: this.effectiveVisualStoredEnergy,
       energyPhase: this.energy.phase,
       releaseCount: this.energy.releaseCount,
       lastReleaseMagnitude: this.energy.lastReleaseMagnitude,
