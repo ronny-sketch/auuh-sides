@@ -97,6 +97,19 @@ the ~41:21 ending).
 - Does 18:10+ feel like a permanently changed normal, rather than a return
   to how the film looked before 17:47?
 
+**Honest note on this pair specifically:** `accumulated.assembly` reaches
+1.0 by ~14:44, well before this window starts — so NEW's fragment-assembly
+system exact-bypasses to the original formula here, and CameraDirector's
+PASS_THROUGH rupture splice + the FRACTURE voronoi-crack cut both already
+existed in V4 main before Journey. A still-frame check (`analysis/
+_motion_check/sheet_rupture_old.png` vs `sheet_rupture.png`) shows the two
+look close for this specific window — the Journey layer's contribution
+here is the subtler stuff (energy-capacity-driven camera stillness,
+corrected event tier feeding the impact ceiling), not a visual overhaul.
+CONSTRUCTION is where the two branches should look most obviously
+different; RUPTURE is more about confirming nothing regressed while the
+semantic fixes did their (mostly invisible-in-a-still) work underneath.
+
 ## Motion-quality notes (Part 12)
 
 Main's V4 quality critique (`docs/v4-quality-critique.md`) explicitly
