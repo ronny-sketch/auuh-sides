@@ -136,8 +136,58 @@ const frameDirector = createFrameDirector({
 });
 const applyUniformsForT = frameDirector.applyUniformsForT;
 
+// V3.9 Part 8 — assembly diagnostic contact sheet support (analysis/
+// assembly_diagnostic.mjs). ?diagPin=1 pins camera/light/material/look
+// uniforms to fixed neutral values AFTER the normal journey pipeline sets
+// them for this frame, and ?forceAssembly=<0..1> additionally overrides
+// uAssembly — so a set of renders at the SAME t with only forceAssembly
+// varying isolates exactly what uAssembly does to the geometry, with
+// nothing else (camera framing, light angle, material, grain) confounding
+// the comparison. Never touched by any non-diagnostic call site (both
+// params default off).
+const DIAG_PIN = params.get("diagPin") === "1";
+const FORCE_ASSEMBLY = params.get("forceAssembly") != null ? parseFloat(params.get("forceAssembly")) : null;
+
+function applyDiagnosticPins() {
+  // Distance chosen so the full fragment scatter at the LOWEST tested
+  // assembly value stays inside frame: ring radius (up to 1.9) + detach
+  // distance (up to 3.8) puts a fragment as far as ~5.7 units from origin
+  // (see main.frag.js's fragmentBead()) — wider than the old domain-warp
+  // system's ~2.6 max, since these are now real discrete pieces actually
+  // traveling away from home, not a subtle warp.
+  uniforms.uCamPos.value.set(8.3, 3.6, 9.7);
+  uniforms.uCamTarget.value.set(0, 0, 0);
+  uniforms.uFov.value = 45;
+  uniforms.uFold.value = 1;
+  uniforms.uFoldBlend.value = 0;
+  uniforms.uTurbulence.value = 0;
+  uniforms.uFracture.value = 0;
+  uniforms.uContrast.value = 0.8;
+  uniforms.uColorMix.value = 0;
+  uniforms.uRestraint.value = 0;
+  uniforms.uFormBlend.value = 0;
+  uniforms.uGrainBoost.value = 1;
+  uniforms.uGrainMix.value = 0.2; // reduced, not zero — enough left to judge material read, not so much it obscures assembly seams
+  uniforms.uFieldWeight.value = 0;
+  uniforms.uEchoWeight.value = 0;
+  uniforms.uBlackout.value = 0;
+  uniforms.uLightMode.value = 1;
+  uniforms.uLightDir.value.set(0.6, 0.75, -0.3);
+  uniforms.uLightIntensity.value = 1.0;
+  uniforms.uAmbient.value = 0.06; // slightly brighter than default so the diagnostic image reads clearly without needing grading
+  uniforms.uRimAmount.value = 0.18;
+  uniforms.uMaterialMode.value = 0;
+  uniforms.uAlbedo.value = 0.85;
+  uniforms.uSpecular.value = 0.15;
+  uniforms.uRoughness.value = 0.85;
+  if (FORCE_ASSEMBLY != null) uniforms.uAssembly.value = FORCE_ASSEMBLY;
+}
+
 function renderAt(t) {
-  pipeline.renderFrame(() => applyUniformsForT(t));
+  pipeline.renderFrame(() => {
+    applyUniformsForT(t);
+    if (DIAG_PIN) applyDiagnosticPins();
+  });
 }
 
 // Architecture A (chosen — see docs/v4-mastering-audit.md's benchmark

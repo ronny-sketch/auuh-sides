@@ -222,30 +222,41 @@ float opSmoothSubtraction(float d1, float d2, float k) {
   return mix(d2, -d1, h) + k * h * (1.0 - h);
 }
 
-// Journey v38 assembly warp: partitions space into fixed-size cells, each
-// with its own stable (per-cell, not per-frame) hashed outward direction,
-// and displaces the SAMPLE POINT before it reaches the body's own SDF —
-// the same "domain warp before primitives" technique mapSolidBody already
-// uses for fold/turbulence below, so this composes with the existing
-// pipeline rather than adding a second, competing system. A cell's
-// fragment is stable across time (same hash every frame) so a piece that
-// has "joined" earlier in the film keeps behaving like the same piece —
-// per the brief's "the body should visibly contain things acquired
-// earlier," not randomized noise. coreWeight keeps material near the
-// origin anchored even at uAssembly=0 ("a tiny seed... not the complete
-// object" — the seed is exactly this anchored core), while material
-// farther out (the eventual shell/ring/architecture) scatters first.
-// EXACT BYPASS at uAssembly>=0.999 — every existing render (and every
-// call site that never sets uAssembly, which defaults to 1.0 in every
-// uniforms declaration) gets precisely the pre-journey shape, unchanged.
-vec3 assemblyWarp(vec3 p) {
-  if (uAssembly > 0.999) return p;
-  vec3 cell = floor(p * 0.9);
-  vec3 seed = vec3(hash3(cell), hash3(cell + vec3(13.1, 7.7, 29.3)), hash3(cell + vec3(41.0, 3.0, 17.0)));
-  vec3 dir = normalize(seed - 0.5 + 0.0001);
-  float coreWeight = smoothstep(0.0, 2.0, length(p));
-  float spread = (1.0 - uAssembly) * 2.6;
-  return p - dir * spread * coreWeight;
+// V3.9 Part 9 — real fragment assembly, replacing the Part-8-diagnosed
+// FAILING "assemblyWarp" domain-warp (a contact sheet at assembly=0.03
+// through 1.00, same fixed camera/light/material/time, showed a
+// frame-filling faceted mass at EVERY value with no empty space, no
+// discrete separated pieces, and no visible joining — "warping/noise," not
+// construction — see docs/journey-creative-review.md and the diagnostic
+// PNGs in analysis/_assembly_diagnostic/). This is a SMALL number of
+// PERSISTENT pieces built from this file's own existing DNA (the round-box
+// core, the ring torus — same primitives every render already uses), not a
+// particle cloud: one seed core (sdRoundBox/sdOctahedron, scaled down, not
+// warped) plus 6 ring fragments (sdRoundBox "beads") that are literally
+// scattered away from their home position on the ring when uAssembly is
+// low and literally travel back to it as uAssembly rises. Each fragment's
+// home angle/detach direction/detach distance/spin rate is a fixed
+// function of its own index (hash1(index*k+c)) — identical every frame,
+// every render, forever, which IS what "persistent identity" / "lineage"
+// means: fragment 3 is always fragment 3, never reassigned.
+float fragmentBead(vec3 pw, int i, float ringRadius, float ringTube, float easedA) {
+  float fi = float(i);
+  float homeAngle = (fi + 0.5) / 6.0 * 6.2831853;
+  vec3 home = vec3(cos(homeAngle), 0.0, sin(homeAngle)) * ringRadius;
+  vec3 detachDir = normalize(vec3(hash1(fi * 3.1 + 1.0) - 0.5, hash1(fi * 7.7 + 2.0) - 0.5, hash1(fi * 5.3 + 3.0) - 0.5) + 0.0001);
+  float detachDist = 2.2 + hash1(fi * 11.0 + 4.0) * 1.6;
+  vec3 beadCenter = home + detachDir * detachDist * (1.0 - easedA);
+
+  // Gentle per-fragment tumble while detached — reads as a free piece
+  // drifting, not a static floating cube — settling to zero rotation
+  // exactly as it reaches home (spin term is itself scaled by
+  // (1-easedA), so it vanishes continuously, no snap).
+  float spin = (0.6 + hash1(fi * 13.0 + 5.0) * 0.8) * uTime * (1.0 - easedA);
+  vec3 lp = pw - beadCenter;
+  float cs = cos(spin);
+  float sn = sin(spin);
+  lp = vec3(lp.x * cs - lp.z * sn, lp.y, lp.x * sn + lp.z * cs);
+  return sdRoundBox(lp, vec3(ringTube * 1.3, ringTube, ringTube * 1.3), ringTube * 0.5);
 }
 
 // Identity field shared by every family (v3, docs/v3-creative-direction.md
@@ -254,7 +265,6 @@ vec3 assemblyWarp(vec3 p) {
 // shell (abs(d) - wallThickness) and the exterior SHELL cut can both read
 // the identical underlying shape rather than two similar-but-drifted copies.
 float mapSolidBody(vec3 p) {
-  p = assemblyWarp(p);
   // Noise-based warp/fracture must never influence points far from the
   // body: sin()-based hashing loses precision at large coordinates (rays
   // that miss travel out to t=40), which otherwise produces false
@@ -269,6 +279,9 @@ float mapSolidBody(vec3 p) {
   float warp = fbm(pf * 0.8 + uTime * 0.05) * uTurbulence * distMask;
   vec3 pw = pf + warp * 0.6;
 
+  // The ORIGINAL fully-assembled body — unchanged formula, unchanged
+  // variable order, so uAssembly>=0.999 below is a byte-for-byte exact
+  // bypass matching every pre-Part-9 render.
   float bodyA = sdRoundBox(pw, vec3(1.0, 1.4, 1.0), 0.35);
   float ringA = sdTorus(pw, vec2(1.6, 0.35));
   float dA = opSmoothUnion(bodyA, ringA, 0.6);
@@ -277,9 +290,35 @@ float mapSolidBody(vec3 p) {
   float ringB = sdTorus(pw, vec2(1.9, 0.12));
   float dB = opSmoothUnion(bodyB, ringB, 0.35);
 
-  float d = mix(dA, dB, uFormBlend);
-  d += (fbm(pf * 2.3 - uTime * 0.03) - 0.5) * uTurbulence * 0.35 * distMask;
-  return d;
+  float dFull = mix(dA, dB, uFormBlend);
+  dFull += (fbm(pf * 2.3 - uTime * 0.03) - 0.5) * uTurbulence * 0.35 * distMask;
+
+  if (uAssembly > 0.999) return dFull;
+
+  float easedA = smoothstep(0.0, 1.0, uAssembly);
+  // Seed core: same primitives, scaled down (never warped/hidden) — "a
+  // tiny seed... not the complete object," present from frame one.
+  float coreScale = mix(0.32, 1.0, easedA);
+  float dCoreA = sdRoundBox(pw, vec3(1.0, 1.4, 1.0) * coreScale, 0.35 * coreScale);
+  float dCoreB = sdOctahedron(pw, 1.55 * coreScale);
+  float dFrag = mix(dCoreA, dCoreB, uFormBlend);
+
+  float ringRadius = mix(1.6, 1.9, uFormBlend);
+  float ringTube = mix(0.42, 0.30, uFormBlend); // slightly chunkier than the fully-assembled tube (0.35/0.12) — 6 discrete beads visibly cover a full ring once joined, reading as "welded from pieces" rather than perfectly seamless
+  for (int i = 0; i < 6; i++) {
+    dFrag = opSmoothUnion(dFrag, fragmentBead(pw, i, ringRadius, ringTube, easedA), 0.35);
+  }
+
+  // mix(), not a hard switch: at uAssembly==1.0 exactly, easedA==1.0
+  // exactly (smoothstep's own clamped edge case), so this returns dFull
+  // exactly (mix(a,b,1.0) == b in IEEE float, independent of dFrag's
+  // value) — the SAME exact-bypass guarantee as the early return above,
+  // just continuous through the whole 0..1 range instead of a discontinuous
+  // threshold, so there is no visible pop/snap as a fragment finishes
+  // joining. Mixing two SDF VALUES (not positions) to cross-fade between
+  // shapes is the same technique this file already uses for uFormBlend
+  // above, not a new idiom.
+  return mix(dFrag, dFull, easedA);
 }
 
 // SHELL/exterior family: mapSolidBody plus the discrete audio-triggered
