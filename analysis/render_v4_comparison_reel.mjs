@@ -39,9 +39,26 @@ const OUT_DIR = "reviews/v4_quality_comparison";
 const PROXY_SOURCE = "reviews/AUUH_v3_5_director_proxy.mp4";
 const PORT = process.env.AUUH_PORT || "4174";
 
+// render_master.mjs calls are subject to a real, reproducible instability
+// (docs/v4-mastering-audit.md's Part 16 finding) — sustained 4K rendering
+// occasionally hangs/crashes Puppeteer's CDP connection regardless of
+// content. Not content-specific (confirmed: fracture_obsidian failed once
+// then succeeded on retry) and not fixable at this layer — the correct
+// response is to retry, which is always safe here because render_master.mjs
+// is itself chunk-resumable (a retry re-invocation skips whatever already
+// rendered correctly and only redoes the chunk that failed).
+const MAX_RETRIES = 4;
 function run(cmd) {
-  console.log(`  $ ${cmd}`);
-  execSync(cmd, { stdio: "inherit" });
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    console.log(`  $ ${cmd}${attempt > 1 ? ` (retry ${attempt - 1}/${MAX_RETRIES - 1})` : ""}`);
+    try {
+      execSync(cmd, { stdio: "inherit" });
+      return;
+    } catch (err) {
+      if (attempt === MAX_RETRIES) throw err;
+      console.warn(`  -- attempt ${attempt} failed, retrying (this is the known Part 16 instability, not a content bug) --`);
+    }
+  }
 }
 
 async function main() {
