@@ -92,8 +92,8 @@ function chapterIndexAt(t) {
 // of an hour before the story actually earns it. See
 // JourneyExpressionDirector.js's interiorHintExpression/interiorExpression
 // split, which is what this schedule now feeds.
-const INTERIOR_HINT_T = 1034.38; // permanent-acquisitions.json "interior_hint".earliestHint — pre-rupture compression
-const INTERIOR_REVEALED_T = 1067.82; // permanent-acquisitions.json "interior_revealed".earliestHint — the rupture instant itself
+export const INTERIOR_HINT_T = 1034.38; // permanent-acquisitions.json "interior_hint".earliestHint — pre-rupture compression
+export const INTERIOR_REVEALED_T = 1067.82; // permanent-acquisitions.json "interior_revealed".earliestHint — the rupture instant itself
 const FIELD_UNLOCK_T = CHAPTERS[5].start; // 1451.85 — Widening
 const ECHO_UNLOCK_T = CHAPTERS[6].start; // 1980.04 — Fracture
 const VOID_DOMINANCE_UNLOCK_T = CHAPTERS[7].start; // 2353.85 — Synthesis, where convergence/collapse begins

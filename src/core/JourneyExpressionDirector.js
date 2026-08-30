@@ -65,7 +65,7 @@ const TIER_IMPACT_CEILING = {
 // magnitude 2.03) sits well BEFORE the final act and must read as HERO,
 // not steal the word CLIMAX from the ~41:21 ending the film is actually
 // built to land on.
-const CLIMAX_WINDOW = [2455, 2503.98]; // permanent-acquisitions.json's "final_convergence" window — the verified final major stored-energy episode leading directly into MusicalDirector's independently-detected final_fade_1744 (2503.98s)
+export const CLIMAX_WINDOW = [2455, 2503.98]; // permanent-acquisitions.json's "final_convergence" window — the verified final major stored-energy episode leading directly into MusicalDirector's independently-detected final_fade_1744 (2503.98s)
 function classifyEventTier(magnitude, fullFilmMagnitudesSorted, t) {
   if (!fullFilmMagnitudesSorted || fullFilmMagnitudesSorted.length === 0) return "SECTION"; // calibration not loaded — degrade to a modest, non-presumptuous tier rather than guessing
   const rank = fullFilmMagnitudesSorted.filter((m) => m <= magnitude).length / fullFilmMagnitudesSorted.length;

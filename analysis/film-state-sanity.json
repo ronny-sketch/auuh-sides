@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-08-29T21:15:10.047Z",
-  "totalChecks": 11,
-  "passed": 11,
+  "generatedAt": "2026-08-30T08:53:18.305Z",
+  "totalChecks": 17,
+  "passed": 17,
   "failed": 0,
   "checks": [
     {
@@ -18,11 +18,20 @@
       }
     },
     {
-      "name": "interiorExpression is 0 before CHAMBER unlocks",
+      "name": "interiorExpression is exactly 0 before the 17:47 INTERIOR_REVEALED unlock",
       "ok": true,
       "detail": {
         "violatingSamples": 0,
-        "chamberUnlockT": 809.82
+        "interiorRevealedT": 1067.82
+      }
+    },
+    {
+      "name": "interiorHintExpression is 0 before INTERIOR_HINT unlocks and stays bounded (<0.4)",
+      "ok": true,
+      "detail": {
+        "violatingEarlySamples": 0,
+        "violatingStrongSamples": 0,
+        "interiorHintT": 1034.38
       }
     },
     {
@@ -52,12 +61,12 @@
       "ok": true,
       "detail": {
         "tierCounts": {
-          "SECTION": 30,
-          "CLIMAX": 7,
-          "MICRO": 15,
-          "PHRASE": 14,
-          "MAJOR": 14,
-          "HERO": 4
+          "PHRASE": 26,
+          "MICRO": 21,
+          "SECTION": 22,
+          "MAJOR": 10,
+          "HERO": 4,
+          "CLIMAX": 1
         },
         "totalReleases": 84
       }
@@ -66,8 +75,8 @@
       "name": "visibleComplexity dips during the verified 12:44-13:46 breath episode",
       "ok": true,
       "detail": {
-        "avgInBreath": 0.05533188405797098,
-        "avgOutsideJustBefore": 0.08841156250000001
+        "avgInBreath": 0.05676022544283408,
+        "avgOutsideJustBefore": 0.09184171875000012
       }
     },
     {
@@ -85,7 +94,7 @@
         "rupture": {
           "t": 1067.9,
           "magnitude": 1.5204377010240842,
-          "tier": "CLIMAX",
+          "tier": "HERO",
           "salience": 0.6911080459200382
         },
         "rank": 3,
@@ -99,10 +108,62 @@
         "late41": {
           "t": 2480.6,
           "magnitude": 1.8247073340428088,
-          "tier": "HERO",
+          "tier": "CLIMAX",
           "salience": 0.829412424564913
         },
         "rank": 1
+      }
+    },
+    {
+      "name": "17:47 rupture's tier is HERO, not CLIMAX",
+      "ok": true,
+      "detail": {
+        "rupture": {
+          "t": 1067.9,
+          "magnitude": 1.5204377010240842,
+          "tier": "HERO",
+          "salience": 0.6911080459200382
+        }
+      }
+    },
+    {
+      "name": "no CLIMAX release before the final-convergence window",
+      "ok": true,
+      "detail": {
+        "violatingReleases": [],
+        "climaxWindow": [
+          2455,
+          2503.98
+        ]
+      }
+    },
+    {
+      "name": "exactly one CLIMAX release in the whole film",
+      "ok": true,
+      "detail": {
+        "climaxReleases": [
+          {
+            "t": 2480.6,
+            "magnitude": 1.8247073340428088,
+            "tier": "CLIMAX",
+            "salience": 0.829412424564913
+          }
+        ]
+      }
+    },
+    {
+      "name": "opening visual-energy capacity is much lower than mature capacity",
+      "ok": true,
+      "detail": {
+        "openingRatio": 0.25,
+        "avgMatureRatio": 0.9961096268601896
+      }
+    },
+    {
+      "name": "quiet 12:44-13:46 breath suppresses expression without reversing development",
+      "ok": true,
+      "detail": {
+        "violations": []
       }
     }
   ]
