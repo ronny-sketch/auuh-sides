@@ -101,6 +101,49 @@ export class RenderLease {
     return lease;
   }
 
+  /**
+   * Resume an existing renderId's directory (e.g. after a crash) instead of
+   * creating a new one — the counterpart to acquire() for the "same
+   * render-id, rerun the command" case. Refuses exactly like
+   * destroyOwnChunks() does: an ALIVE lease means some other process
+   * genuinely still owns this directory (never attach out from under it),
+   * and a STALE lease requires the same explicit { forceStale: true }
+   * override before this process takes it over.
+   */
+  attach({ forceStale = false } = {}) {
+    if (!fs.existsSync(this.dir)) {
+      throw new Error(`RenderLease.attach(): no directory at ${this.dir} for renderId ${this.renderId} — use acquire() to start a new render instead.`);
+    }
+    const status = checkLeaseStatus(this.leasePath);
+    if (status.state === "missing") {
+      throw new Error(`RenderLease.attach(): directory ${this.dir} exists but has no lease file — refusing to attach to an unrecorded directory. Investigate manually.`);
+    }
+    if (status.state === "alive") {
+      throw new Error(`RenderLease.attach(): lease at ${this.leasePath} is ALIVE (pid ${status.lease.pid}, heartbeat ${status.lease.heartbeatAt}) — refusing to attach while another process may still own it.`);
+    }
+    if (status.state === "stale" && !forceStale) {
+      throw new Error(`RenderLease.attach(): lease at ${this.leasePath} is STALE (last heartbeat ${status.lease.heartbeatAt}, ${status.ageSec.toFixed(0)}s ago) but forceStale was not passed. Pass { forceStale: true } only after confirming the previous process (pid ${status.lease.pid}, host ${status.lease.hostname}) is genuinely dead.`);
+    }
+    fs.mkdirSync(this.chunksDir, { recursive: true });
+    const lease = {
+      sessionId: process.env.CLAUDE_SESSION_ID || process.env.TERM_SESSION_ID || null,
+      pid: process.pid,
+      hostname: os.hostname(),
+      gitWorktree: this.cwd,
+      branch: safeGitBranch(this.cwd),
+      commit: safeGitCommit(this.cwd),
+      startedAt: status.lease.startedAt,
+      heartbeatAt: nowIso(),
+      renderType: this.renderType,
+      outputPath: this.outputPath,
+      tempDirectory: this.chunksDir,
+      resumedFrom: { pid: status.lease.pid, hostname: status.lease.hostname, heartbeatAt: status.lease.heartbeatAt },
+    };
+    fs.writeFileSync(this.leasePath, JSON.stringify(lease, null, 2));
+    this._acquired = true;
+    return lease;
+  }
+
   /** Call periodically (e.g. once per chunk) while the render runs — a stale lease is exactly what lets a well-meaning cleanup step assume a directory is abandoned when it isn't. */
   heartbeat() {
     if (!this._acquired) throw new Error("RenderLease.heartbeat() called before acquire()");

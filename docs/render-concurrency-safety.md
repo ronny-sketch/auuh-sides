@@ -1,5 +1,16 @@
 # Render Concurrency Safety
 
+> **Update (V3.9 integration):** Step 1 of the merge plan below is done —
+> `render_master.mjs` now acquires a `RenderLease` per invocation
+> (`analysis/_renders/<render-id>/chunks/`, `--render-id` to resume,
+> `--force-stale-lock` to take over a crashed run) instead of the shared
+> `analysis/_master_chunks/`. Chunk filenames also now encode commit and
+> fps in addition to time range/resolution/quality/supersample. Steps 2–3
+> (farm scripts, the manual-`rm -rf` habit change) are still open — the
+> farm scripts live as uncommitted work in the main worktree and are out
+> of scope for this branch. The rest of this document is the original
+> incident writeup, left as-is for context.
+
 ## The incident this exists to prevent (already happened once)
 
 Session A was running a 60-second 4K stress render in the main `auuh`

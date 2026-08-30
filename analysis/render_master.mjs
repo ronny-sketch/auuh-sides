@@ -29,11 +29,16 @@ import puppeteer from "puppeteer-core";
 import { execSync, spawn } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { RenderLease } from "../src/render/RenderLease.js";
 
 const CHROME_PATH = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 function parseArgs(argv) {
-  const args = { fps: 30, width: 3840, height: 2160, quality: "MASTER", ss: 1, chunkSeconds: null, port: process.env.AUUH_PORT || "4174" };
+  const args = {
+    fps: 30, width: 3840, height: 2160, quality: "MASTER", ss: 1, chunkSeconds: null,
+    port: process.env.AUUH_PORT || "4174", renderRoot: "analysis/_renders", renderType: "cli_master",
+    renderId: null, forceStaleLock: false,
+  };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const val = () => argv[++i];
@@ -47,16 +52,19 @@ function parseArgs(argv) {
     else if (a === "--output") args.output = val();
     else if (a === "--chunk-seconds") args.chunkSeconds = parseFloat(val());
     else if (a === "--port") args.port = val();
+    else if (a === "--render-root") args.renderRoot = val();
+    else if (a === "--render-type") args.renderType = val();
+    else if (a === "--render-id") args.renderId = val();
+    else if (a === "--force-stale-lock") args.forceStaleLock = true;
     else throw new Error(`Unknown arg: ${a}`);
   }
   if (args.start == null || args.end == null || !args.output) {
-    throw new Error("Required: --start <sec> --end <sec> --output <path> (optional: --fps --width --height --quality --ss --chunk-seconds --port)");
+    throw new Error("Required: --start <sec> --end <sec> --output <path> (optional: --fps --width --height --quality --ss --chunk-seconds --port --render-root --render-type --render-id --force-stale-lock)");
   }
   return args;
 }
 
 const PREROLL_SECONDS = 4.0;
-const CHUNK_DIR = "analysis/_master_chunks";
 
 async function renderChunk({ globalStart, chunkStart, chunkEnd, fps, width, height, quality, ss, port }, outFile) {
   const renderW = Math.round(width * ss);
@@ -157,10 +165,25 @@ function chunkIsComplete(outFile, expectedDurationSec, fps) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const { start, end, fps, width, height, quality, ss, output, port } = args;
+  const { start, end, fps, width, height, quality, ss, output, port, renderRoot, renderType, forceStaleLock } = args;
   const chunkSeconds = args.chunkSeconds || end - start;
 
-  fs.mkdirSync(CHUNK_DIR, { recursive: true });
+  // Every invocation gets its OWN chunk directory (analysis/_renders/<render-id>/chunks)
+  // instead of the old shared analysis/_master_chunks — see
+  // docs/render-concurrency-safety.md for the incident this fixes. Pass
+  // --render-id to resume a previous (crashed) render's chunks rather than
+  // starting over from an empty directory.
+  const lease = new RenderLease({ renderRoot, renderId: args.renderId, renderType, outputPath: output });
+  if (args.renderId && fs.existsSync(lease.dir)) {
+    lease.attach({ forceStale: forceStaleLock });
+    console.log(`Resuming render ${lease.renderId} (dir: ${lease.dir})`);
+  } else {
+    lease.acquire();
+    console.log(`Render ID: ${lease.renderId} (dir: ${lease.dir}) — pass --render-id ${lease.renderId} to resume if interrupted.`);
+  }
+  const CHUNK_DIR = lease.chunksDir;
+  const commit = (execSync("git rev-parse HEAD").toString().trim() || "nocommit").slice(0, 10);
+
   fs.mkdirSync(path.dirname(output), { recursive: true });
 
   const chunks = [];
@@ -174,16 +197,19 @@ async function main() {
   for (let i = 0; i < chunks.length; i++) {
     const { chunkStart, chunkEnd } = chunks[i];
     // Filename MUST encode every setting that changes the actual pixels
-    // (resolution, quality tier, supersample) — a real bug caught here
-    // during the Part 15 comparison-reel render: two calls covering the
-    // SAME time range at 1080p and at 4K/1.5x-SS produced byte-identical
-    // "4K" output because the old filename (time range only) matched an
-    // existing chunk file from the 1080p run, and chunkIsComplete() only
-    // checks duration, not resolution — it happily "restarted" from a
-    // completely wrong cached file.
+    // (commit, time range, resolution, fps, quality tier, supersample) — a
+    // real bug caught here during the Part 15 comparison-reel render: two
+    // calls covering the SAME time range at 1080p and at 4K/1.5x-SS
+    // produced byte-identical "4K" output because the old filename (time
+    // range only) matched an existing chunk file from the 1080p run, and
+    // chunkIsComplete() only checks duration, not resolution — it happily
+    // "restarted" from a completely wrong cached file. Directory isolation
+    // (one dir per render-id) already prevents cross-render collisions;
+    // this filename additionally makes a single render-id's chunks
+    // self-describing.
     const chunkFile = path.join(
       CHUNK_DIR,
-      `chunk_${String(i).padStart(4, "0")}_${chunkStart.toFixed(1)}-${chunkEnd.toFixed(1)}_${width}x${height}_${quality}_ss${ss}.mp4`
+      `chunk_${String(i).padStart(4, "0")}_${commit}_${chunkStart.toFixed(1)}-${chunkEnd.toFixed(1)}_${width}x${height}_${fps}fps_${quality}_ss${ss}.mp4`
     );
     chunkFiles.push(chunkFile);
     const expectedDur = chunkEnd - chunkStart;
@@ -194,6 +220,7 @@ async function main() {
     }
     console.log(`[${i + 1}/${chunks.length}] rendering ${chunkStart.toFixed(2)}s -> ${chunkEnd.toFixed(2)}s -> ${chunkFile}`);
     await renderChunk({ globalStart: start, chunkStart, chunkEnd, fps, width, height, quality, ss, port }, chunkFile);
+    lease.heartbeat();
   }
 
   if (chunkFiles.length === 1) {
@@ -206,6 +233,12 @@ async function main() {
 
   const finalDur = execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 "${output}"`).toString().trim();
   console.log(`\nDone: ${output} (duration ${finalDur}s, expected ${(end - start).toFixed(3)}s)`);
+
+  // Only release on success — a crash leaves the lease in place so it goes
+  // stale (see checkLeaseStatus) instead of silently vanishing, which is
+  // what lets --render-id resume find it and --force-stale-lock take it
+  // over deliberately rather than by accident.
+  lease.release();
 }
 
 main().catch((err) => {
