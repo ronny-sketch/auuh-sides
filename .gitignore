@@ -9,4 +9,5 @@ analysis/film-state-trace.json
 analysis/_assembly_diagnostic/
 analysis/_motion_check/
 analysis/_renders/
+analysis/_review_windows/
 reviews/journey_ab/
